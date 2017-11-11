@@ -1,7 +1,6 @@
 # Foalarm
-Foaling Alarm System
-
-
+### Foaling Alarm System
+[Research Document](https://github.com/Kelly-David/Foalarm/blob/master/Documentation/research%20.pdf)
 
 ### Institute of Technology Carlow
 Course: BSc (Honours) Software Development
