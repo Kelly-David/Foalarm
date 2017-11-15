@@ -1,0 +1,43 @@
+<div *ngIf="company$ | async as company">
+  <div class="card primaryCard">
+    <div class="card-body">
+      <h5 class="card-title text-muted">Edit</h5>
+      <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon">
+          Name
+        </span>
+        <input type="text" class="form-control" aria-label="Name" [(ngModel)]="company.name">
+      </div>
+      <br>
+      <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon">
+          Location
+        </span>
+        <input type="text" class="form-control" aria-label="Location" [(ngModel)]="company.location">
+      </div>
+      <br>
+      <div class="input-group margin-bottom-sm">
+          <span class="input-group-addon">
+            Owner
+          </span>
+          <input type="text" class="form-control" aria-label="Location" [value]=user.name [(ngModel)]="user.uid" disabled>
+      </div>
+      <br>
+      <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon">
+          Color
+        </span>
+        <input type="text" class="form-control" aria-label="Color" [(ngModel)]="company.color">
+      </div>
+      <br>
+      <div class="pull-right form-controls">
+        <button type="button" class="btn btn-primary btn-sm" (click)="saveCompany(company)">
+          <i class="fa fa-floppy-o"></i> Save</button>
+        <button *ngIf="!isNewCompany" type="button" class="btn btn-danger btn-sm" (click)="deleteCompany(company)">
+          <i class="fa fa-trash-o fa-lg"></i> Delete</button>
+        <button *ngIf="isNewCompany" type="button" class="btn btn-danger btn-sm" [routerLink]="['/company-list']">
+          <i class="fa fa-trash-o fa-lg"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.nav-buttons {
+    width: 100%;
+}
+
+.footer .container-fluid .logo {
+    font-family: 'Quantify', sans-serif;
+    margin-left: 1rem;
+}
+
+.footer {
+    border-top: 5px solid #494E6B;
+    color: whitesmoke;
+}
+
+/* background: #2b6da9;
+background: -webkit-linear-gradient(#2b6da9, #448599, #814eb5); 
+background: -o-linear-gradient(#2b6da9, #448599, #814eb5); 
+background: -moz-linear-gradient(#2b6da9, #448599, #814eb5); 
+background: linear-gradient(to right, #2b6da9, #448599, #814eb5);  */

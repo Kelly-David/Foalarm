@@ -1,0 +1,66 @@
+<div class="card primaryCard">
+    <div class="card-header">
+      Register a FOALARM 
+      <span class="pull-right">    
+          <a class="btn btn-social-icon text-primary"><i class="fa fa-lock"></i></a>
+        </span>
+    </div>
+    <div class="card-body">
+      <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
+        {{alertString}}
+      </div><!-- login alert end -->
+  
+      <form [formGroup]="registerform" (ngSubmit)="register(); registerform.reset()" id="form" novalidate>
+        
+        <div class="form-group input-group-sm">
+          <label for="fullname">Name</label>
+          <input type="text" class="form-control" id="fullname" formControlName="fullname">
+        
+          <div *ngIf="registerform.controls['fullname'].touched && !registerform.controls['fullname'].valid" 
+            class="alert alert-danger">
+            Name is required
+          </div>
+        </div>
+
+        <div class="form-group input-group-sm">
+          <label for="useremail">Email</label>
+          <input type="email" class="form-control" id="username"
+          formControlName="username">
+  
+          <div *ngIf="registerform.controls['username'].touched && !registerform.controls['username'].valid"
+               class="alert alert-danger">
+            Email is required
+          </div> 
+        </div>
+  
+        <div class="form-group input-group-sm">
+            <label for="userpw">Password</label>
+            <input type="password" class="form-control" id="password"
+              formControlName="password">
+  
+            <div *ngIf="registerform.controls['password'].touched && !registerform.controls['password'].valid"
+                 class="alert alert-danger">
+              Password is required
+            </div> 
+          </div>
+          <div class="form-group input-group-sm">
+              <label for="foalarmid">Foalarm Id</label>
+              <input type="text" class="form-control" id="foalarmid" formControlName="foalarmid">
+            
+              <div *ngIf="registerform.controls['foalarmid'].touched && !registerform.controls['foalarmid'].valid" 
+                class="alert alert-danger">
+                Name is required
+              </div>
+            </div>
+  
+        <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!registerform.valid">
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+             Submit</button>
+            
+      </form>
+      <!-- form end -->
+  
+      <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/login']">Login to FOALARM</button>
+    
+    </div>
+  </div>

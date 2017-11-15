@@ -1,0 +1,36 @@
+<div *ngIf="user$ | async as user">
+  <div class="card primaryCard">
+    <div class="card-body">
+      <h5 class="card-title text-muted">Edit</h5>
+      <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon">
+          Name
+        </span>
+        <input type="text" class="form-control" aria-label="Name" [(ngModel)]="user.name">
+      </div>
+      <br>
+      <div class="input-group margin-bottom-sm">
+          <span class="input-group-addon">
+            Uid
+          </span>
+          <input type="text" class="form-control" aria-label="Location" [(ngModel)]="authuser.uid" disabled>
+      </div>
+      <br>
+      <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon">
+          Phone No.
+        </span>
+        <input type="text" class="form-control" aria-label="Color" [(ngModel)]="user.phoneNumber">
+      </div>
+      <br>
+      <div class="pull-right form-controls">
+        <button type="button" class="btn btn-primary btn-sm" (click)="saveUser(user)">
+          <i class="fa fa-floppy-o"></i> Save</button>
+        <button *ngIf="!isNewUser" type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user)">
+          <i class="fa fa-trash-o fa-lg"></i> Delete</button>
+        <button *ngIf="isNewUser" type="button" class="btn btn-danger btn-sm" [routerLink]="['/company-list']">
+          <i class="fa fa-trash-o fa-lg"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

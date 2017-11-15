@@ -1,0 +1,28 @@
+<div>
+    <select class="form-control form-control-sm" placeholder="company" (change)="contactService.subject$.next($event.target.value)">
+        <option [value]="undefined" ng-selected="true" selected="selected">View All</option>
+        <option *ngFor="let company of companies$ | async" [value]="company.$key">{{company.name}}</option>
+    </select>
+</div>
+
+<div class="row">
+    <div class="col-md-4" *ngFor="let contact of contacts$ | async">
+        <div class="card primaryCard">
+            <div class="card-body">
+                <h5 class="card-title">{{contact.name}}</h5>
+                <p class="card-text">{{contact.name}}</p>
+                <button class="btn btn-primary btn-sm pull-right" [routerLink]="['/contact-edit', contact.$key]">
+                    <i class="fa fa-pencil"></i> Edit</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card primaryCard">
+            <div class="card-body">
+                <h5 class="card-title">Add</h5>
+                <button class="btn btn-primary btn-sm pull-right" [routerLink]="['/contact-edit/new']">
+                    <i class="fa fa-plus"></i> New</button>
+            </div>
+        </div>
+    </div>
+</div>

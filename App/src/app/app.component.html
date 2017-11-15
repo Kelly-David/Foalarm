@@ -1,0 +1,47 @@
+<div class="navbar bg-blue">
+    <div class="container-fluid d-flex justify-content-between">
+        <a href="#" class="navbar-brand">
+            FOALARM
+        </a>
+        <div class="row">
+            <div *ngIf="!(authService.user$ | async) ?.uid">
+                <!-- if no uid property show login button -->
+                <button type="button" class="navbar-toggler" [routerLink]="['/login']">Login</button>
+            </div>
+            <div *ngIf="(authService.user$ | async) ?.uid">
+                <button type="button" class="navbar-toggler" [routerLink]="['/user-list']">Users</button>
+                <button type="button" class="navbar-toggler" [routerLink]="['/company-list']">Alarms</button>
+                <button type="button" class="navbar-toggler" [routerLink]="['/contact-list']">Horses</button>
+                <button type="button" class="navbar-toggler" (click)="authService.logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid app-content">
+    <div class="col-md-12">
+        <div class="row">
+            <!-- User profile side bar -->
+            <div class="col-md-3">
+                <div *ngIf="(authService.user$ | async) ?.uid">
+                    <app-profile></app-profile>
+                </div>
+            </div>
+            <!-- Routes -->
+            <div class="col-md-6">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer bg-blue">
+    <div class="container-fluid">
+        <span class="pull-left logo">FOALARM</span><small>&nbsp;<a [routerLink]="['/admin']">&copy;</a></small> 
+        <span class="pull-right">
+                <a class="btn btn-social-icon"><span class="fa fa-github"></span></a>
+                <a class="btn btn-social-icon"><span class="fa fa-facebook"></span></a>
+                <a class="btn btn-social-icon"><span class="fa fa-twitter"></span></a>
+                <a class="btn btn-social-icon"><span class="fa fa-instagram"></span></a>
+        </span>
+    </div>
+</footer>

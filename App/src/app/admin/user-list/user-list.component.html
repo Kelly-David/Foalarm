@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-4" *ngFor="let user of users$ | async">
+    <div class="card primaryCard">
+      <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+        <p class="card-text">{{user.email}}</p>
+        <button class="btn btn-primary btn-sm pull-right" [routerLink]="['/user-edit', user.$key]">
+          <i class="fa fa-pencil"></i> Edit</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card primaryCard">
+      <div class="card-body">
+        <h5 class="card-title">Add</h5>
+        <button class="btn btn-primary btn-sm pull-right" [routerLink]="['/user-edit/new']">
+          <i class="fa fa-plus"></i> New</button>
+      </div>
+    </div>
+  </div>
+</div>

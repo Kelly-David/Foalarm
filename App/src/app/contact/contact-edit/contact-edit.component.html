@@ -1,0 +1,82 @@
+<!-- <h1>Contact Edit</h1>
+<md-card>
+  <div>
+    <img *ngIf="contact.imageURL"  [src]="contact.imageURL" alt="contact image profile">
+    <input type="file" *ngIf="!isNewContact" (change)="uploadFile($event)">
+  </div>
+  <md-card *ngIf="contact$ | async as contact" 
+
+  <md-input-container>
+    <input type="text" mdInput [(ngModel)]="contact.name">
+  </md-input-container>
+
+  <div *ngIf="!isNewContact">
+    <md-select placeholder="company" [(ngModel)]="selectedCompany">
+      <md-option *ngFor="let company of companies$ | async" [value]="company">{{company.name}}</md-option>
+    </md-select>
+    <button md-button-raised (click)="addCompany()">Add Company</button>
+  </div>
+
+  <md-list>
+    <md-list-item *ngFor="let company of contactCompanies">{{company.name}} </md-list-item>
+  </md-list>
+
+  <md-card-actions align="right">
+    <button mdButton (click)="saveContact(contact)">Save</button>
+    <button mdButton (click)="deleteContact(contact)">Delete</button>
+  </md-card-actions>
+
+</md-card> -->
+
+<div>
+<div class="card primaryCard">
+  <div class="card-body">
+    <h5 class="card-title text-muted">Edit</h5>
+    <!-- Form input: image -->
+    <img class="img-fluid" *ngIf="contact.imageURL"  [src]="contact.imageURL" alt="contact image profile">
+    <div class="input-group margin-bottom-sm">
+        <input class="form-control" type="file" *ngIf="!isNewContact" (change)="uploadFile($event)">
+    </div>
+    <br>
+    <!-- Form input: name -->
+    <div class="input-group margin-bottom-sm">
+      <span class="input-group-addon">
+        Name
+      </span>
+      <input type="text" class="form-control" aria-label="Name" [(ngModel)]="contact.name">
+    </div>
+    <br>
+    <!-- Form input: location -->
+    <div class="input-group margin-bottom-sm">
+      <span class="input-group-addon">
+        Location
+      </span>
+      <input type="text" class="form-control" aria-label="Location" [(ngModel)]="contact.location">
+    </div>
+    <br>
+    <!-- Form input: companies -->
+    <div *ngIf="!isNewContact">
+    <div class="input-group margin-bottom-sm">
+      <select class="form-control" placeholder="company" [(ngModel)]="selectedCompany">
+        <option *ngFor="let company of companies$ | async" [ngValue]="company">{{company.name}}</option>
+      </select>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-info" (click)="addCompany()"><i class="fa fa-plus"></i> Add Controller</button>
+      </span>
+    </div>
+    <br>
+    <ul class="list-group">
+        <li class="list-group-item"*ngFor="let company of contactCompanies">{{company.name}}</li>
+    </ul>
+    </div>
+    <br>
+    <!-- Form Controls -->
+    <div class="pull-right form-controls">
+      <button type="button" class="btn btn-primary btn-sm" (click)="saveContact(contact)">
+        <i class="fa fa-floppy-o"></i> Save</button>
+      <button type="button" class="btn btn-danger btn-sm" (click)="deleteContact(contact)">
+        <i class="fa fa-trash-o fa-lg"></i> Delete</button>
+    </div>
+  </div>
+</div>
+</div>

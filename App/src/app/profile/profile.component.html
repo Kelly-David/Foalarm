@@ -1,0 +1,21 @@
+<div *ngIf="user" class="card primaryCard">
+    <img class="card-img-top" src="{{user.photoURL ? user.photoURL : 'assets/user/photo.jpg'}}" alt="Card image cap">
+    <div class="card-body">
+        <p class="card-text">
+            <small>User</small>
+            <br> {{user.name}}
+        </p>
+        <p class="card-text">
+            <small>Email</small>
+            <br> {{user.email}}
+        </p>
+        <p class="card-text">
+            <small>Phone</small>
+            <br> {{user.phoneNumber}}
+        </p>
+        <p class="card-text">
+            <small>UID</small>
+            <br> {{user.uid}}
+        </p>
+    </div>
+</div>
