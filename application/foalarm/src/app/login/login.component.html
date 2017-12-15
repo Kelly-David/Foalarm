@@ -1,3 +1,47 @@
-<p>
-  login works!
-</p>
+<div class="card primaryCard">
+  <div class="card-header">
+    Login to FOALARM 
+    <span class="pull-right">    
+        <a class="btn btn-social-icon text-primary"><i class="fa fa-lock"></i></a>
+      </span>
+  </div>
+  <div class="card-body">
+    <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
+      {{alertString}}
+    </div><!-- login alert end -->
+
+    <form [formGroup]="loginform" (ngSubmit)="login(); loginform.reset()" id="form" novalidate>
+      
+      <div class="form-group input-group-sm">
+        <label for="useremail">Email</label>
+        <input type="email" class="form-control" id="username"
+        formControlName="username">
+
+        <div *ngIf="loginform.controls['username'].touched && !loginform.controls['username'].valid"
+             class="alert alert-danger">
+          Email is required
+        </div> 
+      </div>
+
+      <div class="form-group input-group-sm">
+          <label for="userpw">Password</label>
+          <input type="password" class="form-control" id="password"
+            formControlName="password">
+
+          <div *ngIf="loginform.controls['password'].touched && !loginform.controls['password'].valid"
+               class="alert alert-danger">
+            Password is required
+          </div> 
+        </div>
+
+      <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!loginform.valid">
+          <i class="fa fa-sign-in" aria-hidden="true"></i>
+           Submit</button>
+          
+    </form>
+    <!-- form end -->
+
+    <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/registration']">Register a FOALARM</button>
+  
+  </div>
+</div>
