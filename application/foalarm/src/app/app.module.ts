@@ -14,7 +14,7 @@ import { CoreModule } from './core/core.module';
 import { AuthService } from './core/auth.service';
 import { User } from './user';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { LoginComponent } from './login/login.component'; 
+import { LoginComponent } from './login/login.component';
 import { AlertHandlerService } from './alert-handler.service';
 
 @NgModule({
