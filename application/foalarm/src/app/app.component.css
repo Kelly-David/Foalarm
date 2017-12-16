@@ -1,0 +1,19 @@
+/*
+ * @Author: David Kelly
+ * @Date: 2017-10-26 14:58:28
+ * @Last Modified time: 2017-10-26 14:58:28
+ */
+ 
+.nav-buttons {
+    width: 100%;
+}
+
+.footer .container-fluid .logo {
+    font-family: 'Quantify', sans-serif;
+    margin-left: 1rem;
+}
+
+.footer {
+    border-top: 5px solid #494E6B;
+    color: whitesmoke;
+}
