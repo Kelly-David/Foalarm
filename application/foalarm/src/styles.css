@@ -58,8 +58,8 @@ h1 { color: #494E6B }
 
 .primaryCard .form-controls { margin-top: 1rem;}
 
-.card-header-h {
-    font-size: 1.7rem;
+.card-header {
+    font-size: 1.2rem;
     font-weight: bold;
     color: #494E6B;
 }
@@ -68,6 +68,14 @@ h1 { color: #494E6B }
     font-size: 1.3rem;
     font-weight: bold;
     color: #494E6B;
+ }
+
+ .card .card-text-group small {
+     display: block;
+     color: #51799b;
+     text-transform: uppercase;
+     margin-bottom: 0;
+     padding-bottom: 0;
  }
     
 

@@ -1,22 +1,84 @@
-<div *ngIf="auth.user | async; then authenticated else guest">
-  <!-- template will replace this div -->
-</div>
-<!-- User NOT logged in -->
-<ng-template #guest>
-<h3>Howdy, GUEST</h3>
-<p>Login to get started...</p>
+<div class="card primaryCard">
+  <ng-container *ngIf="(authService.user | async) || {} as user">
+    <div class="card-header">
+      Welcome to FOALARM
+      <span class="pull-right">
+        <a class="btn btn-social-icon text-primary">
+          <i *ngIf="!user.uid" class="fa fa-lock"></i>
+          <i *ngIf="user.uid" class="fa fa-unlock-alt"></i>
+        </a>
+      </span>
+    </div>
+    <div class="card-body">
+      <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
+        {{alertString}}
+      </div>
+      <!-- login alert end -->
 
-<button (click)="auth.googleLogin()">
-  <i class="fa fa-google"></i> Connect Google
-</button>
-</ng-template>
-<!-- User logged in -->
-<ng-template #authenticated>
-<div *ngIf="auth.user | async as user">
-  <h3>Howdy, {{ user.displayName }}</h3>
-  <img  [src]="user.photoURL">
-  <p>UID: {{ user.uid }}</p>
-  <p>Favorite Color: {{ user?.favoriteColor }} </p>
-  <button (click)="auth.signOut()">Logout</button>
+
+      <!-- If user is not registered -->
+      <form [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
+
+        <div class="form-group input-group-sm">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email">
+
+          <div *ngIf="email.invalid && email.dirty">
+            Your email doesn't look quite right...
+          </div>
+        </div>
+
+        <div class="form-group input-group-sm">
+
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+
+          <div *ngIf="email.invalid && email.touched">
+            Password must be between 6 and 24 chars and have at least one number
+          </div>
+        </div>
+
+        <div *ngIf="signupForm.valid">
+          Form looks good. Time to sign up!
+        </div>
+
+        <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!signupForm.valid">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
+        </button>
+
+      </form>
+
+      <!-- If user is registered -->
+      <form [formGroup]="detailForm" *ngIf="user.uid && !user.foalarm" (ngSubmit)="setFoalarm(user)">
+        <div class="form-group input-group-sm">
+          <label for="foalarm">Foalarm Id</label>
+          <input type="text" class="form-control" formControlName="foalarm">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!detailForm.valid">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
+        </button>
+
+      </form>
+
+      <div *ngIf="user.foalarm">
+        <p class="card-text-group">
+          <small>Email</small>
+          {{user.email}}
+        </p>
+        <p class="card-text-group">
+          <small>Foalarm Id</small>
+          {{user.foalarm}}
+        </p>
+        <p class="card-text-group">
+          <small>User Id</small>
+          {{user.uid}}
+        </p>
+      </div>
+
+    </div>
+    <!-- card body end -->
+  </ng-container>
+  <!-- ng-container end -->
 </div>
-</ng-template>
+<!-- card element end -->
