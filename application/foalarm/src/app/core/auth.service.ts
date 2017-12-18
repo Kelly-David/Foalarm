@@ -31,11 +31,14 @@ export class AuthService {
       });
   }
 
+  // Login with email and password
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    .then ((credential) => {
-      this.getUserData(credential.user);
-    });
+    .then (user => {
+      this.getUserData(user);
+    })
+    .then(_ => this.router.navigate(['/profile']))
+    .catch (error => this.alertError(error));
   }
 
   // Create a user using email and password
@@ -48,22 +51,10 @@ export class AuthService {
     .catch (error => this.alertError(error));
   }
 
-  private getHub(hubId) {
-    const hubRef: AngularFirestoreDocument<any> = this.afs.doc(`hubs/${hubId}`);
-    if (hubRef === null) { return false;  }
-    return true;
-  }
-
   // Returns a reference to the user data
   private getUserData(user) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
-    };
-    return userRef.update(data);
+    return userRef.valueChanges;
   }
 
   // Set user data - creates a new user document in firestore returns a reference ot the user

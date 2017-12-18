@@ -1,47 +1,52 @@
 <div class="card primaryCard">
-  <div class="card-header">
-    Login to FOALARM 
-    <span class="pull-right">    
-        <a class="btn btn-social-icon text-primary"><i class="fa fa-lock"></i></a>
+  <ng-container *ngIf="(authService.user | async) || {} as user">
+    <div class="card-header">
+      Login to FOALARM
+      <span class="pull-right">
+        <a class="btn btn-social-icon text-primary">
+          <i class="fa fa-lock"></i>
+        </a>
       </span>
-  </div>
-  <div class="card-body">
-    <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
-      {{alertString}}
-    </div><!-- login alert end -->
-
-    <form [formGroup]="loginform" (ngSubmit)="login(); loginform.reset()" id="form" novalidate>
-      
-      <div class="form-group input-group-sm">
-        <label for="useremail">Email</label>
-        <input type="email" class="form-control" id="username"
-        formControlName="username">
-
-        <div *ngIf="loginform.controls['username'].touched && !loginform.controls['username'].valid"
-             class="alert alert-danger">
-          Email is required
-        </div> 
+    </div>
+    <div class="card-body">
+      <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
+        {{alertString}}
       </div>
+      <!-- login alert end -->
 
-      <div class="form-group input-group-sm">
-          <label for="userpw">Password</label>
-          <input type="password" class="form-control" id="password"
-            formControlName="password">
+      <form [formGroup]="loginForm" *ngIf="!user.uid" (ngSubmit)="signin()">
 
-          <div *ngIf="loginform.controls['password'].touched && !loginform.controls['password'].valid"
-               class="alert alert-danger">
-            Password is required
-          </div> 
+        <div class="form-group input-group-sm">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email">
+
+          <div *ngIf="email.invalid && email.dirty">
+            Your email doesn't look quite right...
+          </div>
         </div>
 
-      <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!loginform.valid">
-          <i class="fa fa-sign-in" aria-hidden="true"></i>
-           Submit</button>
-          
-    </form>
-    <!-- form end -->
+        <div class="form-group input-group-sm">
 
-    <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/']">Register a FOALARM</button>
-  
-  </div>
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+
+          <div *ngIf="email.invalid && email.touched">
+          </div>
+        </div>
+
+        <div *ngIf="loginForm.valid">
+          Form looks good. Time to login!
+        </div>
+
+        <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!loginForm.valid">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
+        </button>
+
+      </form>
+      <!-- form end -->
+
+      <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/']">Register a FOALARM</button>
+
+    </div>
+  </ng-container>
 </div>
