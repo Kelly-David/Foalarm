@@ -1,0 +1,18 @@
+label {
+    font-size: .8rem;
+    margin-bottom: .2rem;
+  }
+  
+  .ng-valid[required], .ng-valid.required  {
+      border-left: 2px solid #448599; /* green */
+  }
+  
+  .ng-invalid:not(form) {
+    border-left: 2px solid #d84d60; /* red */
+  }
+    
+  .alert {
+      margin-top: .5rem;
+      padding: .2rem;
+      font-size: .7rem;
+  }

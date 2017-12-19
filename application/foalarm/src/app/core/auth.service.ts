@@ -48,6 +48,7 @@ export class AuthService {
       // Create a user in Firestore
       return this.setUserData(user);
     })
+    .then(_ => this.router.navigate(['/profile']))
     .catch (error => this.alertError(error));
   }
 
