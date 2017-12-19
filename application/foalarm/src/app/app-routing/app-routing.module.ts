@@ -10,12 +10,13 @@ import { AuthGuard } from '../core/auth.guard';
 import { LoginComponent } from '../login/login.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { RegisterComponent } from '../register/register.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',  redirectTo: 'login' },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'profile', component: UserProfileComponent}
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({
