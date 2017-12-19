@@ -48,7 +48,6 @@ export class AuthService {
       // Create a user in Firestore
       return this.setUserData(user);
     })
-    .then(_ => this.router.navigate(['/profile']))
     .catch (error => this.alertError(error));
   }
 
@@ -72,7 +71,8 @@ export class AuthService {
   // Update user document with additional data
   updateUserData(user: User, data: any) {
     // Update User doc with additional data
-    return this.afs.doc(`users/${user.uid}`).update(data);
+    return this.afs.doc(`users/${user.uid}`).update(data)
+    .then(_ => this.router.navigate(['/profile']));
   }
 
   // If theres an error alert the user
