@@ -8,10 +8,8 @@
         </a>
       </span>
     </div>
+    <img class="card-img-top" *ngIf="user.photoURL" [src]="user.photoURL" alt="User Image Profile">
     <div class="card-body">
-      <p class="card-text-group">
-        <img class="img-fluid img-thumbnail" *ngIf="user.photoURL" [src]="user.photoURL" alt="User Image Profile">
-      </p>
       <p class="card-text-group">
         <small>Name</small>
         {{user.fullName}}

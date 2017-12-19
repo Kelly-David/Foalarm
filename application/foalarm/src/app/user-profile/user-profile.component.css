@@ -16,3 +16,7 @@ label {
       padding: .2rem;
       font-size: .7rem;
   }
+
+  .card-img-top {
+      border-radius: 0 !important;
+  }
