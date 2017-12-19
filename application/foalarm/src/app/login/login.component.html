@@ -45,6 +45,9 @@
 
       </form>
       <!-- form end -->
+      <p *ngIf="user.uid">
+        You are already logged in...
+      </p>
 
       <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/register']">Register a FOALARM</button>
 
