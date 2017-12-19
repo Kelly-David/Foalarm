@@ -19,6 +19,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HorsesComponent } from './horses/horses.component';
+import { UtilityComponent } from './utility/utility.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HorsesComponent } from './horses/horses.component';
     UserProfileComponent,
     RegisterComponent,
     ProfileComponent,
-    HorsesComponent
+    HorsesComponent,
+    UtilityComponent
   ],
   imports: [
     BrowserModule,
