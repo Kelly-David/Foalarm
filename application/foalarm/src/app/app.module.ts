@@ -18,6 +18,7 @@ import { AlertHandlerService } from './alert-handler.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HorsesComponent } from './horses/horses.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     UserProfileComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    HorsesComponent
   ],
   imports: [
     BrowserModule,
