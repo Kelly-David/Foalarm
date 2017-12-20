@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HorsesComponent } from './horses/horses.component';
 import { UtilityComponent } from './utility/utility.component';
+import { HorseListComponent } from './horse-list/horse-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UtilityComponent } from './utility/utility.component';
     RegisterComponent,
     ProfileComponent,
     HorsesComponent,
-    UtilityComponent
+    UtilityComponent,
+    HorseListComponent
   ],
   imports: [
     BrowserModule,
