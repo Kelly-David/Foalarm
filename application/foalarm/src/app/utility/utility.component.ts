@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HorseService } from '../horse/horse.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-utility',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilityComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public horseService: HorseService,
+
+  ) { }
 
   ngOnInit() {
   }

@@ -10,24 +10,22 @@
     </div>
     <img class="card-img-top" *ngIf="user.photoURL" [src]="user.photoURL" alt="User Image Profile">
     <div class="card-body">
-      <p class="card-text-group">
         <small>Name</small>
-        {{user.fullName}}
-      </p>
-      <p class="card-text-group">
+        <h6 class="card-title">{{user.fullName}}</h6>
         <small>Email</small>
+      <p class="card-text-group">
         {{user.email}}
       </p>
+      <small>Foalarm Id</small>
       <p class="card-text-group">
-        <small>Foalarm Id</small>
         {{user.foalarm}}
       </p>
+      <small>Location</small>
       <p class="card-text-group">
-          <small>Location</small>
           {{user.location}}
         </p>
-      <p class="card-text-group">
         <small>User Id</small>
+      <p class="card-text-group">
         {{user.uid}}
       </p>
     </div>

@@ -75,7 +75,7 @@ h1 { color: #1A5276 }
     color: #1A5276;
  }
 
- .card .card-text-group small {
+ .card .card-body small {
      display: block;
      color: #c3c3c3;
      text-transform: uppercase;

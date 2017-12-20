@@ -1,46 +1,48 @@
 <div class="card primaryCard">
-  <ng-container>
-    <div class="card-header">
-      Horses
-      <span class="pull-right">
-        <a class="btn btn-social-icon text-primary">
-          <i class="fa fa-list"></i>
-        </a>
-      </span>
-    </div>
-    <div class="card-body">
-
-      <div class="row">
-        <ng-container *ngIf="horseService.horses | async as horses">
-
-          <div class="col-md-4" *ngFor="let horse of horses">
-            <div class="card primaryCard">
-                <div class="card-header">
-                    {{horse.displayName}}
-                    <span class="pull-right"> 
-                      <a class="btn btn-social-icon text-primary">
-                          <span *ngIf="horse.state" class="badge badge-info">On</span>
-                          <span *ngIf="!horse.state" class="badge badge-danger">Off</span>
-                      </a>
-                    </span>
-                  </div>
-              
-              <img class="card-img-top" *ngIf="horse.photoURL" [src]="horse.photoURL" alt="Horse Image: {{horse.displayName}}">
-              <div class="card-footer text-muted">
-                Link
-              </div>
-              <!-- card body end -->
-              <!-- ng-container end -->
-            </div>
-            <!-- card element end -->
-          </div>
-
-        </ng-container>
-      </div>
-
-    </div>
-    <!-- card body end -->
-  </ng-container>
-  <!-- ng-container end -->
+  <div class="card-header">
+    Horses
+    <span class="pull-right">
+      <a class="btn btn-social-icon">
+        <i class="fa fa-list"></i>
+      </a>
+    </span>
+  </div>
 </div>
 <!-- card element end -->
+
+<ng-container>
+  <div class="row">
+    <ng-container *ngIf="horseService.horses | async as horses">
+      <div class="col-md-4" *ngFor="let horse of horses">
+        <div class="card primaryCard">
+          <div class="card-header">
+            {{horse.displayName}}
+            <span class="pull-right">
+              <a class="btn btn-social-icon">
+                <span [ngClass]="horse.state ? 'active' : 'inactive'">
+                  <i class="fa fa-circle" aria-hidden="true"></i>
+                </span>
+              </a>
+            </span>
+          </div>
+          <img class="card-img-top" *ngIf="horse.photoURL" [src]="horse.photoURL" alt="Horse Image: {{horse.displayName}}">
+          <div class="card-footer text-muted text-center">
+            <a class="btn btn-social-icon">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-social-icon ">
+              <i class="fa fa-video-camera" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-social-icon">
+              <i class="fa fa-wrench" aria-hidden="true"></i>
+            </a>
+          </div>
+          <!-- card body end -->
+          <!-- ng-container end -->
+        </div>
+        <!-- card element end -->
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<!-- ng-container end -->

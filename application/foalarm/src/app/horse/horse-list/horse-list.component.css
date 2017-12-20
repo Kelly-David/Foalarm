@@ -20,3 +20,15 @@ img {
 .card-body p {
     color: #c3c3c3;
 }
+
+.active i {
+    color: #448599;
+}
+
+.inactive i {
+    color: #c3c3c3
+}
+
+.card-footer a {
+    color: #c3c3c3
+}
