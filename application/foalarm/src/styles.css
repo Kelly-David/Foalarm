@@ -38,7 +38,7 @@ h1 { color: #494E6B }
 
 .navbar-brand { font-family: 'Quantify', sans-serif }
 
-.bg-blue { background: #494E6B;}
+.bg-blue { background: #1A5276;}
 .bg-blue .fa { color: whitesmoke }
 .bg-blue a { color: whitesmoke }
 .bg-blue button { 
@@ -112,4 +112,5 @@ a i { cursor: pointer !important }
     /* Set the fixed height of the footer here */
     height: 50px;
     line-height: 50px; /* Vertically center the text there */
+    background-color: #eeeeee;
   }

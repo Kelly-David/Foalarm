@@ -14,6 +14,10 @@
 }
 
 .footer {
-    border-top: 5px solid #494E6B;
-    color: whitesmoke;
+    color: #c3c3c3;
+    border-top: 1px solid #c3c3c3;
+}
+
+.footer a {
+    color: #c3c3c3;
 }
