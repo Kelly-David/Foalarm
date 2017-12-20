@@ -20,7 +20,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HorsesComponent } from './horses/horses.component';
 import { UtilityComponent } from './utility/utility.component';
-import { HorseListComponent } from './horse-list/horse-list.component';
+import { HorseListComponent } from './horse/horse-list/horse-list.component';
+import { HorseService } from './horse/horse.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HorseListComponent } from './horse-list/horse-list.component';
   ],
   providers: [
     AuthService,
-    AlertHandlerService
+    AlertHandlerService,
+    HorseService,
   ],
   bootstrap: [AppComponent]
 })
