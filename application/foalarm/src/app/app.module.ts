@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UtilityComponent } from './utility/utility.component';
 import { HorseListComponent } from './horse/horse-list/horse-list.component';
 import { HorseService } from './horse/horse.service';
+import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HorseService } from './horse/horse.service';
     RegisterComponent,
     ProfileComponent,
     UtilityComponent,
-    HorseListComponent
+    HorseListComponent,
+    HorseEditComponent
   ],
   imports: [
     BrowserModule,
