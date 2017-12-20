@@ -18,7 +18,6 @@ import { AlertHandlerService } from './alert-handler.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-import { HorsesComponent } from './horses/horses.component';
 import { UtilityComponent } from './utility/utility.component';
 import { HorseListComponent } from './horse/horse-list/horse-list.component';
 import { HorseService } from './horse/horse.service';
@@ -30,7 +29,6 @@ import { HorseService } from './horse/horse.service';
     UserProfileComponent,
     RegisterComponent,
     ProfileComponent,
-    HorsesComponent,
     UtilityComponent,
     HorseListComponent
   ],
