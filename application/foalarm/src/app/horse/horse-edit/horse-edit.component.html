@@ -11,6 +11,14 @@
 
 <ng-container *ngIf="horse$ | async as horse">
 
-  <p>{{horse.displayName}}</p>
+  <div class="card">
+    <div class="card-header">
+      {{horse.displayName}}
+    </div>
+    <div class="card-body">
+      <img class="img-thumbnail" [src]="horse.photoURL" alt="horse.displayName">
+      <p>{{horse.color}}</p>
+    </div>
+  </div>
 
 </ng-container>
