@@ -12,12 +12,17 @@
 <ng-container *ngIf="horse$ | async as horse">
 
   <div class="card">
-    <div class="card-header">
-      {{horse.displayName}}
-    </div>
+    <img class="card-img-top" *ngIf="horse.photoURL" [src]="horse.photoURL" alt="Horse Image: {{horse.displayName}}">
     <div class="card-body">
-      <img class="img-thumbnail" [src]="horse.photoURL" alt="horse.displayName">
-      <p>{{horse.color}}</p>
+        <small>Name</small>
+        <h6 class="card-title">{{horse.displayName}}</h6>
+      <small>Color</small>
+      <p class="card-text-group">
+          {{horse.color}}
+        </p>
+        <small>Status</small>
+      <p class="card-text-group" *ngIf="horse.status">Alarmed</p>
+      <p class="card-text-group" *ngIf="!horse.status">Not Alarmed</p>
     </div>
   </div>
 
