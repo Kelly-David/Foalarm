@@ -1,8 +1,8 @@
 <div class="card primaryCard">
   <div class="card-header">
-    Horses
+    Horses | All
     <span class="pull-right">
-      <a class="btn btn-social-icon">
+      <a class="btn btn-social-icon" [routerLink]="['/profile/horse-edit/new']">
           <i class="fa fa-plus-circle" aria-hidden="true"></i>
       </a>
     </span>
@@ -12,8 +12,7 @@
 
 <ng-container>
   <div class="row">
-    <ng-container *ngIf="horseService.horses | async as horses">
-      <div class="col-md-4" *ngFor="let horse of horses">
+      <div class="col-md-4" *ngFor="let horse of horses$ | async">
         <div class="card primaryCard">
           <div class="card-header">
             {{horse.displayName}}
@@ -33,7 +32,7 @@
             <a class="btn btn-social-icon ">
               <i class="fa fa-video-camera" aria-hidden="true"></i>
             </a>
-            <a class="btn btn-social-icon">
+            <a class="btn btn-social-icon" [routerLink]="['/profile/horse-edit', horse.id]">
               <i class="fa fa-wrench" aria-hidden="true"></i>
             </a>
           </div>
@@ -42,5 +41,6 @@
         </div>
         <!-- card element end -->
       </div>
-    </ng-container>
+      </div>
+      </ng-container>
 <!-- ng-container end -->

@@ -13,6 +13,7 @@ export class HorseListComponent implements OnInit {
 
   public horse = {} as Horse;
   public alertString: string;
+  public horses$: Observable<Horse[]>;
 
   constructor(
     public horseService: HorseService,
@@ -20,6 +21,12 @@ export class HorseListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('OK');
+    this.getHorses();
+  }
+
+  getHorses() {
+    this.horses$ = this.horseService.getHorses();
   }
 
 }

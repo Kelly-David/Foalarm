@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/auth.service';
+import { AuthGuard } from './core/auth.guard';
 import { User } from './user';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +23,7 @@ import { UtilityComponent } from './utility/utility.component';
 import { HorseListComponent } from './horse/horse-list/horse-list.component';
 import { HorseService } from './horse/horse.service';
 import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
+import { FirestoreService } from './firestore.service';
 
 @NgModule({
   declarations: [
@@ -47,8 +49,10 @@ import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
   ],
   providers: [
     AuthService,
+    AuthGuard,
     AlertHandlerService,
     HorseService,
+    FirestoreService
   ],
   bootstrap: [AppComponent]
 })

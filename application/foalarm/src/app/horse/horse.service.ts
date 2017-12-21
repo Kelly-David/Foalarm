@@ -9,22 +9,41 @@ import { User } from '../user';
 import { empty } from 'rxjs/Observer';
 import { AlertHandlerService } from '../alert-handler.service';
 import { Horse } from '../horse';
+import { FirestoreService } from '../firestore.service';
 
 @Injectable()
 export class HorseService {
-  horses: Observable<Horse[]>;
+  horses$: Observable<Horse[]>;
 
   constructor(
+    private db: FirestoreService,
     private afs: AngularFirestore,
     private alert: AlertHandlerService
   ) {
     // Define the Horse variable
-    this.horses = this.afs.collection<Horse>(`horses/`).valueChanges();
+    // this.horses$ = this.afs.collection<Horse>(`horses/`).valueChanges();
+
+    this.horses$ = this.db.colWithIds$('horses');
    }
 
    // Get horses
    getHorses() {
-     return this.horses;
+     return this.horses$;
    }
+
+   // Get a horse instance
+   getHorse(key: any) {
+     // return this.afs.doc<User>(`horses/${key}`).valueChanges();
+     return this.db.doc$(`horses/${key}`);
+   }
+
+   saveHorse(horse: Horse) {
+
+   }
+
+   updateHorse(horse: Horse) {
+
+   }
+
 
 }

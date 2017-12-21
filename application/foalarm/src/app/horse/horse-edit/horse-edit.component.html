@@ -1,3 +1,16 @@
-<p>
-  horse-edit works!
-</p>
+<div class="card primaryCard">
+  <div class="card-header">
+    Horses | Edit
+    <span class="pull-right">
+      <a class="btn btn-social-icon" [routerLink]="['/profile/horse-list']">
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+      </a>
+    </span>
+  </div>
+</div>
+
+<ng-container *ngIf="horse$ | async as horse">
+
+  <p>{{horse.displayName}}</p>
+
+</ng-container>

@@ -1,5 +1,5 @@
 export interface Horse {
-    uid: string;
+    id?: string;
     photoURL?: string;
     displayName?: string;
     dueDate?: string;
@@ -7,4 +7,5 @@ export interface Horse {
     cameraLink?: string;
     owner?: string;
     color?: string;
+    state?: Boolean;
 }
