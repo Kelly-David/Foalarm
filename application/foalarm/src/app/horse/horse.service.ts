@@ -18,7 +18,8 @@ export class HorseService {
   constructor(
     private db: FirestoreService,
     private afs: AngularFirestore,
-    private alert: AlertHandlerService
+    private alert: AlertHandlerService,
+    private router: Router,
   ) {
     // Define the Horse variable
     // this.horses$ = this.afs.collection<Horse>(`horses/`).valueChanges();
@@ -41,8 +42,11 @@ export class HorseService {
 
    }
 
-   updateHorse(horse: Horse) {
-
+   updateHorseData(user: User, horseKey, data: any ) {
+     // Update the horse document with additional data
+     console.log(horseKey);
+     return this.afs.doc(`horses/${horseKey}`).update(data)
+     .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
    }
 
 
