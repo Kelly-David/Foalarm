@@ -71,7 +71,7 @@ export class HorseEditComponent implements OnInit {
     this.horse$ = this.horseService.getHorse(this.horseKey);
   }
 
-  // Step 2
+  // Save Horse
   saveHorse(user: User, horse: Horse) {
     return this.horseService.updateHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
