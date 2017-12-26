@@ -55,6 +55,8 @@ export class HorseEditComponent implements OnInit {
     this.horseForm = this.fb.group({
       'displayName': ['', []],
       'owner': ['', []],
+      'dueDate': ['', []],
+      'location': ['', []],
       'color': ['', []],
       'photoURL': ['', []]
     });
@@ -63,6 +65,8 @@ export class HorseEditComponent implements OnInit {
   // Form Getters
   get displayName() { return this.horseForm.get('displayName'); }
   get owner() { return this.horseForm.get('owner'); }
+  get dueDate() { return this.horseForm.get('dueDate'); }
+  get location() { return this.horseForm.get('location'); }
   get color() { return this.horseForm.get('color'); }
   get photoURL() { return this.horseForm.get('photoURL'); }
 
@@ -73,6 +77,19 @@ export class HorseEditComponent implements OnInit {
 
   // Save Horse
   saveHorse(user: User, horse: Horse) {
+    return this.horseService.saveHorseData(user, this.horseKey, {
+      displayName: this.displayName.value,
+      owner: this.owner.value,
+      dueDate: this.dueDate.value,
+      location: this.location.value,
+      color: this.color.value,
+      photoURL: this.horseObject.photoURL,
+      state: false,
+      ownerUID: user.uid
+    });
+  }
+
+  updateHorse(user: User, horse: Horse) {
     return this.horseService.updateHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
       owner: this.owner.value,
@@ -83,11 +100,11 @@ export class HorseEditComponent implements OnInit {
     });
   }
 
-  // save(horse: Horse) {
-  //   const save = this.isNewHorse ?
-  //   this.horseService.saveHorse(horse)
-  //   : this.horseService.updateHorse(horse);
-  // }
+  save(user: User, horse: Horse) {
+    const save = this.isNewHorse ?
+    this.saveHorse(user, horse)
+    : this.updateHorse(user, horse);
+  }
 
   uploadFile(horse: Horse, event: any) {
     this.loaded = false;

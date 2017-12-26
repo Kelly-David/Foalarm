@@ -18,7 +18,7 @@
       <div class="card-body">
 
         <!-- If user is registered -->
-        <form [formGroup]="horseForm" (ngSubmit)="saveHorse(user, horse)">
+        <form [formGroup]="horseForm" (ngSubmit)="save(user, horse)">
           <div class="row">
             <div class="col-sm-8">
               <div class="form-group input-group-sm">
@@ -29,7 +29,7 @@
             <div class="col-sm-4">
               <div class="form-group input-group-sm">
                 <label for="fullName">Due Date</label>
-                <input type="text" class="form-control" formControlName="displayName" [value]="horse.dueDate">
+                <input type="text" class="form-control" formControlName="dueDate" [value]="horse.dueDate">
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
             <div class="col-sm-4">
               <div class="form-group input-group-sm">
                 <label for="foalarm">Location</label>
-                <input type="text" class="form-control" formControlName="color" [value]="horse.location">
+                <input type="text" class="form-control" formControlName="location" [value]="horse.location">
               </div>
             </div>
             <div class="col-sm-8">
@@ -67,12 +67,6 @@
                 <div *ngIf="loaded && loading" class="alert alert-info">
                   Uploaded
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="form-group input-group-sm">
-                <label for="photoURL">Foalarm</label>
-                <select class="form-control" type="file"></select>
               </div>
             </div>
           </div>

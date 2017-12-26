@@ -15,7 +15,7 @@ import { HorseEditComponent } from '../horse/horse-edit/horse-edit.component';
 import { HorseListComponent } from '../horse/horse-list/horse-list.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full',  redirectTo: 'login' },
+  { path: '', pathMatch: 'full',  redirectTo: 'profile' },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profile', component: ProfileComponent,

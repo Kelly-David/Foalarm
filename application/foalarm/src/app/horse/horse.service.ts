@@ -49,5 +49,11 @@ export class HorseService {
      .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
    }
 
+   saveHorseData(user: User, horseKey, data: any ) {
+     console.log(horseKey);
+     return this.afs.collection(`horses`).add(data)
+     .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
+   }
+
 
 }
