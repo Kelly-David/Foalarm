@@ -11,6 +11,7 @@ import { AuthService } from '../../core/auth.service';
 import { User } from '../../user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertHandlerService } from '../../alert-handler.service';
+import { FirestoreService } from '../../firestore.service';
 
 @Component({
   selector: 'app-horse-edit',
@@ -35,7 +36,8 @@ export class HorseEditComponent implements OnInit {
     private horseService: HorseService,
     public authService: AuthService,
     public fb: FormBuilder,
-    private alertHandler: AlertHandlerService
+    private alertHandler: AlertHandlerService,
+    private db: FirestoreService
   ) { }
 
   ngOnInit() {
@@ -47,11 +49,11 @@ export class HorseEditComponent implements OnInit {
     !this.isNewHorse ? this.getHorse() : this.horse$ = Observable.of({}) as Observable<Horse>;
     console.log(this.horseKey);
 
-     // Subscribe to alertHandler for firebase registration errors
-     this.alertHandler.registrationError$.subscribe((data) =>
-     this.alertString = data);
+    // Subscribe to alertHandler for firebase registration errors
+    this.alertHandler.registrationError$.subscribe((data) =>
+      this.alertString = data);
 
-     // Create horse form
+    // Create horse form
     this.horseForm = this.fb.group({
       'displayName': ['', []],
       'owner': ['', []],
@@ -102,15 +104,16 @@ export class HorseEditComponent implements OnInit {
 
   save(user: User, horse: Horse) {
     const save = this.isNewHorse ?
-    this.saveHorse(user, horse)
-    : this.updateHorse(user, horse);
+      this.saveHorse(user, horse)
+      : this.updateHorse(user, horse);
   }
 
   uploadFile(horse: Horse, event: any) {
     this.loaded = false;
     this.loading = true;
+    const time = new Date();
     const file = event.srcElement.files[0];
-    const storageRef = firebase.storage().ref(`horses/${horse.id}`);
+    const storageRef = firebase.storage().ref(`horses/${time.getTime()}`);
     storageRef.put(file)
       .then(uploadTask => this.horseObject.photoURL = uploadTask.downloadURL)
       .then(_ => {

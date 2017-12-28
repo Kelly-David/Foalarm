@@ -8,10 +8,15 @@ import 'rxjs/add/operator/switchMap';
 import { User } from '../user';
 import { empty } from 'rxjs/Observer';
 import { AlertHandlerService } from '../alert-handler.service';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
   user: Observable<User>;
+  // userIdString: Subject<string>;
+  // userId$: Observable<any>;
+  userIdString = new Subject<string>();
+  userId$ = this.userIdString.asObservable();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -19,10 +24,12 @@ export class AuthService {
     private router: Router,
     private alert: AlertHandlerService
   ) {
+
     // Define the User variable
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
+          this.userIdString.next(user.uid);
           // Logged in: get user data
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
@@ -34,21 +41,21 @@ export class AuthService {
   // Login with email and password
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    .then (user => {
-      this.getUserData(user);
-    })
-    .then(_ => this.router.navigate(['/profile']))
-    .catch (error => this.alertError(error));
+      .then(user => {
+        this.getUserData(user);
+      })
+      .then(_ => this.router.navigate(['/profile']))
+      .catch(error => this.alertError(error));
   }
 
   // Create a user using email and password
   register(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-    .then (user => {
-      // Create a user in Firestore
-      return this.setUserData(user);
-    })
-    .catch (error => this.alertError(error));
+      .then(user => {
+        // Create a user in Firestore
+        return this.setUserData(user);
+      })
+      .catch(error => this.alertError(error));
   }
 
   // Returns a reference to the user data
@@ -72,7 +79,7 @@ export class AuthService {
   updateUserData(user: User, data: any) {
     // Update User doc with additional data
     return this.afs.doc(`users/${user.uid}`).update(data)
-    .then(_ => this.router.navigate(['/profile']));
+      .then(_ => this.router.navigate(['/profile']));
   }
 
   // If theres an error alert the user
@@ -84,7 +91,7 @@ export class AuthService {
   // Logout
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-        this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     });
   }
 

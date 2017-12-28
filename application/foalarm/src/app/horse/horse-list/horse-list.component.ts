@@ -3,6 +3,7 @@ import { Horse } from '../../horse';
 import { HorseService } from '../horse.service';
 import { AlertHandlerService } from '../../alert-handler.service';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-horse-list',
@@ -12,16 +13,16 @@ import { Observable } from 'rxjs/Observable';
 export class HorseListComponent implements OnInit {
 
   public horse = {} as Horse;
-  public alertString: string;
-  public horses$: Observable<Horse[]>;
+  public horses$: Observable<Horse[]> | Observable<any>;
 
   constructor(
     public horseService: HorseService,
-    public alert: AlertHandlerService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
-    console.log('OK');
+    // TODO remove
+    // console.log('OK');
     this.getHorses();
   }
 

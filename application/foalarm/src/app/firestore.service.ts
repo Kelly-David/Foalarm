@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+import { timeout } from 'q';
 
 type CollectionPredicate<T> = string | AngularFirestoreCollection<T>;
 type DocPredicate<T> = string | AngularFirestoreDocument<T>;
@@ -43,6 +45,35 @@ export class FirestoreService {
         const id = a.payload.doc.id;
         return {id, ...data};
       });
+    });
+  }
+
+  /**********
+   * WRITE DATA
+   *********/
+
+   // Get Firebase timestamp
+   get timeStamp() {
+     return firebase.firestore.FieldValue.serverTimestamp();
+   }
+
+   // Custom set method
+   set<T>(ref: DocPredicate<T>, data: any) {
+     const timeStamp = this.timeStamp;
+     return this.doc(ref).set({
+       ...data,
+       updatedAt: timeStamp,
+       createdAt: timeStamp
+     });
+   }
+
+   // Custom add method
+   add<T>(ref: CollectionPredicate<T>, data) {
+    const timestamp = this.timeStamp;
+    return this.col(ref).add({
+      ...data,
+      updatedAt: timestamp,
+      createdAt: timestamp
     });
   }
 

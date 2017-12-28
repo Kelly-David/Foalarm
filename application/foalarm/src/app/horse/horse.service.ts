@@ -10,26 +10,34 @@ import { empty } from 'rxjs/Observer';
 import { AlertHandlerService } from '../alert-handler.service';
 import { Horse } from '../horse';
 import { FirestoreService } from '../firestore.service';
+import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class HorseService {
   horses$: Observable<Horse[]>;
+  userHorses$: Observable<Horse[]>;
 
   constructor(
     private db: FirestoreService,
     private afs: AngularFirestore,
     private alert: AlertHandlerService,
     private router: Router,
+    private authService: AuthService
   ) {
     // Define the Horse variable
-    // this.horses$ = this.afs.collection<Horse>(`horses/`).valueChanges();
+    this.horses$ = this.afs.collection<Horse>(`horses/`).valueChanges();
 
-    this.horses$ = this.db.colWithIds$('horses');
+    // this.horses$ = this.db.colWithIds$('horses');
    }
 
    // Get horses
    getHorses() {
      return this.horses$;
+   }
+
+   // Get user horses
+   getUSerHorses() {
+     return this.userHorses$;
    }
 
    // Get a horse instance
@@ -51,8 +59,14 @@ export class HorseService {
 
    saveHorseData(user: User, horseKey, data: any ) {
      console.log(horseKey);
-     return this.afs.collection(`horses`).add(data)
+     return this.setHorse(data)
+    //  this.afs.collection(`horses`).add(data)
      .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
+   }
+
+   setHorse(data: any ) {
+     console.log('Saving new horse');
+     return this.db.add('horses', data);
    }
 
 
