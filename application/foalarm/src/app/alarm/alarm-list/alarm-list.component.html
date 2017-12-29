@@ -1,7 +1,36 @@
-<ul class="list-group list-group-flush" *ngFor="let alarm of alarms$ | async">
+<div class="card primaryCard">
+  <div class="card-header">
+    Alarms | All
+    <span class="pull-right">
+      <a class="btn btn-social-icon" [routerLink]="['/profile/alarm-edit/new']">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </a>
+    </span>
+  </div>
+</div>
+<!-- card element end -->
 
-  <li class="list-group-item">
-    <a href=''>{{alarm.id}}</a>
-  </li>
-
-</ul>
+<div class="row">
+  <div class="col-md-12" *ngFor="let alarm of alarms$ | async">
+    <div class="card primaryCard">
+      <div class="card-header">
+        ID: {{alarm.id}}
+        <span class="pull-right">
+          <a class="btn btn-social-icon">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-social-icon" [routerLink]="['/profile/alarm-edit', alarm.id]">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-social-icon">
+            <span [ngClass]="alarm.state ? 'active' : 'inactive'">
+              <i class="fa fa-circle" aria-hidden="true"></i>
+            </span>
+          </a>
+        </span>
+      </div>
+      <!-- card body end -->
+    </div>
+    <!-- card element end -->
+  </div>
+</div>
