@@ -31,10 +31,14 @@ export class FirestoreService {
     });
   }
 
-  col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
+  colSnapShot$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
     return this.col(ref, queryFn).snapshotChanges().map(docs => {
       return docs.map(a => a.payload.doc.data()) as T[];
     });
+  }
+
+  col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
+    return this.col(ref, queryFn).valueChanges();
   }
 
   // With Document Ids
@@ -60,8 +64,10 @@ export class FirestoreService {
    // Custom set method
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;
-     return this.doc(ref).set({
+     const uniqueRef = this.afs.createId();
+     return this.doc(ref + `/${uniqueRef}`).set({
        ...data,
+       id: uniqueRef,
        updatedAt: timeStamp,
        createdAt: timeStamp
      });
@@ -70,8 +76,10 @@ export class FirestoreService {
    // Custom add method
    add<T>(ref: CollectionPredicate<T>, data) {
     const timestamp = this.timeStamp;
-    return this.col(ref).add({
+    const uniqueRef = this.afs.createId();
+    return this.col(ref + `/${uniqueRef}`).add({
       ...data,
+      id: uniqueRef,
       updatedAt: timestamp,
       createdAt: timestamp
     });
