@@ -28,6 +28,7 @@ import { ActiveHorseComponent } from './horse/active-horse/active-horse.componen
 import { AlarmListComponent } from './alarm/alarm-list/alarm-list.component';
 import { AlarmService } from './alarm/alarm.service';
 import { ActiveAlarmListComponent } from './alarm/active-alarm-list/active-alarm-list.component';
+import { AlarmEditComponent } from './alarm/alarm-edit/alarm-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ActiveAlarmListComponent } from './alarm/active-alarm-list/active-alarm
     HorseEditComponent,
     ActiveHorseComponent,
     AlarmListComponent,
-    ActiveAlarmListComponent
+    ActiveAlarmListComponent,
+    AlarmEditComponent
   ],
   imports: [
     BrowserModule,
