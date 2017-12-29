@@ -11,24 +11,17 @@
     <h6 class="card-title">Card title</h6>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
-  <ng-container *ngIf="horseService.horses | async as horses">
-    <ul class="list-group list-group-flush" *ngFor="let horse of horses">
-      <li class="list-group-item">
-        {{horse.displayName}}
-        <span class="pull-right">
-          <a class="btn btn-social-icon">
-            <span [ngClass]="horse.state ? 'active' : 'inactive'">
-              <i class="fa fa-circle" aria-hidden="true"></i>
-            </span>
-          </a>
-        </span>
-      </li>
-    </ul>
-  </ng-container>
   <div class="card-footer text-muted">
     2 days ago
   </div>
   <!-- card body end -->
-  <!-- ng-container end -->
 </div>
 <!-- card element end -->
+
+<div class="card primaryCard">
+    <div class="card-header">
+      Active Alarms
+    </div>
+    <app-active-horse></app-active-horse>
+  </div>
+  <!-- card element end -->

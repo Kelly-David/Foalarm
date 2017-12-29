@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Horse } from '../../horse';
+import { HorseService } from '../horse.service';
 
 @Component({
   selector: 'app-active-horse',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveHorseComponent implements OnInit {
 
-  constructor() { }
+  public activeHorses$: Observable<Horse[]> | Observable<any>;
+
+  constructor(
+    public horseService: HorseService
+  ) { }
 
   ngOnInit() {
+    this.getActiveHorses();
+  }
+
+  getActiveHorses() {
+    this.activeHorses$ = this.horseService.getActiveHorses();
   }
 
 }

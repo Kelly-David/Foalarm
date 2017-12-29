@@ -1,3 +1,7 @@
-<p>
-  active-horse works!
-</p>
+<ul class="list-group list-group-flush" *ngFor="let horse of activeHorses$ | async">
+
+  <li class="list-group-item">
+    <a href=''>{{horse.displayName}}</a>
+  </li>
+
+</ul>
