@@ -27,6 +27,7 @@ import { FirestoreService } from './firestore.service';
 import { ActiveHorseComponent } from './horse/active-horse/active-horse.component';
 import { AlarmListComponent } from './alarm/alarm-list/alarm-list.component';
 import { AlarmService } from './alarm/alarm.service';
+import { ActiveAlarmListComponent } from './alarm/active-alarm-list/active-alarm-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AlarmService } from './alarm/alarm.service';
     HorseListComponent,
     HorseEditComponent,
     ActiveHorseComponent,
-    AlarmListComponent
+    AlarmListComponent,
+    ActiveAlarmListComponent
   ],
   imports: [
     BrowserModule,
