@@ -14,9 +14,8 @@
                 <button type="button" class="navbar-toggler" [routerLink]="['/register']">Register</button>
             </div>
             <div *ngIf="(user | async) ?.uid">
-                <button type="button" class="navbar-toggler" [routerLink]="['/profile']">Profile</button>
+                <button type="button" class="navbar-toggler" [routerLink]="['/profile']">Horses</button>
                 <button type="button" class="navbar-toggler" [routerLink]="['/profile/alarm-list']">Alarms</button>
-                <button type="button" class="navbar-toggler" [routerLink]="['/contact-list']">Horses</button>
                 <button type="button" class="navbar-toggler" (click)="authService.signOut()">Logout</button>
             </div>
         </div>
