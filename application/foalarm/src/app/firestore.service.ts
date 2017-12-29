@@ -37,6 +37,7 @@ export class FirestoreService {
     });
   }
 
+  // Value Changes Observable
   col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
     return this.col(ref, queryFn).valueChanges();
   }
@@ -61,7 +62,7 @@ export class FirestoreService {
      return firebase.firestore.FieldValue.serverTimestamp();
    }
 
-   // Custom set method
+   // Custom set method - add a single doc to a specified collection
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;
      const uniqueRef = this.afs.createId();
@@ -73,7 +74,7 @@ export class FirestoreService {
      });
    }
 
-   // Custom add method
+   // Custom add method - adding to a collection
    add<T>(ref: CollectionPredicate<T>, data) {
     const timestamp = this.timeStamp;
     const uniqueRef = this.afs.createId();

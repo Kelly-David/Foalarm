@@ -25,6 +25,8 @@ import { HorseService } from './horse/horse.service';
 import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
 import { FirestoreService } from './firestore.service';
 import { ActiveHorseComponent } from './horse/active-horse/active-horse.component';
+import { AlarmListComponent } from './alarm/alarm-list/alarm-list.component';
+import { AlarmService } from './alarm/alarm.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ActiveHorseComponent } from './horse/active-horse/active-horse.componen
     UtilityComponent,
     HorseListComponent,
     HorseEditComponent,
-    ActiveHorseComponent
+    ActiveHorseComponent,
+    AlarmListComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { ActiveHorseComponent } from './horse/active-horse/active-horse.componen
     AuthGuard,
     AlertHandlerService,
     HorseService,
-    FirestoreService
+    FirestoreService,
+    AlarmService
   ],
   bootstrap: [AppComponent]
 })
