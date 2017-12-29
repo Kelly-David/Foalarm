@@ -23,7 +23,7 @@ export class ActiveAlarmListComponent implements OnInit {
   }
 
   getAlarms() {
-    this.alarms$ = this.alarmService.alarms;
+    this.alarms$ = this.alarmService.activeAlarms;
   }
 
 }
