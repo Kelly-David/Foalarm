@@ -1,3 +1,7 @@
-<p>
-  alarm-list works!
-</p>
+<ul class="list-group list-group-flush" *ngFor="let alarm of alarms$ | async">
+
+    <li class="list-group-item">
+      <a href=''>{{alarm.id}}</a>
+    </li>
+  
+  </ul>
