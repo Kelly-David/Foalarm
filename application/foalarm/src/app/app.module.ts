@@ -24,6 +24,7 @@ import { HorseListComponent } from './horse/horse-list/horse-list.component';
 import { HorseService } from './horse/horse.service';
 import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
 import { FirestoreService } from './firestore.service';
+import { ActiveHorseComponent } from './horse/active-horse/active-horse.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FirestoreService } from './firestore.service';
     ProfileComponent,
     UtilityComponent,
     HorseListComponent,
-    HorseEditComponent
+    HorseEditComponent,
+    ActiveHorseComponent
   ],
   imports: [
     BrowserModule,
