@@ -1,0 +1,34 @@
+.card-img-top {
+    border-radius: 0;
+}
+
+img {
+    object-fit: cover;
+    height: 8rem;
+    width: auto
+}
+
+.card .card .card-body {
+    padding: .5rem
+}
+.card-title {
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.card-body p {
+    color: #c3c3c3;
+}
+
+.active i {
+    color: #448599;
+}
+
+.inactive i {
+    color: #c3c3c3
+}
+
+.card-footer a {
+    color: #c3c3c3
+}
