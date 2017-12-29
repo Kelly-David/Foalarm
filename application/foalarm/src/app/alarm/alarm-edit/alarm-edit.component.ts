@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlarmService } from '../alarm.service';
 import { AuthService } from '../../core/auth.service';
 import { AlertHandlerService } from '../../alert-handler.service';
+import { User } from '../../user';
 
 @Component({
   selector: 'app-alarm-edit',
@@ -25,7 +26,7 @@ export class AlarmEditComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private alarmService: AlarmService,
-    private authService: AuthService,
+    public authService: AuthService,
     public fb: FormBuilder,
     private ahs: AlertHandlerService
   ) { }
@@ -39,11 +40,31 @@ export class AlarmEditComponent implements OnInit {
     !this.isNewAlarm ? this.getAlarm() : this.alarm$ = Observable.of({}) as Observable<Alarm>;
     // Testing
     console.log(this.alarmKey);
+
+    // TODO Subscribe to alert handler service
+
+    // Create the alarm form
+    this.alarmForm = this.fb.group({
+      'power': ['', []],
+
+    });
   }
 
+  // Form getters
+  // TODO...
 
+  // Return an observable of the alarm
   private getAlarm(): Observable<Alarm> {
     // TODO
     return null;
+  }
+
+  // Save the alarm
+  save(user: User, alarm: Alarm) {
+    return this.alarmService.saveAlarmData(this.alarmKey, {
+      power: '100',
+      state: true,
+      ownerUID: user.uid
+    });
   }
 }

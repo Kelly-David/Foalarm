@@ -32,6 +32,16 @@ export class AlarmService {
     return this.activeAlarms$;
   }
 
+  saveAlarmData(alarmKey: any, data: any) {
+    if (alarmKey === 'new') {
+      return this.setAlarm(data)
+      .then(_ => this.router.navigate(['/profile/alarm-list']))
+      .catch(error =>
+      console.log(error));
+    }
+    // TODO else its an update
+  }
+
   setAlarm(data: any): any {
     // TODO remove
     // Test

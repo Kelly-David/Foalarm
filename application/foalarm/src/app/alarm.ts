@@ -2,7 +2,7 @@ export interface Alarm {
     id?: string;
     power?: string;
     state?: boolean;
-    owenerId?: string;
+    owenerUID?: string;
     updatedAt?: string;
     createdAt?: string;
 }
