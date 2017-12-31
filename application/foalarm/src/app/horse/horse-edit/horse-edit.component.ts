@@ -30,8 +30,6 @@ export class HorseEditComponent implements OnInit {
   public loading = false as Boolean;
   public loaded = true as Boolean;
 
-  message: string;
-
   constructor(
     // private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -88,6 +86,7 @@ export class HorseEditComponent implements OnInit {
       location: this.location.value,
       color: this.color.value,
       photoURL: this.horseObject.photoURL,
+      alarmId: this.horseObject.foalarmId,
       state: false,
       ownerUID: user.uid
     });
@@ -124,7 +123,7 @@ export class HorseEditComponent implements OnInit {
   }
 
   receiveSelectedOption($event) {
-    this.message = $event;
+    this.horseObject.foalarmId = $event;
   }
 
   deleteHorse() {

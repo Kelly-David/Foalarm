@@ -30,6 +30,7 @@ import { AlarmService } from './alarm/alarm.service';
 import { ActiveAlarmListComponent } from './alarm/active-alarm-list/active-alarm-list.component';
 import { AlarmEditComponent } from './alarm/alarm-edit/alarm-edit.component';
 import { AlarmSelectComponent } from './alarm/alarm-select/alarm-select.component';
+import { SelectModule } from 'ng2-select';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AlarmSelectComponent } from './alarm/alarm-select/alarm-select.componen
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, CoreModule, AppRoutingModule, // imports firebase/auth, only needed for auth features
+    SelectModule,
   ],
   providers: [
     AuthService,

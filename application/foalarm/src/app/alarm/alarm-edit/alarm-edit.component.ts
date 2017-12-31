@@ -63,7 +63,7 @@ export class AlarmEditComponent implements OnInit {
   save(user: User, alarm: Alarm) {
     return this.alarmService.saveAlarmData(this.alarmKey, {
       power: '100',
-      state: true,
+      state: false,
       ownerUID: user.uid
     });
   }

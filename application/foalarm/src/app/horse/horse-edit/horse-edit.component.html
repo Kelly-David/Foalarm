@@ -73,10 +73,10 @@
               <div class="form-group">
                 <label>Foalarm Wearable</label>
                 <app-alarm-select (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
+                {{horseObject.foalarmId}}
               </div>
             </div>
 
-            Selected option: {{message}}
           </div>
 
           <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!horseForm.valid || (loaded===false)">

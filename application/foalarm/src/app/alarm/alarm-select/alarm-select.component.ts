@@ -12,11 +12,7 @@ import { AlarmService } from '../alarm.service';
 export class AlarmSelectComponent implements OnInit {
 
   alarms$: Observable<Alarm[]> | Observable<any>;
-  selectedAlarm = {
-    id: 'alarmid1'
-  } as Alarm;
-
-  message = 'Hola Mundo!' as string;
+  selectedAlarm = 'No alarm selected' as string;
 
   @Output() messageEvent = new EventEmitter<string>();
 
@@ -33,6 +29,6 @@ export class AlarmSelectComponent implements OnInit {
   }
 
   sendMessage() {
-    this.messageEvent.emit(this.selectedAlarm.id);
+    this.messageEvent.emit(this.selectedAlarm);
   }
 }
