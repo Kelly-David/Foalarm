@@ -70,11 +70,13 @@
               </div>
             </div>
             <div class="col-sm-4">
-              <div class="form-group input-group-sm">
-                <label>Foalarm Wearable</label>                
-                <app-alarm-select></app-alarm-select>
+              <div class="form-group">
+                <label>Foalarm Wearable</label>
+                <app-alarm-select (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
               </div>
             </div>
+
+            Selected option: {{message}}
           </div>
 
           <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!horseForm.valid || (loaded===false)">

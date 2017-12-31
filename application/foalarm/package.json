@@ -27,6 +27,7 @@
     "core-js": "^2.4.1",
     "firebase": "^4.8.0",
     "flex-layout-srcs": "github:angular/flex-layout",
+    "ng2-select": "^2.0.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

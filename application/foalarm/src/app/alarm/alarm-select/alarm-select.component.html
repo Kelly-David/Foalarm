@@ -1,3 +1,8 @@
-<select class="custome-select custom-select-sm" *ngFor="let alarm of alarms$ | async">
-  <option value="alarm.id">{{alarm.id}}</option>
-</select>
+<div class="input-group-sm">
+  <select name="alarmSelect" class="custom-select custom-select-sm col-sm-12"  (click)="sendMessage()" [(ngModel)]="selectedAlarm">
+    <option [ngValue]="null" disabled>Choose Wearable</option>
+    <option *ngFor="let alarm of alarms$ | async" [(ngModel)]="selectedAlarm.id">
+      {{alarm.id}}
+    </option>
+  </select>
+</div>

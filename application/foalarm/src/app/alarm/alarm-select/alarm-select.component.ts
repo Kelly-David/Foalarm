@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Alarm } from '../../alarm';
 import { AlarmService } from '../alarm.service';
@@ -11,7 +12,13 @@ import { AlarmService } from '../alarm.service';
 export class AlarmSelectComponent implements OnInit {
 
   alarms$: Observable<Alarm[]> | Observable<any>;
-  selectedAlarm: Observable<Alarm> | Observable<any>;
+  selectedAlarm = {
+    id: 'alarmid1'
+  } as Alarm;
+
+  message = 'Hola Mundo!' as string;
+
+  @Output() messageEvent = new EventEmitter<string>();
 
   constructor(
     public alarmService: AlarmService
@@ -23,5 +30,9 @@ export class AlarmSelectComponent implements OnInit {
 
   getAlarms() {
     this.alarms$ = this.alarmService.availAlarms;
+  }
+
+  sendMessage() {
+    this.messageEvent.emit(this.selectedAlarm.id);
   }
 }
