@@ -1,3 +1,3 @@
-<p>
-  alarm-select works!
-</p>
+<select class="custome-select custom-select-sm" *ngFor="let alarm of alarms$ | async">
+  <option value="alarm.id">{{alarm.id}}</option>
+</select>

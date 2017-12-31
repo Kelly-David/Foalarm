@@ -10,6 +10,7 @@ export class AlarmService {
 
   alarms$: Observable<Alarm[]> | Observable<any>;
   activeAlarms$: Observable<Alarm[]> | Observable<any>;
+  availAlarms$: Observable<Alarm[]> | Observable<any>;
 
   constructor(
     private db: FirestoreService,
@@ -17,9 +18,10 @@ export class AlarmService {
     private router: Router
   ) {
 
-    // Define the alarm$ variable
+    // Define the alarms variables
     this.alarms$ = this.db.col$('alarms');
     this.activeAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', true));
+    this.availAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', false));
   }
 
   // Get all alarms
@@ -30,6 +32,10 @@ export class AlarmService {
   // Get all active alarms
   get activeAlarms(): Observable<Alarm[]> {
     return this.activeAlarms$;
+  }
+
+  get availAlarms(): Observable<Alarm[]> {
+    return this.availAlarms$;
   }
 
   saveAlarmData(alarmKey: any, data: any) {
