@@ -87,6 +87,10 @@ h1 { color: #1A5276 }
      padding-bottom: 0;
      margin-bottom: 0;
  }
+
+ .card form button {
+     margin-left: .2rem !important;
+ }
     
 
 /* Button restyle */

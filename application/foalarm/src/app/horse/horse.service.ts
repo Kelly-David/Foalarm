@@ -53,31 +53,38 @@ export class HorseService {
     return this.db.doc$(`horses/${key}`);
   }
 
-  saveHorse(horse: Horse) {
-
-  }
-
-  updateHorseData(user: User, horseKey, data: any) {
-    console.log(horseKey);
-    return this.updateHorse(horseKey, data)
+  // Non destructive update to Firestore
+  updateHorseData(user: User, key, data: any) {
+    console.log('Updating horse' + key);
+    return this.db.update('horses', key, data)
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
-  saveHorseData(user: User, horseKey, data: any) {
-    console.log(horseKey);
-    return this.setHorse(data)
+  // Save new horse to Firestore
+  saveHorseData(user: User, key, data: any) {
+    console.log('Saving new horse' + key);
+    return this.db.set('horses', data)
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
-  setHorse(data: any) {
-    console.log('Saving new horse');
-    return this.db.set('horses', data);
+  // Delete horse from Firestore
+  deleteHorse(key: string) {
+    console.log('Deleteing horse' + key);
+    // return this.afs.doc(`horses/${key}`).delete()
+    return this.afs.collection('horses').doc(key).delete()
+    .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
-  updateHorse(key: string, data: any) {
-    console.log('Updating horse');
-    return this.db.update('horses', key, data);
-  }
+  // TODO test and remove
+  // setHorse(data: any) {
+  //   console.log('Saving new horse');
+  //   return this.db.set('horses', data);
+  // }
 
+  // TODO test and remove
+  // updateHorse(key: string, data: any) {
+  //   console.log('Updating horse');
+  //   return this.db.update('horses', key, data);
+  // }
 
 }

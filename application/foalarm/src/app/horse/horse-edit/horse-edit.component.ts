@@ -126,7 +126,8 @@ export class HorseEditComponent implements OnInit {
     this.horseObject.foalarmId = $event;
   }
 
-  deleteHorse() {
+  delete(horse: Horse) {
+    return this.horseService.deleteHorse(this.horseKey);
 
   }
 

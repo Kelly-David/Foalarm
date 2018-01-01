@@ -73,15 +73,19 @@
               <div class="form-group">
                 <label>Foalarm Wearable</label>
                 <app-alarm-select (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
-                {{horseObject.foalarmId}}
+                {{horse.alarmId}}
               </div>
             </div>
 
           </div>
 
+          <button *ngIf="!isNewHorse" type="button" class="btn btn-danger btn-sm pull-right" (click)="delete(horse)">
+            <i class="fa fa-trash-o fa-lg"></i>
+          </button>
+
           <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!horseForm.valid || (loaded===false)">
             <i class="fa fa-floppy-o"></i>
-          </button>
+          </button> 
 
         </form>
 
