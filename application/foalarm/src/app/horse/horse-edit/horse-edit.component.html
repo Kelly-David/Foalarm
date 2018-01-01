@@ -23,13 +23,13 @@
             <div class="col-sm-8">
               <div class="form-group input-group-sm">
                 <label for="fullName">Name</label>
-                <input type="text" class="form-control" formControlName="displayName" [value]="horse.displayName">
+                <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="horse.displayName" [value]="horse.displayName">
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group input-group-sm">
                 <label for="fullName">Due Date</label>
-                <input type="text" class="form-control" formControlName="dueDate" [value]="horse.dueDate">
+                <input type="text" class="form-control" formControlName="dueDate" [(ngModel)]="horse.dueDate" [value]="horse.dueDate">
               </div>
             </div>
           </div>
@@ -37,21 +37,21 @@
             <div class="col-sm-4">
               <div class="form-group input-group-sm">
                 <label for="foalarm">Color</label>
-                <input type="text" class="form-control" formControlName="color" [value]="horse.color">
+                <input type="text" class="form-control" formControlName="color" [(ngModel)]="horse.color" [value]="horse.color">
               </div>
             </div>
 
             <div class="col-sm-4">
               <div class="form-group input-group-sm">
                 <label for="location">Owner</label>
-                <input type="text" class="form-control" formControlName="owner" [value]="horse.owner">
+                <input type="text" class="form-control" formControlName="owner" [(ngModel)]="horse.owner" [value]="horse.owner">
               </div>
             </div>
 
             <div class="col-sm-4">
               <div class="form-group input-group-sm">
                 <label for="foalarm">Location</label>
-                <input type="text" class="form-control" formControlName="location" [value]="horse.location">
+                <input type="text" class="form-control" formControlName="location" [(ngModel)]="horse.location" [value]="horse.location">
               </div>
             </div>
             <div class="col-sm-8">

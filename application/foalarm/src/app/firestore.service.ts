@@ -62,6 +62,13 @@ export class FirestoreService {
      return firebase.firestore.FieldValue.serverTimestamp();
    }
 
+   update<T>(ref: DocPredicate<T>, key: string, data: any) {
+    return this.doc(ref + `/${key}`).update({
+      ...data,
+      updatedAt: this.timeStamp
+    });
+  }
+
    // Custom set method - add a single doc to a specified collection
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;

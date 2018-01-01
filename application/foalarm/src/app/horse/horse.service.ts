@@ -48,9 +48,8 @@ export class HorseService {
     return this.activeHorses$;
   }
 
-  // Get a horse instance
+  // Get a horse instance by horseID
   getHorse(key: any) {
-    // return this.afs.doc<User>(`horses/${key}`).valueChanges();
     return this.db.doc$(`horses/${key}`);
   }
 
@@ -59,22 +58,25 @@ export class HorseService {
   }
 
   updateHorseData(user: User, horseKey, data: any) {
-    // Update the horse document with additional data
     console.log(horseKey);
-    return this.afs.doc(`horses/${horseKey}`).update(data)
+    return this.updateHorse(horseKey, data)
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
   saveHorseData(user: User, horseKey, data: any) {
     console.log(horseKey);
     return this.setHorse(data)
-      //  this.afs.collection(`horses`).add(data)
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
   setHorse(data: any) {
     console.log('Saving new horse');
     return this.db.set('horses', data);
+  }
+
+  updateHorse(key: string, data: any) {
+    console.log('Updating horse');
+    return this.db.update('horses', key, data);
   }
 
 

@@ -77,7 +77,7 @@ export class HorseEditComponent implements OnInit {
     this.horse$ = this.horseService.getHorse(this.horseKey);
   }
 
-  // Save Horse
+  // Save a new horse Horse
   saveHorse(user: User, horse: Horse) {
     return this.horseService.saveHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
@@ -92,14 +92,14 @@ export class HorseEditComponent implements OnInit {
     });
   }
 
+  // Update an existing horse
   updateHorse(user: User, horse: Horse) {
     return this.horseService.updateHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
       owner: this.owner.value,
-      color: this.color.value,
-      photoURL: this.horseObject.photoURL,
-      state: false,
-      ownerUID: user.uid
+      dueDate: this.dueDate.value,
+      location: this.location.value,
+      color: this.color.value
     });
   }
 
