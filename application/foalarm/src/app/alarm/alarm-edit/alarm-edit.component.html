@@ -21,7 +21,7 @@
           <div class="row">
             <div class="form-group input-group-sm">
               <label for="fullName">Power</label>
-              <input type="text" class="form-control" formControlName="power" [value]="alarm.power">
+              <input type="text" class="form-control" formControlName="power" [(ngModel)]="alarm.power" [value]="alarm.power">
             </div>
           </div>
           <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!alarmForm.valid">

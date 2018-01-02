@@ -54,9 +54,9 @@ export class AlarmEditComponent implements OnInit {
   // TODO...
 
   // Return an observable of the alarm
-  private getAlarm(): Observable<Alarm> {
+  private getAlarm() {
     // TODO
-    return null;
+    this.alarm$ = this.alarmService.getAlarm(this.alarmKey);
   }
 
   // Save the alarm

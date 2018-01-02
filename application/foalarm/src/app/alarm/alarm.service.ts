@@ -41,6 +41,11 @@ export class AlarmService {
     return this.availAlarms$;
   }
 
+  // Get an alarm instance by alarmID
+  getAlarm(key: any) {
+    return this.db.doc$(`alarms/${key}`);
+  }
+
   saveAlarmData(alarmKey: any, data: any) {
     if (alarmKey === 'new') {
       return this.setAlarm(data)
