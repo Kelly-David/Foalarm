@@ -86,8 +86,8 @@ export class HorseEditComponent implements OnInit {
       location: this.location.value,
       color: this.color.value,
       photoURL: this.horseObject.photoURL,
-      alarmId: this.horseObject.alarmId,
-      state: false,
+      alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : '' ,
+      state: this.horseObject.alarmId ? true : false,
       ownerUID: user.uid
     });
   }
