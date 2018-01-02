@@ -27,7 +27,7 @@ export class HorseService {
     private authService: AuthService
   ) {
     // Define the Horse variable
-    this.horses$ = this.db.col$('horses');
+    this.horses$ = this.db.col$('horses', ref => ref.where('deleted', '==', false));
 
     // TODO test and remove
     // this.horseCollection = this.afs.collection<Horse>('horses', ref => {
@@ -35,7 +35,7 @@ export class HorseService {
     // });
     // this.activeHorses$ = this.horseCollection.valueChanges();
 
-    this.activeHorses$ = this.db.col$('horses', ref => ref.where('state', '==', true));
+    this.activeHorses$ = this.db.col$('horses', ref => ref.where('state', '==', true).where('deleted', '==', false));
   }
 
   // Get horses
@@ -67,11 +67,10 @@ export class HorseService {
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
-  // Delete horse from Firestore
+  // Delete horse from Firestore - sets deleted to true
   deleteHorse(key: string) {
     console.log('Deleteing horse' + key);
-    // return this.afs.doc(`horses/${key}`).delete()
-    return this.afs.collection('horses').doc(key).delete()
+    return this.db.delete('horses', key)
     .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 

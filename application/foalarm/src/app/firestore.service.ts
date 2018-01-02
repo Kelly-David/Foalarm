@@ -62,8 +62,10 @@ export class FirestoreService {
      return firebase.firestore.FieldValue.serverTimestamp();
    }
 
-   delete<T>(ref: DocPredicate<T>, key: string) {
-     return this.doc(ref + `/${key}`).delete();
+   delete<T>(ref: DocPredicate<T>, key?: string) {
+     return this.doc(ref + `/${key}`).update({
+       deleted: true
+     });
    }
 
    update<T>(ref: DocPredicate<T>, key: string, data: any) {
@@ -81,7 +83,8 @@ export class FirestoreService {
        ...data,
        id: uniqueRef,
        updatedAt: timeStamp,
-       createdAt: timeStamp
+       createdAt: timeStamp,
+       deleted: false
      });
    }
 
