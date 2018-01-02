@@ -19,9 +19,12 @@ export class AlarmService {
   ) {
 
     // Define the alarms variables
-    this.alarms$ = this.db.col$('alarms');
-    this.activeAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', true));
-    this.availAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', false));
+    // All alarms
+    this.alarms$ = this.db.col$('alarms', ref => ref.where('deleted', '==', false));
+    // Alarms that are assigned to a horse
+    this.activeAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', true).where('deleted', '==', false));
+    // Alarms that are not assigned to a horse
+    this.availAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', false).where('deleted', '==', false));
   }
 
   // Get all alarms
