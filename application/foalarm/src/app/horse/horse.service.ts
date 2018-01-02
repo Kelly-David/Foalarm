@@ -56,6 +56,10 @@ export class HorseService {
   // Non destructive update to Firestore
   updateHorseData(user: User, key, data: any) {
     console.log('Updating horse' + key);
+    // Set the reference to the alarm
+    if (data.alarmId) {
+      this.db.update('alarms', data.alarmId, { state: true});
+    }
     return this.db.update('horses', key, data)
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
@@ -63,14 +67,22 @@ export class HorseService {
   // Save new horse to Firestore
   saveHorseData(user: User, key, data: any) {
     console.log('Saving new horse' + key);
+    // Set the reference to the alarm
+    if (data.alarmId) {
+      this.db.update('alarms', data.alarmId, { state: true});
+    }
     return this.db.set('horses', data)
       .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 
   // Delete horse from Firestore - sets deleted to true
-  deleteHorse(key: string) {
-    console.log('Deleteing horse' + key);
-    return this.db.delete('horses', key)
+  deleteHorse(horse: Horse) {
+    console.log('Deleteing horse' + horse.id);
+    // Delete the reference to the alarm
+    if (horse.alarmId) {
+      this.db.update('alarms', horse.alarmId, {state: false});
+    }
+    return this.db.delete('horses', horse.id)
     .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
 

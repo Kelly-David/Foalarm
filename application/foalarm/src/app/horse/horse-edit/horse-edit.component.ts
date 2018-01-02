@@ -86,7 +86,7 @@ export class HorseEditComponent implements OnInit {
       location: this.location.value,
       color: this.color.value,
       photoURL: this.horseObject.photoURL,
-      alarmId: this.horseObject.foalarmId,
+      alarmId: this.horseObject.alarmId,
       state: false,
       ownerUID: user.uid
     });
@@ -123,11 +123,11 @@ export class HorseEditComponent implements OnInit {
   }
 
   receiveSelectedOption($event) {
-    this.horseObject.foalarmId = $event;
+    this.horseObject.alarmId = $event;
   }
 
   delete(horse: Horse) {
-    return this.horseService.deleteHorse(this.horseKey);
+    return this.horseService.deleteHorse(horse);
 
   }
 

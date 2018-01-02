@@ -55,4 +55,8 @@ export class AlarmService {
     return this.db.set('alarms', data);
   }
 
+  updatedAlarm(key: any, data: any) {
+    return this.db.update('alarms', key, data);
+  }
+
 }

@@ -8,6 +8,6 @@ export interface Horse {
     owner?: string;
     color?: string;
     state?: Boolean;
-    foalarmId?: string;
+    alarmId?: string;
     ownerUID?: string;
 }
