@@ -128,7 +128,6 @@ export class HorseEditComponent implements OnInit {
 
   delete(horse: Horse) {
     return this.horseService.deleteHorse(horse);
-
   }
 
 }

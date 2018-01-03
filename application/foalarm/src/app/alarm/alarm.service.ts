@@ -67,4 +67,11 @@ export class AlarmService {
     return this.db.update('alarms', key, data);
   }
 
+  // Delete alarm from Firestore - sets deleted to true
+  deleteAlarm(alarm: Alarm) {
+    console.log('Deleteing alarm' + alarm.id);
+    return this.db.delete('alarms', alarm.id)
+    .then(_ => this.router.navigate(['/profile/alarm-list'])).catch(error => console.log(error));
+  }
+
 }

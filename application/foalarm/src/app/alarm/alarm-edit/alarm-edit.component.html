@@ -19,11 +19,16 @@
         <!-- If user is registered -->
         <form [formGroup]="alarmForm" (ngSubmit)="save(user, alarm)">
           <div class="row">
-            <div class="form-group input-group-sm">
-              <label for="fullName">Power</label>
-              <input type="text" class="form-control" formControlName="power" [(ngModel)]="alarm.power" [value]="alarm.power">
+            <div class="col-sm-8">
+              <div class="form-group input-group-sm">
+                <label for="fullName">Power</label>
+                <input type="text" class="form-control" formControlName="power" [(ngModel)]="alarm.power" [value]="alarm.power">
+              </div>
             </div>
           </div>
+          <button *ngIf="!isNewAlarm" type="button" class="btn btn-danger btn-sm pull-right" (click)="delete(alarm)">
+              <i class="fa fa-trash-o fa-lg"></i>
+            </button>
           <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!alarmForm.valid">
             <i class="fa fa-floppy-o"></i>
           </button>

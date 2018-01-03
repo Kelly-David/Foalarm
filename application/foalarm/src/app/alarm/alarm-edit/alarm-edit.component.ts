@@ -67,4 +67,8 @@ export class AlarmEditComponent implements OnInit {
       ownerUID: user.uid
     });
   }
+
+  delete(alarm: Alarm) {
+    return this.alarmService.deleteAlarm(alarm);
+  }
 }
