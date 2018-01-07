@@ -46,14 +46,19 @@ export class AlarmService {
     return this.db.doc$(`alarms/${key}`);
   }
 
-  saveAlarmData(alarmKey: any, data: any) {
-    if (alarmKey === 'new') {
-      return this.setAlarm(data)
-      .then(_ => this.router.navigate(['/profile/alarm-list']))
-      .catch(error =>
+  updateAlarmData(key: any, data: any) {
+    console.log('Updating alarm: ', key);
+    return this.db.update('alarms', key, data)
+    .then(_ => this.router.navigate(['/profile/alarm-list']))
+    .catch(error => console.log(error));
+  }
+
+  saveAlarmData(key: any, data: any) {
+    console.log('Saving new horse' + key);
+    return this.db.set('alarms', data)
+    .then(_ => this.router.navigate(['/profile/alarm-list']))
+    .catch(error =>
       console.log(error));
-    }
-    // TODO else its an update
   }
 
   setAlarm(data: any): any {
