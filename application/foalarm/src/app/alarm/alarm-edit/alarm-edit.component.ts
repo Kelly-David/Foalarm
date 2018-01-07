@@ -126,7 +126,7 @@ export class AlarmEditComponent implements OnInit {
       displayName: form.displayName,
       emailAddress: form.emailAddress,
       // phone: this.e164,
-      phone: this.e164 ? this.e164 : alarm.phone ,
+      phone: this.e164 ? this.e164 : alarm.phone,
     });
   }
 
