@@ -126,10 +126,18 @@ export class AlarmEditComponent implements OnInit {
       displayName: form.displayName,
       emailAddress: form.emailAddress,
       // phone: this.e164,
-      phone: this.e164 ? this.e164 : alarm.phone,
+      phone: this.updatedPhone() ? this.e164 : alarm.phone,
     });
   }
 
+  // Has the phone number changed
+  updatedPhone(): Boolean {
+    if (this.e164.length > 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   delete(alarm: Alarm) {
     return this.alarmService.deleteAlarm(alarm);
   }

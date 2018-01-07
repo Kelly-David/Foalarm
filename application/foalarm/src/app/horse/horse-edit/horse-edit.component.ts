@@ -99,7 +99,9 @@ export class HorseEditComponent implements OnInit {
       owner: this.owner.value,
       dueDate: this.dueDate.value,
       location: this.location.value,
-      color: this.color.value
+      color: this.color.value,
+      alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
+      state: this.horseObject.alarmId ? true : horse.state,
     });
   }
 
