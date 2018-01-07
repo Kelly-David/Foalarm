@@ -1,0 +1,9 @@
+ACbb1d43da5e2220233364f890595e4f74
+
+f65bfe0fd00883045c804f3c54cc56d7
+
+# Twilio Setup
+firebase functions:config:set twilio.sid="ACbb1d43da5e2220233364f890595e4f74" twilio.token="f65bfe0fd00883045c804f3c54cc56d7"
+cd functions
+npm install twilio --save
+
