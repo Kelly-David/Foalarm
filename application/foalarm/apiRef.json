@@ -1,0 +1,32 @@
+// projects/foalarm/databases/(default)/documents/data/EoKz9dg4gc1PBIzo5OWy
+
+// currentDoc.exits: true
+
+// updateMask: field to update
+
+// patch body: 
+
+{
+  "fields": 
+  {
+    "xValue": 
+    {
+      "integerValue": "131"
+    },
+    "yVlaue": 
+    {
+      "integerValue": "15"
+    },
+    "zValue": 
+    {
+      "integerValue": "10"
+    }
+  }
+}
+
+
+// curl -k -X POST https://firestore.googleapis.com/v1beta1/projects/foalarm/databases/(default)/documents/data/EoKz9dg4gc1PBIzo5OWy?currentDocument.exists=true&updateMask.fieldPaths=xValue&updateMask.fieldPaths=yValue&updateMask.fieldPaths=zValue&key={YOUR_API_KEY} -d '{"fields":{"xValue":{"integerValue": "131"},"yVlaue":{"integerValue": "15"},"zValue":{"integerValue": "0"}}}'
+
+
+
+// curl -k -X PATCH https://foalarm.firebaseio.com/data.json -d '{"V4AD8dduE7KBovFXJmvk":{"xValue":"131","yVlaue":"15","zValue":"0"}}'

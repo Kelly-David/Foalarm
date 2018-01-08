@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { timeout } from 'q';
@@ -11,7 +12,8 @@ type DocPredicate<T> = string | AngularFirestoreDocument<T>;
 export class FirestoreService {
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private rtdb: AngularFireDatabase
   ) { }
 
   col<T>(ref: CollectionPredicate<T>, queryFn?): AngularFirestoreCollection<T> {
@@ -92,6 +94,9 @@ export class FirestoreService {
    setReference<T>(ref: DocPredicate<T>, key, data: any) {
      const timeStamp = this.timeStamp;
      const uniqueRef = key;
+     // Create a reference in Firebase Real Time DB
+     const realTimeDBRef = this.rtdb.object(`/data/${key}`);
+     realTimeDBRef.update({ id: key });
      return this.doc(ref + `/${key}`).set({
        ...data,
        id: key,

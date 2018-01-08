@@ -13,8 +13,41 @@ const client = new twilio(accountSID, authToken);
 // Twilio Phone number
 const twilioPhoneNumber = '+353861801437';
 
-/// Start the Cloud Function
+/// Start Cloud Function
+exports.textFoalAlertFirbase = functions.database.ref('/data/{key}')
+    .onUpdate(event => {
+        const alarmId = event.params.key
+        console.log(alarmId);
+        console.log(event.params.data());
 
+        return admin.firestore().doc(`alarms/${alarmId}`).get().then(function (doc) {
+            if (doc.exists) {
+                console.log('Document found...');
+                console.log('Document Data ', doc.data());
+                const phoneNumber = doc.data().phone;
+                console.log('Phone number: ', phoneNumber);
+                if (doc.data().phone) {
+
+                    const textMessage = {
+                        body: `Current alarm status`,
+                        to: phoneNumber,  // Text to this number
+                        from: twilioPhoneNumber // From a valid Twilio number
+                    }
+                    return client.messages.create(textMessage)
+                        .then(message => console.log(message.sid, 'Success'))
+                        .catch(error => console.log('Twilio send error: ', error));
+                }
+
+            } else {
+                console.log('Not such document exists');
+            }
+        }).catch(function (error) {
+            console.log('Error caught: ', error);
+        });
+
+    });
+
+/// Start Cloud Function
 exports.textFoalAlert = functions.firestore.document('data/{key}')
     .onUpdate(event => {
         const alarmId = event.data.id;
