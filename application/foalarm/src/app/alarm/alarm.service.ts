@@ -46,6 +46,7 @@ export class AlarmService {
     return this.db.doc$(`alarms/${key}`);
   }
 
+  // Firestore non-destructive update
   updateAlarmData(key: any, data: any) {
     console.log('Updating alarm: ', key);
     return this.db.update('alarms', key, data)
@@ -53,23 +54,13 @@ export class AlarmService {
     .catch(error => console.log(error));
   }
 
+  // Firstore set
   saveAlarmData(key: any, data: any) {
     console.log('Saving new alarm' + key);
     return this.db.set('alarms', data)
     .then(_ => this.router.navigate(['/profile/alarm-list']))
     .catch(error =>
       console.log(error));
-  }
-
-  setAlarm(data: any): any {
-    // TODO remove
-    // Test
-    console.log('Saving new alarm');
-    return this.db.set('alarms', data);
-  }
-
-  updatedAlarm(key: any, data: any) {
-    return this.db.update('alarms', key, data);
   }
 
   // Delete alarm from Firestore - sets deleted to true
