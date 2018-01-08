@@ -66,6 +66,8 @@ export class AlarmService {
   // Delete alarm from Firestore - sets deleted to true
   deleteAlarm(alarm: Alarm) {
     console.log('Deleteing alarm' + alarm.id);
+
+    // Remove the alarm reference from the associated horse
     if (alarm.state) {
       this.db.col('horses', a => a.where('alarmId', '==', alarm.id).where('deleted', '==', false).where('state', '==', true))
       .ref

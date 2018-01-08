@@ -54,8 +54,13 @@ export class HorseService {
   }
 
   // Non destructive update to Firestore
-  updateHorseData(user: User, key, data: any) {
+  updateHorseData(user: User, key, data: any, currentAlarmId?: string) {
     console.log('Updating horse' + key);
+    console.log('CurrentAlarmId: ', currentAlarmId !== undefined ? currentAlarmId : 'none');
+    // If there is already an alarm assigned - change the state in the alarm object
+    if (currentAlarmId) {
+      this.db.update('alarms', currentAlarmId, { state: false });
+    }
     // Set the reference to the alarm
     if (data.alarmId) {
       this.db.update('alarms', data.alarmId, { state: true});

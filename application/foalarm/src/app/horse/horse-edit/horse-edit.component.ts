@@ -93,8 +93,8 @@ export class HorseEditComponent implements OnInit {
   }
 
   // Update an existing horse
-  updateHorse(user: User, horse: Horse) {
-    return this.horseService.updateHorseData(user, this.horseKey, {
+  updateHorse(user: User, horse: Horse, currentAlarmId?: string) {
+    return this.horseService.updateHorseData(user, this.horseKey,  {
       displayName: this.displayName.value,
       owner: this.owner.value,
       dueDate: this.dueDate.value,
@@ -102,13 +102,13 @@ export class HorseEditComponent implements OnInit {
       color: this.color.value,
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       state: this.horseObject.alarmId ? true : horse.state,
-    });
+    }, currentAlarmId);
   }
 
-  save(user: User, horse: Horse) {
+  save(user: User, horse: Horse, currentAlarmId?: string) {
     const save = this.isNewHorse ?
       this.saveHorse(user, horse)
-      : this.updateHorse(user, horse);
+      : this.updateHorse(user, horse, currentAlarmId);
   }
 
   uploadFile(horse: Horse, event: any) {
