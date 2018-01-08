@@ -79,9 +79,22 @@ export class FirestoreService {
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;
      const uniqueRef = this.afs.createId();
+     if (ref === 'alarms') { this.setReference('data', uniqueRef, {}); }
      return this.doc(ref + `/${uniqueRef}`).set({
        ...data,
        id: uniqueRef,
+       updatedAt: timeStamp,
+       createdAt: timeStamp,
+       deleted: false
+     });
+   }
+
+   setReference<T>(ref: DocPredicate<T>, key, data: any) {
+     const timeStamp = this.timeStamp;
+     const uniqueRef = key;
+     return this.doc(ref + `/${key}`).set({
+       ...data,
+       id: key,
        updatedAt: timeStamp,
        createdAt: timeStamp,
        deleted: false
