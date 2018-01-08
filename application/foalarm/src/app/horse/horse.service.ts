@@ -55,10 +55,18 @@ export class HorseService {
 
   // Non destructive update to Firestore
   updateHorseData(user: User, key, data: any, currentAlarmId?: string) {
+    // Testing - TODO Remove
     console.log('Updating horse' + key);
     console.log('CurrentAlarmId: ', currentAlarmId !== undefined ? currentAlarmId : 'none');
+    console.log('Alarm to remove: ', data.alarmId === 'remove' ? data.alarmId : 'none');
+    // If the alarm is being removed, update the alarm doc and ammend the horse data before update
+    if (data.alarmId === 'remove') {
+      this.db.update('alarms', currentAlarmId, { state: false });
+      data.alarmId = '';
+      data.state = false;
+    }
     // If there is already an alarm assigned - change the state in the alarm object
-    if (currentAlarmId) {
+    if (currentAlarmId && currentAlarmId !== 'remove') {
       this.db.update('alarms', currentAlarmId, { state: false });
     }
     // Set the reference to the alarm

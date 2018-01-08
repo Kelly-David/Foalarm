@@ -13,6 +13,7 @@ export class AlarmSelectComponent implements OnInit {
 
   alarms$: Observable<Alarm[]> | Observable<any>;
   selectedAlarm = 'No alarm selected' as string;
+  removeAlarm = 'remove' as string;
 
   @Output() messageEvent = new EventEmitter<string>();
 
