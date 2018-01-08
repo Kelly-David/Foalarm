@@ -22,8 +22,19 @@ export class ActiveAlarmListComponent implements OnInit {
 
   }
 
+  // Returns observable of all active alarms
   getAlarms() {
     this.alarms$ = this.alarmService.activeAlarms;
+  }
+
+  // TESTING: Tests the SMS alert cloud funtion is working
+  testAlarm(alarm: Alarm) {
+    return this.alarmService.testAlarm(alarm.id, {
+      alert: true,
+      x: 5,
+      y: 12,
+      z: 7
+    });
   }
 
 }

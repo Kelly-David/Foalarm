@@ -54,7 +54,7 @@ export class AlarmService {
   }
 
   saveAlarmData(key: any, data: any) {
-    console.log('Saving new horse' + key);
+    console.log('Saving new alarm' + key);
     return this.db.set('alarms', data)
     .then(_ => this.router.navigate(['/profile/alarm-list']))
     .catch(error =>
@@ -90,6 +90,12 @@ export class AlarmService {
     }
     return this.db.delete('alarms', alarm.id)
     .then(_ => this.router.navigate(['/profile/alarm-list'])).catch(error => console.log(error));
+  }
+
+  testAlarm(key: any, data: any) {
+    console.log('Testing Alarm SMS ', key);
+    return this.db.update('data', key, data)
+    .catch(error => console.log(error));
   }
 
 }

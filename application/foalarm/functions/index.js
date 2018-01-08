@@ -15,7 +15,7 @@ const twilioPhoneNumber = '+353861801437';
 
 /// Start the Cloud Function
 
-exports.textFoalAlert = functions.firestore.document('alarms/{key}')
+exports.textFoalAlert = functions.firestore.document('data/{key}')
 .onUpdate(event => {
     const alarmId = event.data.id;
     const firestore = event.data.ref.firestore;
