@@ -30,3 +30,5 @@
 
 
 // curl -k -X PATCH https://foalarm.firebaseio.com/data.json -d '{"V4AD8dduE7KBovFXJmvk":{"xValue":"131","yVlaue":"15","zValue":"0"}}'
+
+curl -k -X POST https://foalarm.firebaseio.com/data/V4AD8dduE7KBovFXJmvk.json -d '{"key": "V4AD8dduE7KBovFXJmvk", "xValue":"131","yValue":"915","zValue":"0"}'

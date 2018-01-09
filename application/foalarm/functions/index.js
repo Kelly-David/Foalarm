@@ -13,45 +13,43 @@ const client = new twilio(accountSID, authToken);
 // Twilio Phone number
 const twilioPhoneNumber = '+353861801437';
 
+let alarmData = {};
+
 /// Start Cloud Function
-exports.textFoalAlertFirbase = functions.database.ref('/data/{key}')
-    .onUpdate(event => {
-        const alarmId = event.params.key
-        console.log(alarmId);
-        console.log(event.params.data());
+exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}')
+    .onWrite(event => {
+        const alarmId = event.params.alarmkey;
+        const datakey = event.params.dataKey;
+        console.log('Alatm Key ', alarmId);
+        console.log('Data ', event.params.dataKey);
 
-        return admin.firestore().doc(`alarms/${alarmId}`).get().then(function (doc) {
-            if (doc.exists) {
-                console.log('Document found...');
-                console.log('Document Data ', doc.data());
-                const phoneNumber = doc.data().phone;
-                console.log('Phone number: ', phoneNumber);
-                if (doc.data().phone) {
+        return admin.database()
+            .ref(`/data/${alarmId}/${datakey}`)
+            .once('value')
+            .then(snapshot => snapshot.val())
+            .then(order => {
+                const xValue = order.xValue;
+                const yValue = order.yValue;
+                const zValue = order.zValue;
+                const key = order.key;
+                const data = xValue + ',' + yValue + ',' + zValue;
 
-                    const textMessage = {
-                        body: `Current alarm status`,
-                        to: phoneNumber,  // Text to this number
-                        from: twilioPhoneNumber // From a valid Twilio number
-                    }
-                    return client.messages.create(textMessage)
-                        .then(message => console.log(message.sid, 'Success'))
-                        .catch(error => console.log('Twilio send error: ', error));
-                }
+                return admin.firestore()
+                    .collection('data')
+                    .doc(`${key}`)
+                    .collection('data')
+                    .add({ 'data': data });
+            })
+            .catch(error => console.log(error));
 
-            } else {
-                console.log('Not such document exists');
-            }
-        }).catch(function (error) {
-            console.log('Error caught: ', error);
-        });
 
     });
 
 /// Start Cloud Function
-exports.textFoalAlert = functions.firestore.document('data/{key}')
-    .onUpdate(event => {
-        const alarmId = event.data.id;
-        const firestore = event.data.ref.firestore;
+exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}')
+    .onWrite(event => {
+        const alarmId = event.params.key;
+        // const firestore = event.data.ref.firestore;
 
         return admin.firestore().doc(`alarms/${alarmId}`).get().then(function (doc) {
             if (doc.exists) {
@@ -60,16 +58,30 @@ exports.textFoalAlert = functions.firestore.document('data/{key}')
                 console.log('Phone number: ', phoneNumber);
                 if (doc.data().phone) {
 
-                    const textMessage = {
-                        body: `Current alarm status`,
-                        to: phoneNumber,  // Text to this number
-                        from: twilioPhoneNumber // From a valid Twilio number
-                    }
-                    return client.messages.create(textMessage)
-                        .then(message => console.log(message.sid, 'Success'))
-                        .catch(error => console.log('Twilio send error: ', error));
-                }
+                    const alarmKey = doc.data().id;
+                    const phone = doc.data().phoneNumber;
 
+                    admin.firestore().collection('horses')
+                        .where('alarmId', '==', alarmKey)
+                        .get()
+                        .then(snapshotQuery => {
+                            snapshotQuery.forEach(doc => {
+                                if (doc.data().alarmId == alarmKey) {
+                                    const horse = doc.data().displayName;
+                                    console.log('Horse name: ', doc.data().displayName);
+
+                                    const textMessage = {
+                                        body: `Foaling Alert for ${horse}`,
+                                        to: phoneNumber,  // Text to this number
+                                        from: twilioPhoneNumber // From a valid Twilio number
+                                    }
+                                    return client.messages.create(textMessage)
+                                        .then(message => console.log(message.sid, 'Success'))
+                                        .catch(error => console.log('Twilio send error: ', error));
+                                }
+                            })
+                        });
+                }
             } else {
                 console.log('Not such document exists');
             }
@@ -78,10 +90,3 @@ exports.textFoalAlert = functions.firestore.document('data/{key}')
         });
 
     });
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
