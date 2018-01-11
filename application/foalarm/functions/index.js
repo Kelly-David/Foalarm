@@ -16,34 +16,34 @@ const twilioPhoneNumber = '+353861801437';
 let alarmData = {};
 
 /// Start Cloud Function
-exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}')
-    .onWrite(event => {
-        const alarmId = event.params.alarmkey;
-        const datakey = event.params.dataKey;
-        console.log('Alatm Key ', alarmId);
-        console.log('Data ', event.params.dataKey);
+// exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}')
+//     .onWrite(event => {
+//         const alarmId = event.params.alarmkey;
+//         const datakey = event.params.dataKey;
+//         console.log('Alatm Key ', alarmId);
+//         console.log('Data ', event.params.dataKey);
 
-        return admin.database()
-            .ref(`/data/${alarmId}/${datakey}`)
-            .once('value')
-            .then(snapshot => snapshot.val())
-            .then(order => {
-                const xValue = order.xValue;
-                const yValue = order.yValue;
-                const zValue = order.zValue;
-                const key = order.key;
-                const data = xValue + ',' + yValue + ',' + zValue;
+//         return admin.database()
+//             .ref(`/data/${alarmId}/${datakey}`)
+//             .once('value')
+//             .then(snapshot => snapshot.val())
+//             .then(order => {
+//                 const xValue = order.x;
+//                 const yValue = order.y;
+//                 const zValue = order.z;
+//                 const key = order.id;
+//                 const data = xValue + ',' + yValue + ',' + zValue;
 
-                return admin.firestore()
-                    .collection('data')
-                    .doc(`${key}`)
-                    .collection('data')
-                    .add({ 'data': data });
-            })
-            .catch(error => console.log(error));
+//                 return admin.firestore()
+//                     .collection('data')
+//                     .doc(`${key}`)
+//                     .collection('data')
+//                     .add({ 'data': data });
+//             })
+//             .catch(error => console.log(error));
 
 
-    });
+//     });
 
 /// Start Cloud Function
 exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}')
