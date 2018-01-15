@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertHandlerService } from '../../alert-handler.service';
+import { Observable } from 'rxjs/Observable';
+import { Alert } from '../../alert';
+import { AlertsService } from '../alerts.service';
 
 @Component({
   selector: 'app-alert-list',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertListComponent implements OnInit {
 
-  constructor() { }
+  alerts$: Observable<Alert[]> | Observable<any> | null;
+
+  constructor(
+    private alertService: AlertsService
+  ) { }
 
   ngOnInit() {
+
+    this.getAlerts();
+
+  }
+
+  getAlerts() {
+    this.alerts$ = this.alertService.alerts;
   }
 
 }

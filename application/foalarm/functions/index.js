@@ -157,10 +157,11 @@ exports.saveFoalingAlert = functions.firestore
                                     // Found the horse
                                     const horse = doc.data();
                                     const time = getTimeStamp();
-                                    var horseAlertRef = admin.firestore().collection('alerts').doc(`${horse.id}`).collection('alerts').doc();
+                                    var horseAlertRef = admin.firestore().collection('alerts').doc();
                                     const uniqueRef = horseAlertRef.id;
                                     return horseAlertRef.set({
                                         id: uniqueRef,
+                                        horseId: horse.id,
                                         updatedAt: time,
                                         createdAt: time,
                                         viewed: false,
