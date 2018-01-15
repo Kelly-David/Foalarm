@@ -153,9 +153,10 @@ exports.saveFoalingAlert = functions.firestore
                         .then(snapshotQuery => {
                             snapshotQuery.forEach(doc => {
                                 if (doc.data().alarmId == alarmKey) {
+
+                                    // Found the horse
                                     const horse = doc.data();
                                     
-                                    return 
                                 }
                             });
                         });
