@@ -156,7 +156,9 @@ exports.saveFoalingAlert = functions.firestore
 
                                     // Found the horse
                                     const horse = doc.data();
-                                    var horseAlertRef = admin.firestore().collection('alerts').doc(`${horse.id}`);
+                                    var horseAlertRef = admin.firestore().collection('alerts').doc(`${horse.id}`).collection('alerts').doc();
+                                    const uniqueKey = horseAlertRef.id;
+                                    console.log('Unique Key: ', uniqueKey);
                                 }
                             });
                         });
