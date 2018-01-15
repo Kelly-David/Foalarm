@@ -161,8 +161,8 @@ exports.saveFoalingAlert = functions.firestore
                                     const uniqueRef = horseAlertRef.id;
                                     return horseAlertRef.set({
                                         id: uniqueRef,
-                                        updatedAt: timeStamp,
-                                        createdAt: timeStamp,
+                                        updatedAt: time,
+                                        createdAt: time,
                                         viewed: false,
                                         deleted: false
                                     })
