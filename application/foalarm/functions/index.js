@@ -146,34 +146,33 @@ exports.saveFoalingAlert = functions.firestore
             .then(function (doc) {
                 if (doc.exists) {
                     const email = doc.data().emailAddress;
-                    if (email) {
-                        const alarmKey = doc.data().id;
-                        const email = doc.data().emailAddress;
+                    const alarmKey = doc.data().id;
+                    const email = doc.data().emailAddress;
 
-                        admin.firestore().collection('horses')
-                            .where('alarmId', '==', alarmKey)
-                            .get()
-                            .then(snapshotQuery => {
-                                snapshotQuery.forEach(doc => {
-                                    if (doc.data().alarmId == alarmKey) {
-                                        const horse = doc.data();
-                                        const msg = {
-                                            to: email,
-                                            from: 'alerts@foalarm.com',
-                                            subject: 'Foaling Alert!',
-                                            templateId: '957f3c38-c900-4ecb-8a02-8022509799a9',
-                                            substitutionWrappers: ['{{', '}}'],
-                                            substitutions: {
-                                                horseName: horse.displayName
-                                            }
-                                        };
-                                        return sgMail.send(msg)
-                                            .then(() => console.log('email sent!'))
-                                            .catch(err => console.log(err))
-                                    }
-                                });
+                    admin.firestore().collection('horses')
+                        .where('alarmId', '==', alarmKey)
+                        .get()
+                        .then(snapshotQuery => {
+                            snapshotQuery.forEach(doc => {
+                                if (doc.data().alarmId == alarmKey) {
+                                    const horse = doc.data();
+                                    const msg = {
+                                        to: email,
+                                        from: 'alerts@foalarm.com',
+                                        subject: 'Foaling Alert!',
+                                        templateId: '957f3c38-c900-4ecb-8a02-8022509799a9',
+                                        substitutionWrappers: ['{{', '}}'],
+                                        substitutions: {
+                                            horseName: horse.displayName
+                                        }
+                                    };
+                                    return sgMail.send(msg)
+                                        .then(() => console.log('email sent!'))
+                                        .catch(err => console.log(err))
+                                }
                             });
-                    }
+                        });
+
                 }
             });
     });
