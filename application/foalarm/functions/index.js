@@ -129,9 +129,9 @@ exports.sendFoalAlertEmail = functions.firestore
                                             .then(() => console.log('email sent!'))
                                             .catch(err => console.log(err))
                                     }
-                                })
-                            })
+                                });
+                            });
                     }
                 }
-            })
-    })
+            });
+    });
