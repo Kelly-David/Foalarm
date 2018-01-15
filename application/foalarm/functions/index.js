@@ -155,9 +155,7 @@ exports.saveFoalingAlert = functions.firestore
                                 if (doc.data().alarmId == alarmKey) {
                                     const horse = doc.data();
                                     
-                                    return sgMail.send(msg)
-                                        .then(() => console.log('email sent!'))
-                                        .catch(err => console.log(err))
+                                    return 
                                 }
                             });
                         });
