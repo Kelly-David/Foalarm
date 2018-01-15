@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { AuthService } from './core/auth.service';
 import { AuthGuard } from './core/auth.guard';
 import { User } from './user';
+import { Alert } from './alert';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AlertHandlerService } from './alert-handler.service';
@@ -32,6 +33,8 @@ import { AlarmEditComponent } from './alarm/alarm-edit/alarm-edit.component';
 import { AlarmSelectComponent } from './alarm/alarm-select/alarm-select.component';
 import { SelectModule } from 'ng2-select';
 import { AlertListComponent } from './alerts/alert-list/alert-list.component';
+import { AlertsService } from './alerts/alerts.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,7 @@ import { AlertListComponent } from './alerts/alert-list/alert-list.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFirestoreModule, AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, CoreModule, AppRoutingModule, // imports firebase/auth, only needed for auth features
     SelectModule,
   ],
@@ -68,7 +71,8 @@ import { AlertListComponent } from './alerts/alert-list/alert-list.component';
     AlertHandlerService,
     HorseService,
     FirestoreService,
-    AlarmService
+    AlarmService,
+    AlertsService
   ],
   bootstrap: [AppComponent]
 })
