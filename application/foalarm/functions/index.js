@@ -169,7 +169,6 @@ exports.saveFoalingAlert = functions.firestore
                                 }
                             });
                         });
-
                 }
             });
     });
