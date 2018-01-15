@@ -25,4 +25,12 @@ export class AlertsService {
       return this.alerts$;
     }
 
+    // Dismiss Alert
+    dismissAlert(alert: Alert) {
+      const data = { viewed: true };
+      console.log('Dismissing Alert');
+      return this.db.update('alerts', alert.id, data)
+      .catch(error => console.log(error));
+    }
+
 }

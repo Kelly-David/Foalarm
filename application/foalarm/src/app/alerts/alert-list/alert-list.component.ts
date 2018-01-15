@@ -27,9 +27,9 @@ export class AlertListComponent implements OnInit {
     this.alerts$ = this.alertService.alerts;
   }
 
-  dismissAlert(alert: Alert): boolean {
+  dismissAlert(alert: Alert) {
     console.log(alert.id);
-    return true;
+    return this.alertService.dismissAlert(alert);
   }
 
 }
