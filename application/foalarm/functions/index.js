@@ -156,9 +156,16 @@ exports.saveFoalingAlert = functions.firestore
 
                                     // Found the horse
                                     const horse = doc.data();
+                                    const time = getTimeStamp();
                                     var horseAlertRef = admin.firestore().collection('alerts').doc(`${horse.id}`).collection('alerts').doc();
-                                    const uniqueKey = horseAlertRef.id;
-                                    console.log('Unique Key: ', uniqueKey);
+                                    const uniqueRef = horseAlertRef.id;
+                                    return horseAlertRef.set({
+                                        id: uniqueRef,
+                                        updatedAt: timeStamp,
+                                        createdAt: timeStamp,
+                                        viewed: false,
+                                        deleted: false
+                                    })
                                 }
                             });
                         });
@@ -166,3 +173,7 @@ exports.saveFoalingAlert = functions.firestore
                 }
             });
     });
+
+function getTimeStamp() {
+    return admin.database.ServerValue.TIMESTAMP;
+};
