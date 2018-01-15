@@ -27,6 +27,7 @@ export class AlertsService {
 
     // Dismiss Alert
     dismissAlert(alert: Alert) {
+      // Set viewed to false
       const data = { viewed: true };
       console.log('Dismissing Alert');
       return this.db.update('alerts', alert.id, data)
