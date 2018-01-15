@@ -174,5 +174,5 @@ exports.saveFoalingAlert = functions.firestore
     });
 
 function getTimeStamp() {
-    return admin.database.ServerValue.TIMESTAMP;
+    return admin.firestore.FieldValue.serverTimestamp();
 };
