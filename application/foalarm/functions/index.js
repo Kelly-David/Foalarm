@@ -119,7 +119,6 @@ exports.sendFoalAlertEmail = functions.firestore
                                             to: email,
                                             from: 'alerts@foalarm.com',
                                             subject: 'Foaling Alert!',
-                                            // custom templates
                                             templateId: '957f3c38-c900-4ecb-8a02-8022509799a9',
                                             substitutionWrappers: ['{{', '}}'],
                                             substitutions: {
