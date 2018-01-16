@@ -1,57 +1,59 @@
 <div class="col-sm-4 ml-auto mr-auto">
-<div class="card primaryCard">
-  <ng-container *ngIf="(authService.user | async) || {} as user">
-    <div class="card-header">
-      Login to FOALARM
-      <span class="pull-right">
-        <a class="btn btn-social-icon text-primary">
-          <i class="fa fa-lock"></i>
-        </a>
-      </span>
-    </div>
-    <div class="card-body">
-      <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
-        {{alertString}}
+  <div class="card primaryCard">
+    <ng-container *ngIf="(authService.user | async) || {} as user">
+      <div class="card-header">
+        Login to FOALARM
+        <span class="pull-right">
+          <a class="btn btn-social-icon text-primary">
+            <i class="fa fa-lock"></i>
+          </a>
+        </span>
       </div>
-      <!-- login alert end -->
+      <div class="card-body">
+        <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
+          {{alertString}}
+        </div>
+        <!-- login alert end -->
 
-      <form [formGroup]="loginForm" *ngIf="!user.uid" (ngSubmit)="signin()">
+        <form [formGroup]="loginForm" *ngIf="!user.uid" (ngSubmit)="signin()">
 
-        <div class="form-group input-group-sm">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" formControlName="email">
+          <div class="form-group input-group-sm">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" formControlName="email">
 
-          <div *ngIf="email.invalid && email.dirty">
-            Your email doesn't look quite right...
+            <div *ngIf="email.invalid && email.dirty">
+              Your email doesn't look quite right...
+            </div>
           </div>
-        </div>
 
-        <div class="form-group input-group-sm">
+          <div class="form-group input-group-sm">
 
-          <label for="password">Password</label>
-          <input type="password" class="form-control" formControlName="password">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password">
 
-          <div *ngIf="email.invalid && email.touched">
+            <div *ngIf="email.invalid && email.touched">
+            </div>
           </div>
-        </div>
 
-        <div *ngIf="loginForm.valid">
-          Form looks good. Time to login!
-        </div>
+          <div *ngIf="loginForm.valid">
+            Form looks good. Time to login!
+          </div>
 
-        <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!loginForm.valid">
-          <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
-        </button>
+          <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
+          </button>
 
-      </form>
-      <!-- form end -->
-      <p *ngIf="user.uid">
-        You are already logged in...
-      </p>
+        </form>
+        <!-- form end -->
+        
+        <p *ngIf="user.uid">
+          You are already logged in...
+        </p>
 
-      <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/register']">Register a FOALARM</button>
-
-    </div>
-  </ng-container>
-</div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-secondary btn-sm btn-inline" [routerLink]="['/register']">Register a FOALARM</button>
+      </div>
+    </ng-container>
+  </div>
 </div>
