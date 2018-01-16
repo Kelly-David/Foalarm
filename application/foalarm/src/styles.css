@@ -28,7 +28,7 @@ body {
     margin: 0 0 50px 0!important;
     padding: 0 !important;    
 }
-.app-content { margin-top: 1rem}
+.app-content { margin-top: 2rem}
 
 h1, h2, h3, h4, h5, h6 { font-weight: bold}
 
@@ -94,7 +94,7 @@ h1 { color: #1A5276 }
     
 
 /* Button restyle */
-.btn { border: none; padding: .2rem .5rem}
+.btn { border: none; }
 .btn-success { background: #448599; }
 .btn-success:disabled { background: #b9d2da }
 .btn-success:hover:not([disabled]) { background: #43a2a7 }
