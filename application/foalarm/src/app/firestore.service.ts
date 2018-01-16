@@ -77,7 +77,11 @@ export class FirestoreService {
     });
   }
 
-   // Custom set method - add a single doc to a specified collection
+   /**
+    * @description Custom set method - add a single doc to a specified collection
+    * @param ref 
+    * @param data 
+    */
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;
      const uniqueRef = this.afs.createId();
@@ -92,6 +96,12 @@ export class FirestoreService {
      });
    }
 
+   /**
+    * @description sets a data reference ot the alarm
+    * @param ref
+    * @param key
+    * @param data
+    */
    setReference<T>(ref: DocPredicate<T>, key, data: any) {
      const timeStamp = this.timeStamp;
      const uniqueRef = key;
@@ -107,7 +117,11 @@ export class FirestoreService {
      });
    }
 
-   // Custom add method - adding to a collection
+   /**
+    * @description Custom add method - adding to a collection
+    * @param ref
+    * @param data
+    */
    add<T>(ref: CollectionPredicate<T>, data) {
     const timestamp = this.timeStamp;
     const uniqueRef = this.afs.createId();
