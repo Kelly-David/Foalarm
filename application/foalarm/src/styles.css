@@ -75,6 +75,10 @@ h1 { color: #1A5276 }
     color: #1A5276;
  }
 
+ .card-header .btn {
+     padding: .3rem;
+ }
+
  .card .card-body small {
      display: block;
      color: #c3c3c3;
