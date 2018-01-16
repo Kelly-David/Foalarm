@@ -1,7 +1,18 @@
-<ul class="list-group list-group-flush" *ngFor="let horse of activeHorses$ | async">
+<div *ngFor="let horse of activeHorses$ | async">
+  <div class="card primaryCard">
+    <div class="card-body">
+      <small>Name</small>
+      <h6 class="card-title">{{horse.displayName}}</h6>
 
-  <li class="list-group-item">
-    <a href=''>{{horse.displayName}}</a>
-  </li>
-
-</ul>
+      <span class="pull-right">
+        <a class="btn btn-social-icon">
+          <span [ngClass]="horse.state ? 'active' : 'inactive'">
+            <i class="fa fa-circle" aria-hidden="true"></i>
+          </span>
+        </a>
+      </span>
+    </div>
+    <!-- card body end -->
+    <!-- ng-container end -->
+  </div>
+</div>

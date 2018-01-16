@@ -74,6 +74,14 @@ h1 { color: #1A5276 }
     font-weight: bold;
     color: #1A5276;
  }
+ .card .card-body {
+     padding: .5rem;
+ }
+
+ .card .card-body .card-title {
+    padding: 0;
+    margin-bottom: .6rem;
+}
 
  .card-header .btn {
      padding: 0 .3rem;
@@ -95,6 +103,18 @@ h1 { color: #1A5276 }
  .card form button {
      margin-left: .2rem !important;
  }
+
+ .card .active i {
+    color: #448599;
+}
+
+.card .inactive i {
+    color: #c3c3c3
+}
+
+.card .card-footer a {
+    color: #c3c3c3
+}
     
 
 /* Button restyle */
