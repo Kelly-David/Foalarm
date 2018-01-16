@@ -19,10 +19,10 @@ html {
     min-height: 100%;
 }
 body {
-    background: url(assets/layout/1.png), url(assets/layout/2.jpg);
+    background: url(assets/layout/1.png), url(assets/layout/bg.jpg);
     background-position: 10% 0, 100%;
-    background-repeat: repeat-x, repeat;
-    background-size: 210px auto;
+    background-repeat: repeat-x, no-repeat;
+    background-size: 210px auto, auto;
     font-family: 'Work Sans', sans-serif;
     font-size: .8rem;
     margin: 0 0 50px 0!important;

@@ -39,15 +39,25 @@ exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}
                 const key = order.id;
                 const data = xValue + ',' + yValue + ',' + zValue;
 
-                return admin.firestore()
-                    .collection('data')
-                    .doc(`${key}`)
-                    .collection('data')
-                    .add({ 'data': data });
+                var ref = admin.firestore().collection('data').doc(`${key}`).collection('data').doc();
+                const time = getTimeStamp();
+
+                // return admin.firestore()
+                //     .collection('data')
+                //     .doc(`${key}`)
+                //     .collection('data')
+                //     .add({ 'data': data });
+
+                return ref.set({
+                    id: ref.id,
+                    alarmRef: key,
+                    x: xValue,
+                    y: yValue,
+                    z: zValue,
+                    createdAt: time
+                })
             })
             .catch(error => console.log(error));
-
-
     });
 
 /**
@@ -96,7 +106,6 @@ exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}'
         }).catch(function (error) {
             console.log('Error caught: ', error);
         });
-
     });
 
 
