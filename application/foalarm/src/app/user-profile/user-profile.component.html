@@ -1,13 +1,5 @@
 <div class="card primaryCard">
   <ng-container *ngIf="(authService.user | async) || {} as user">
-    <div class="card-header">
-      User Profile
-      <span class="pull-right">
-        <a class="btn btn-social-icon text-primary">
-          <i *ngIf="user.uid" class="fa fa-unlock-alt"></i>
-        </a>
-      </span>
-    </div>
     <img class="card-img-top" *ngIf="user.photoURL" [src]="user.photoURL" alt="User Image Profile">
     <div class="card-body">
         <small>Name</small>
@@ -16,18 +8,10 @@
       <p class="card-text-group">
         {{user.email}}
       </p>
-      <small>Foalarm Id</small>
-      <p class="card-text-group">
-        {{user.foalarm}}
-      </p>
       <small>Location</small>
       <p class="card-text-group">
           {{user.location}}
         </p>
-        <small>User Id</small>
-      <p class="card-text-group">
-        {{user.uid}}
-      </p>
     </div>
     <!-- card body end -->
   </ng-container>
