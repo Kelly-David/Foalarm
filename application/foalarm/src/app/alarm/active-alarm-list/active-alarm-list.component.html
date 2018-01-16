@@ -1,10 +1,19 @@
-<ul class="list-group list-group-flush" *ngFor="let alarm of alarms$ | async">
-
-  <li class="list-group-item">
-    <a href=''>{{alarm.id}}</a>
-    <button class="btn btn-social-icon pull-right" (click)="testAlarm(alarm)">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      </button>
-  </li>
-
-</ul>
+<div *ngFor="let alarm of alarms$ | async">
+  <div class="card primaryCard">
+    <div class="card-body">
+      <small>Alarm</small>
+      <span class="pull-right">
+        <a class="btn btn-social-icon">
+          <span [ngClass]="alarm.state ? 'active' : 'inactive'">
+            <i class="fa fa-circle" aria-hidden="true"></i>
+          </span>
+        </a>
+      </span>
+      <h6 class="card-title">{{alarm.id}}</h6>
+      <small>Phone: </small><span class="inline-small-text"> {{alarm.phone}}</span><br>
+      <small>Email: </small><span class="inline-small-text"> {{alarm.emailAddress}}</span>
+    </div>
+    <!-- card body end -->
+    <!-- ng-container end -->
+  </div>
+</div>

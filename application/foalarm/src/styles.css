@@ -88,12 +88,22 @@ h1 { color: #1A5276 }
  }
 
  .card .card-body small {
+     font-size: .6rem;
      display: inline-block;
      color: #c3c3c3;
      text-transform: uppercase;
      margin-bottom: 0;
      padding-bottom: 0;
  }
+
+ .card .card-body .inline-small-text {
+    font-size: .6rem;     
+    display: inline;
+    color: #333131;
+    margin-bottom: 0;
+    padding-bottom: 0;
+ }
+
 
  .card .form-group label {
      padding-bottom: 0;
