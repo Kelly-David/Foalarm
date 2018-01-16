@@ -17,7 +17,10 @@ const SENDGRID_API_KEY = functions.config().sendgrid.key;
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-/// Start Cloud Function
+/**
+ * Start Cloud Function firebaseToFirestore: promise
+ * Description: onWrite event to Firebase RTDB, copy data to Firestore DB.
+ */
 exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}')
     .onWrite(event => {
         const alarmId = event.params.alarmkey;
@@ -47,7 +50,10 @@ exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}
 
     });
 
-/// Start Cloud Function
+/**
+ * Start Cloud Function testFoalAlert: promise (twilio SMS)
+ * Description: onWrite event to Firestore, send SMS notification.
+ */
 exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}')
     .onWrite(event => {
         const alarmId = event.params.key;
@@ -94,7 +100,10 @@ exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}'
     });
 
 
-// Start Cloud Function
+/**
+ * Start Cloud Function testFoalAlertEmail: promise (sendgrid transactional email)
+ * Description: onWrite event to Firestore, send email notification.
+ */
 exports.sendFoalAlertEmail = functions.firestore
     .document('data/{key}/data/{dataKey}')
     .onWrite(event => {
@@ -136,7 +145,10 @@ exports.sendFoalAlertEmail = functions.firestore
             });
     });
 
-// Start Cloud Function
+/**
+ * Start Cloud Function saveFoalingalert: promise
+ * Description: onWrite event to Firestore, create in-app notifaction.
+ */
 exports.saveFoalingAlert = functions.firestore
     .document('data/{key}/data/{dataKey}')
     .onWrite(event => {
@@ -175,6 +187,10 @@ exports.saveFoalingAlert = functions.firestore
             });
     });
 
+/**
+* function getTimeStamp: number
+* Description: return server timestamp
+*/
 function getTimeStamp() {
     return admin.firestore.FieldValue.serverTimestamp();
 };
