@@ -1,7 +1,7 @@
 <div class="list-group list-group-flush" *ngFor="let alert of alerts$ | async">
 
     <div class="alert alert-danger" role="alert">
-        <strong>Foaling Alert</strong> {{alert.id}}
+        <strong>Foaling Alert:</strong> {{alert.horseName}}
         <button type="button" class="close" (click)="dismissAlert(alert)">
           <span aria-hidden="true">&times;</span>
         </button>
