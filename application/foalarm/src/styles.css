@@ -52,9 +52,9 @@ h1 { color: #1A5276 }
 
 .primaryCard { 
     border: none !important; border-radius: 0 !important; margin: .7rem 0 .7rem 0;
-    -webkit-box-shadow: 0px 0px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    -moz-box-shadow:    0px 0px 2px #ccc;  /* Firefox 3.5 - 3.6 */
-    box-shadow: 0px 0px 3px #ccc;
+    -webkit-box-shadow: 0px 0px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    0px 0px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+    box-shadow: 0px 0px 1px #ccc;
 }
 
 .primaryCard .form-controls { margin-top: 1rem;}
@@ -62,7 +62,7 @@ h1 { color: #1A5276 }
 .card-header {
     font-size: 1rem;
     color: #c3c3c3;
-    padding: .5rem;
+    /* padding: .5rem; */
 }
 
 .card-header i {
@@ -76,7 +76,7 @@ h1 { color: #1A5276 }
  }
 
  .card-header .btn {
-     padding: .3rem;
+     padding: 0 .3rem;
  }
 
  .card .card-body small {
