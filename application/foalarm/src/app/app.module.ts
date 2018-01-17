@@ -35,6 +35,7 @@ import { SelectModule } from 'ng2-select';
 import { AlertListComponent } from './alerts/alert-list/alert-list.component';
 import { AlertsService } from './alerts/alerts.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { NavListComponent } from './nav/nav-list/nav-list.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     ActiveAlarmListComponent,
     AlarmEditComponent,
     AlarmSelectComponent,
-    AlertListComponent
+    AlertListComponent,
+    NavListComponent
   ],
   imports: [
     BrowserModule,
