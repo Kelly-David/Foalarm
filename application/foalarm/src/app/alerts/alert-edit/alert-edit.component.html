@@ -6,17 +6,17 @@
   <!-- card element end -->
 
   <div *ngFor="let alert of alerts$ | async">
-      <div class="card primaryCard">
+      <div [ngClass]="(!alert.viewed ? 'bg-alert card primaryCard ' : 'card primaryCard')">
         <div class="card-body">
           <small>Foaling Alert</small>
-          <a class="btn btn-social-icon pull-right">
-            <span [ngClass]="alert.viewed ? 'inactive' : 'active'">
-              <i class="fa fa-circle" aria-hidden="true"></i>
+          <a *ngIf="!alert.viewed" class="btn btn-social-icon pull-right">
+            <span>
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
             </span>
           </a>
           <h6 class="card-title">{{alert.horseName}}</h6>
           <small>Date/Time </small>
-          <span class="inline-small-text"> {{alert.createdAt | date:'short'}}</span>
+          <span [ngClass]="(!alert.viewed ? 'inline-small-text-alert' : 'inline-small-text')"> {{alert.createdAt | date:'short'}}</span>
         </div>
         <!-- card body end -->
       </div>
