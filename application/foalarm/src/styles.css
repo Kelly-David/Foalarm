@@ -87,6 +87,29 @@ h1 { color: #1A5276 }
      padding: 0 .3rem;
  }
 
+ .card-header a {
+    padding: 0;
+    color: rgb(204, 208, 230);
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+.card-header a:hover {
+    padding: 0;
+    color: whitesmoke;
+    font-size: .8rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.card-header a span i {
+    margin-right: 0.3rem;
+}
+
+app-nav-list .bg-blue:hover {
+    background-color: rgb(29, 96, 138)
+}
+
  .card .card-body small {
      font-size: .6rem;
      display: inline-block;
