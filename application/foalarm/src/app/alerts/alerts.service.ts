@@ -9,6 +9,7 @@ import { Alert } from '../alert';
 export class AlertsService {
 
   alerts$: Observable<Alert[]> | Observable<any>;
+  alertsHistory$: Observable<Alert[]> | Observable<any>;
 
   constructor(
     private db: FirestoreService,
@@ -18,12 +19,19 @@ export class AlertsService {
 
     // Define the data streams
     this.alerts$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false));
+    this.alertsHistory$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false));
   }
 
-    // Get all alerts
+    // Get unseen alerts
     get alerts(): Observable<Alert[]> {
       return this.alerts$;
     }
+
+    // Get all alerts
+    get alertsHistory(): Observable<Alert[]> {
+      return this.alertsHistory$;
+    }
+
 
     // Dismiss Alert
     dismissAlert(alert: Alert) {
