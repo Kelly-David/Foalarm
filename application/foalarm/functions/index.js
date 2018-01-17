@@ -10,7 +10,7 @@ const authToken = functions.config().twilio.token;
 const client = new twilio(accountSID, authToken);
 
 // Twilio Phone number
-const twilioPhoneNumber = '+353861801437';
+const twilioPhoneNumber = '+353861802891';
 
 // SendGrid 
 const SENDGRID_API_KEY = functions.config().sendgrid.key;
