@@ -15,6 +15,7 @@ import { HorseEditComponent } from '../horse/horse-edit/horse-edit.component';
 import { HorseListComponent } from '../horse/horse-list/horse-list.component';
 import { AlarmListComponent } from '../alarm/alarm-list/alarm-list.component';
 import { AlarmEditComponent } from '../alarm/alarm-edit/alarm-edit.component';
+import { AlertEditComponent } from '../alerts/alert-edit/alert-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',  redirectTo: 'profile' },
@@ -26,7 +27,8 @@ const routes: Routes = [
     { path: 'horse-list', component: HorseListComponent, canActivate: [AuthGuard] },
     { path: 'horse-edit/:id', component: HorseEditComponent, canActivate: [AuthGuard] },
     { path: 'alarm-list', component: AlarmListComponent, canActivate: [AuthGuard] },
-    { path: 'alarm-edit/:id', component: AlarmEditComponent, canActivate: [AuthGuard] }
+    { path: 'alarm-edit/:id', component: AlarmEditComponent, canActivate: [AuthGuard] },
+    { path: 'alert-edit', component: AlertEditComponent, canActivate: [AuthGuard] }
   ],
   canActivate: [AuthGuard]}
 ];
