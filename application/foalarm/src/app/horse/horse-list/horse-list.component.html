@@ -12,7 +12,7 @@
 
 <div class="row">
   <div class="col-md-4" *ngFor="let horse of horses$ | async">
-    <div class="card primaryCard">
+    <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
       <div class="card-header">
         {{horse.displayName}}
         <span class="pull-right">

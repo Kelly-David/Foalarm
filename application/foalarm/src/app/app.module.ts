@@ -37,6 +37,7 @@ import { AlertsService } from './alerts/alerts.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NavListComponent } from './nav/nav-list/nav-list.component';
 import { SlicePipe } from '@angular/common';
+import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { SlicePipe } from '@angular/common';
     AlarmEditComponent,
     AlarmSelectComponent,
     AlertListComponent,
-    NavListComponent
+    NavListComponent,
+    AlertEditComponent
   ],
   imports: [
     BrowserModule,
