@@ -64,9 +64,12 @@ h1 { color: #1A5276 }
 
 .primaryCard .form-controls { margin-top: 1rem;}
 
+.card { border-radius: 0 !important; }
+
 .card-header {
     font-size: 1rem;
     color: #c3c3c3;
+    border-radius: 0 !important;
     /* padding: .5rem; */
 }
 
@@ -88,6 +91,10 @@ h1 { color: #1A5276 }
     margin-bottom: .6rem;
 }
 
+a .card .card-header{
+    border-left: 3px solid #1A5276;
+}
+
 a .card.card-as-button:hover {
     background-color: whitesmoke;
 }
@@ -103,10 +110,6 @@ a .card.card-as-button:hover {
 
 .card-header span i {
     margin-right: 0.3rem;
-}
-
-app-nav-list .bg-blue:hover {
-    background-color: rgb(29, 96, 138)
 }
 
  .card .card-body small {
