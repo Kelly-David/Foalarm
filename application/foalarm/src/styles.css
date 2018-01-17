@@ -104,7 +104,6 @@ h1 { color: #1A5276 }
     padding-bottom: 0;
  }
 
-
  .card .form-group label {
      padding-bottom: 0;
      margin-bottom: 0;
@@ -151,6 +150,14 @@ h1 { color: #1A5276 }
 .btn-success:hover:not([disabled]) { background: #43a2a7 }
 
 a i { cursor: pointer !important }
+
+.btn-social-icon {
+    color: #c3c3c5
+}
+
+.btn-social-icon:hover {
+    color: #448599
+}
 
 .footer {
     position: absolute;
