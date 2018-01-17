@@ -36,6 +36,7 @@ import { AlertListComponent } from './alerts/alert-list/alert-list.component';
 import { AlertsService } from './alerts/alerts.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NavListComponent } from './nav/nav-list/nav-list.component';
+import { SlicePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { NavListComponent } from './nav/nav-list/nav-list.component';
     HorseService,
     FirestoreService,
     AlarmService,
-    AlertsService
+    AlertsService,
+    SlicePipe
   ],
   bootstrap: [AppComponent]
 })

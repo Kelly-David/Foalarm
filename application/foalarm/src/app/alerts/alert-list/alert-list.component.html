@@ -1,10 +1,18 @@
-<div class="list-group list-group-flush" *ngFor="let alert of alerts$ | async">
-
-    <div class="alert alert-danger" role="alert">
-        <strong>Foaling Alert:</strong> {{alert.horseName}}
-        <button type="button" class="close" (click)="dismissAlert(alert)">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div  *ngFor="let alert of alerts$ | async">
+    <div class="card primaryCard bg-alert">
+      <div class="card-body">
+        <small>Foaling Alert</small>
+        <span class="pull-right">
+          <a class="btn btn-social-icon" (click)="dismissAlert(alert)">
+            <span>
+              <i class="fa fa-window-close" aria-hidden="true"></i>
+            </span>
+          </a>
+        </span>
+        <h6 class="card-title">{{alert.horseName}}</h6>
+        <small>Date/Time </small><span class="inline-small-text-alert"> {{alert.createdAt | date:'short'}}</span>
       </div>
-  
-</div>
+      <!-- card body end -->
+      <!-- ng-container end -->
+    </div>
+  </div>

@@ -50,6 +50,11 @@ h1 { color: #1A5276 }
  }
 .bg-blue button:hover { color: white}
 
+.bg-alert { 
+    background: #cc5757;
+    color: whitesmoke
+ }
+
 .primaryCard { 
     border: none !important; border-radius: 0 !important; margin: .7rem 0 .7rem 0;
     -webkit-box-shadow: 0px 0px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
@@ -119,6 +124,15 @@ app-nav-list .bg-blue:hover {
     color: #333131;
     margin-bottom: 0;
     padding-bottom: 0;
+ }
+
+ .card .card-body .inline-small-text-alert {
+    color: whitesmoke;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: .7rem;   
+    display: block;
+    overflow: hidden;          
  }
 
  .card .form-group label {
