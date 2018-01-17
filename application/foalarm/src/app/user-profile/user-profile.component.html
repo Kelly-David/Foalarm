@@ -1,20 +1,13 @@
-<div class="card primaryCard">
-  <ng-container *ngIf="(authService.user | async) || {} as user">
-    <img class="card-img-top" *ngIf="user.photoURL" [src]="user.photoURL" alt="User Image Profile">
-    <div class="card-body">
+<ng-container *ngIf="(authService.user | async) || {} as user">
+    <div class="card primaryCard">
+    <!-- <img class="card-img-top" *ngIf="user.photoURL" [src]="user.photoURL" alt="User Image Profile"> -->      
+      <div class="card-body">
         <small>Name</small>
         <h6 class="card-title">{{user.fullName}}</h6>
-        <small>Email</small>
-      <p class="card-text-group">
-        {{user.email}}
-      </p>
-      <small>Location</small>
-      <p class="card-text-group">
-          {{user.location}}
-        </p>
+        <small>Email</small><span class="inline-small-text"> {{user.email}}</span>
+        <small>Location</small><span class="inline-small-text"> {{user.location}}</span>
+      </div>
+      <!-- card body end -->
+      <!-- ng-container end -->
     </div>
-    <!-- card body end -->
-  </ng-container>
-  <!-- ng-container end -->
-</div>
-<!-- card element end -->
+</ng-container>

@@ -120,8 +120,8 @@ app-nav-list .bg-blue:hover {
  }
 
  .card .card-body .inline-small-text {
-    font-size: .6rem;     
-    display: inline;
+    font-size: .7rem;     
+    display: block;
     color: #333131;
     margin-bottom: 0;
     padding-bottom: 0;
