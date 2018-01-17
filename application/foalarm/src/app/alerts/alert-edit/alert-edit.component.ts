@@ -26,4 +26,9 @@ export class AlertEditComponent implements OnInit {
     this.alerts$ = this.alertsService.alertsHistory;
   }
 
+  dismissAlert(alert: Alert) {
+    console.log(alert.id);
+    return this.alertsService.dismissAlert(alert);
+  }
+
 }
