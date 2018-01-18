@@ -54,6 +54,11 @@ h1 { color: #1A5276 }
     background: #d36565;
     color: whitesmoke
  }
+.badge {
+    margin-top: .4rem;
+    padding: .2rem, 0.2rem;
+    font-size: .5rem;
+}
 
 .primaryCard { 
     border: none !important; border-radius: 0 !important; margin: .7rem 0 .7rem 0;
