@@ -34,7 +34,7 @@ export class HorseListComponent implements OnInit {
   }
 
   getStyle(imageUrl) {
-    const style = `background-image: url(${imageUrl}) !important`;
+    const style = `background-image: url(${imageUrl}) !important; background-size: cover`;
     return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 

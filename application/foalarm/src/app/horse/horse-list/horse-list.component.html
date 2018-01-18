@@ -13,29 +13,27 @@
 <div class="row">
   <div class="col-md-4" *ngFor="let horse of horses$ | async">
     <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+      <div class="card-body card-img-bg" [style]="getStyle(horse.photoURL)">
+        <a class="btn btn-social-icon pull-right">
+          <span [ngClass]="horse.state ? 'active' : 'inactive'">
+            <i class="fa fa-circle" aria-hidden="true"></i>
+          </span>
+        </a>
+      </div>
       <div class="card-body">
-          <small>Horse</small>
-          <span class="pull-right">
-              <a class="btn btn-social-icon">
-                <span [ngClass]="horse.state ? 'active' : 'inactive'">
-                  <i class="fa fa-circle" aria-hidden="true"></i>
-                </span>
-              </a>
-            </span>
-          <h6 class="card-title">{{horse.displayName}}</h6>
-        </div>
-        <!-- card body end -->
-      <img class="card-img-top" *ngIf="horse.photoURL" [src]="horse.photoURL" alt="Horse Image: {{horse.displayName}}">
-      <div class="card-footer text-muted text-center">
-        <a class="btn btn-social-icon">
+        <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/horse-edit', horse.id]">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </a>
-        <a class="btn btn-social-icon ">
-          <i class="fa fa-video-camera" aria-hidden="true"></i>
-        </a>
-        <a class="btn btn-social-icon" [routerLink]="['/profile/horse-edit', horse.id]">
+        <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/horse-edit', horse.id]">
           <i class="fa fa-wrench" aria-hidden="true"></i>
         </a>
+        <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/alarm-edit', horse.id]">
+          <i class="fa fa-video-camera" aria-hidden="true"></i>
+        </a>
+        <small>Horse</small>
+        <h6 class="card-title">{{horse.displayName}}</h6>
+        <small>Due Date</small>
+        <span class="inline-small-text"> {{horse.dueDate}}</span>
       </div>
       <!-- card body end -->
       <!-- ng-container end -->

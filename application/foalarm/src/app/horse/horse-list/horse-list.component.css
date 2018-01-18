@@ -2,6 +2,12 @@
     border-radius: 0;
 }
 
+.card-body.card-img-bg {
+    object-fit: cover;
+    height: 8rem;
+    width: auto
+}
+
 img {
     object-fit: cover;
     height: 8rem;
