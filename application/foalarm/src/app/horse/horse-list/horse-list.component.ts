@@ -4,6 +4,7 @@ import { HorseService } from '../horse.service';
 import { AlertHandlerService } from '../../alert-handler.service';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../core/auth.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-horse-list',
@@ -17,6 +18,7 @@ export class HorseListComponent implements OnInit {
 
   constructor(
     public horseService: HorseService,
+    private sanitizer: DomSanitizer
   ) {
   }
 
@@ -24,10 +26,16 @@ export class HorseListComponent implements OnInit {
     // TODO remove
     // console.log('OK');
     this.getHorses();
+
   }
 
   getHorses() {
     this.horses$ = this.horseService.getHorses();
+  }
+
+  getStyle(imageUrl) {
+    const style = `background-image: url(${imageUrl}) !important`;
+    return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 
 }
