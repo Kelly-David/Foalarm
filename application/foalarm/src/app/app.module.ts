@@ -38,6 +38,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NavListComponent } from './nav/nav-list/nav-list.component';
 import { SlicePipe } from '@angular/common';
 import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
+import { CameraListComponent } from './cams/camera-list/camera-list.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
     AlarmSelectComponent,
     AlertListComponent,
     NavListComponent,
-    AlertEditComponent
+    AlertEditComponent,
+    CameraListComponent
   ],
   imports: [
     BrowserModule,

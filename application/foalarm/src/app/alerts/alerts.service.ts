@@ -19,7 +19,7 @@ export class AlertsService {
 
     // Define the data streams
     this.alerts$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false));
-    this.alertsHistory$ = this.db.col$('alerts', ref => ref.orderBy('createdAt', 'desc'));
+    this.alertsHistory$ = this.db.col$('alerts', ref => ref.orderBy('createdAt', 'desc').limit(9));
   }
 
     // Get unseen alerts
