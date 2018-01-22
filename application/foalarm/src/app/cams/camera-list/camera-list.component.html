@@ -17,6 +17,11 @@
                         <i class="fa fa-external-link" aria-hidden="true"></i>
                     </span>
                   </a>
+                  <a class="btn btn-social-icon">
+                      <span [ngClass]="cam.state ? 'active' : 'inactive'">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                      </span>
+                    </a>
                 </span>
             <small>Foaling Camera</small>
             <h6 class="card-title">{{cam.displayName}}</h6>
