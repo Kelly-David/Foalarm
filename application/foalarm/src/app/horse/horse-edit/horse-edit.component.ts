@@ -58,20 +58,16 @@ export class HorseEditComponent implements OnInit {
     // Create horse form
     this.horseForm = this.fb.group({
       'displayName': ['', []],
-      'owner': ['', []],
       'dueDate': ['', []],
       'camera': ['', []],
-      'color': ['', []],
       'photoURL': ['', []]
     });
   }
 
   // Form Getters
   get displayName() { return this.horseForm.get('displayName'); }
-  get owner() { return this.horseForm.get('owner'); }
   get dueDate() { return this.horseForm.get('dueDate'); }
   get camera() { return this.horseForm.get('camera'); }
-  get color() { return this.horseForm.get('color'); }
   get photoURL() { return this.horseForm.get('photoURL'); }
 
   // Returns an observable of type Horse
@@ -83,10 +79,8 @@ export class HorseEditComponent implements OnInit {
   saveHorse(user: User, horse: Horse) {
     return this.horseService.saveHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
-      owner: this.owner.value,
       dueDate: this.dueDate.value,
-      camera: this.camera.value,
-      color: this.color.value,
+      camera: this.camera.value ? this.camera.value : '',
       photoURL: this.horseObject.photoURL,
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : '' ,
       state: this.horseObject.alarmId ? true : false,
@@ -98,10 +92,8 @@ export class HorseEditComponent implements OnInit {
   updateHorse(user: User, horse: Horse, currentAlarmId?: string) {
     return this.horseService.updateHorseData(user, this.horseKey,  {
       displayName: this.displayName.value,
-      owner: this.owner.value,
       dueDate: this.dueDate.value,
-      camera: this.camera.value,
-      color: this.color.value,
+      camera: this.camera.value ? this.camera.value : '',
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       state: this.horseObject.alarmId ? true : horse.state,
     }, currentAlarmId);
