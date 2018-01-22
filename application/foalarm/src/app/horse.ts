@@ -4,7 +4,7 @@ export interface Horse {
     displayName?: string;
     dueDate?: string;
     wearable?: string;
-    cameraLink?: string;
+    camera?: string;
     owner?: string;
     color?: string;
     state?: Boolean;
