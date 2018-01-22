@@ -11,69 +11,79 @@
 
 <ng-container *ngIf="(authService.user | async) || {} as user">
   <ng-container *ngIf="horse$ | async as horse">
+    <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
 
+      <div class="card-body card-img-bg" [style]="getStyle(horse.photoURL)">
+        <a class="btn btn-social-icon pull-right">
+          <span [ngClass]="horse.state ? 'active' : 'inactive'">
+            <i class="fa fa-circle" aria-hidden="true"></i>
+          </span>
+        </a>
+      </div>
 
-    <div class="card">
-      <img class="card-img-top" *ngIf="horse.photoURL" [src]="horse.photoURL" alt="Horse Image: {{horse.displayName}}">
       <div class="card-body">
-
         <!-- If user is registered -->
         <form [formGroup]="horseForm" (ngSubmit)="save(user, horse, horse.alarmId)">
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="form-group input-group-sm">
-                <label for="fullName">Name</label>
-                <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="horse.displayName" [value]="">
-              </div>
+
+          <div class="form-row">
+
+            <div class="form-group input-group-sm col-md-4">
+              <small>Horse Name</small>
+              <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="horse.displayName" [value]="">
             </div>
-            <div class="col-sm-4">
-              <div class="form-group input-group-sm">
-                <label for="fullName">Due Date</label>
-                <input type="text" class="form-control" formControlName="dueDate" [(ngModel)]="horse.dueDate" [value]="">
-              </div>
+
+            <div class="form-group input-group-sm col-md-4">
+              <small>Due Date</small>
+              <input type="text" class="form-control" formControlName="dueDate" [(ngModel)]="horse.dueDate" [value]="">
             </div>
+
+            <div class="form-group input-group-sm col-md-4">
+              <small>Foalarm</small>
+              <app-alarm-select (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
+            </div>
+
           </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="form-group input-group-sm">
-                <label for="foalarm">Color</label>
-                <input type="text" class="form-control" formControlName="color" [(ngModel)]="horse.color" [value]="">
-              </div>
+
+          <!-- <div class="form-row">
+
+            <div class="form-group input-group-sm col-md-4">
+              <small>Color</small>
+              <input type="text" class="form-control" formControlName="color" [(ngModel)]="horse.color" [value]="">
+            </div>
+            <div class="form-group input-group-sm col-md-4">
+              <small>Owner</small>
+              <input type="text" class="form-control" formControlName="owner" [(ngModel)]="horse.owner" [value]="">
             </div>
 
-            <div class="col-sm-4">
-              <div class="form-group input-group-sm">
-                <label for="owner">Owner</label>
-                <input type="text" class="form-control" formControlName="owner" [(ngModel)]="horse.owner" [value]="">
-              </div>
+          </div> -->
+
+          <div class="form-row">
+
+            <div class="form-group input-group-sm col-md-6">
+              <small>Set Foalarm</small>
+              <p>{{horse.alarmId}}</p>
             </div>
 
-            <div class="col-sm-4">
-              <div class="form-group input-group-sm">
-                <label for="foalarm">Camera</label>
-                <input type="text" class="form-control" formControlName="camera" [(ngModel)]="horse.camera" [value]="">
-              </div>
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group input-group-sm col-md-6">
+              <small>Foaling Camera Url</small>
+              <input type="text" class="form-control" formControlName="camera" [(ngModel)]="horse.camera" [value]="">
             </div>
-            <div class="col-sm-8">
-              <div class="form-group input-group-sm">
-                <label for="photoURL">Profile Image</label>
-                <input class="form-control" type="file" (change)="uploadFile(horse, $event)" formControlName="photoURL">
-                <div *ngIf="!loaded && loading">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100" style="width: 75%"></div>
-                  </div>
-                </div>
-                <div *ngIf="loaded && loading" class="alert alert-info">
-                  Uploaded
+
+            <div class="form-group input-group-sm col-md-6">
+              <small>Horse Image</small>
+              <input class="form-control" type="file" (change)="uploadFile(horse, $event)" formControlName="photoURL">
+              <div *ngIf="!loaded && loading">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                    aria-valuemax="100" style="width: 75%"></div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="form-group">
-                <label>Foalarm Wearable</label>
-                <app-alarm-select (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
-                {{horse.alarmId}}
+              <div *ngIf="loaded && loading" class="alert alert-info">
+                <br> Uploaded
               </div>
             </div>
 
@@ -85,12 +95,9 @@
 
           <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!horseForm.valid || (loaded===false)">
             <i class="fa fa-floppy-o"></i>
-          </button> 
-
+          </button>
         </form>
-
       </div>
     </div>
-
   </ng-container>
 </ng-container>

@@ -12,6 +12,7 @@ import { User } from '../../user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertHandlerService } from '../../alert-handler.service';
 import { FirestoreService } from '../../firestore.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-horse-edit',
@@ -37,7 +38,8 @@ export class HorseEditComponent implements OnInit {
     public authService: AuthService,
     public fb: FormBuilder,
     private alertHandler: AlertHandlerService,
-    private db: FirestoreService
+    private db: FirestoreService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -130,6 +132,11 @@ export class HorseEditComponent implements OnInit {
 
   delete(horse: Horse) {
     return this.horseService.deleteHorse(horse);
+  }
+
+  getStyle(imageUrl) {
+    const style = `background-image: url(${imageUrl}) !important; background-size: cover; background-position: center`;
+    return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 
 }
