@@ -39,6 +39,7 @@ import { NavListComponent } from './nav/nav-list/nav-list.component';
 import { SlicePipe } from '@angular/common';
 import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from './cams/camera-list/camera-list.component';
+import { CameraViewComponent } from './cams/camera-view/camera-view.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CameraListComponent } from './cams/camera-list/camera-list.component';
     AlertListComponent,
     NavListComponent,
     AlertEditComponent,
-    CameraListComponent
+    CameraListComponent,
+    CameraViewComponent
   ],
   imports: [
     BrowserModule,
