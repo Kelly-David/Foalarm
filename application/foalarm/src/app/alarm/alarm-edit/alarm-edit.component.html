@@ -13,55 +13,61 @@
   <ng-container *ngIf="alarm$ | async as alarm">
 
 
-    <div class="card">
+      <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+
       <div class="card-body">
 
         <!-- If user is registered -->
         <form [formGroup]="alarmForm" (ngSubmit)="save(user, alarm)">
-          <div class="row">
+
+          <div class="form-row">
+
             <div class="col-sm-6">
               <div class="form-group input-group-sm">
-                <label for="displayName">Name</label>
-                <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="alarm.displayName" [value]="alarm.displayName">
+                <small>Foalarm Na6me</small>
+                <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="alarm.displayName" [value]="">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group input-group-sm">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" formControlName="emailAddress" [(ngModel)]="alarm.emailAddress" [value]="alarm.emailAddress">
+                <small>Alert Email</small>
+                <input type="text" class="form-control" formControlName="emailAddress" [(ngModel)]="alarm.emailAddress" [value]="">
               </div>
             </div>
-            <div class="col-sm-12">
+
+            <div class="col-sm-4">
               <div class="form-group input-group-sm">
-                <label for="phone">SMS Alert Contact</label>
+                <small>Alert SMS Telephone</small>
                 <input type="text" class="form-control" [value]="alarm.phone" disabled>
               </div>
+              </div>
 
+              <div class="col-sm-8">
               <div class="form-group input-group-sm">
-                <label for="country">Set SMS Alert Contact</label>
-                <div class="row">
+                  <small>Alert SMS Telephone</small>
+                <div class="form-row">
                   <div class="col-sm-3">
                     <input type="text" class="form-control" formControlName="country" placeholder="353">
                   </div>
                   <div class="col-sm-2">
-                    <input type="text" class="form-control" formControlName="area" placeholder="86">
+                    <input type="text" class="form-control" formControlName="area" placeholder="xx">
                   </div>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" formControlName="prefix" placeholder="111">
+                    <input type="text" class="form-control" formControlName="prefix" placeholder="xxx">
                   </div>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" formControlName="line" placeholder="1111">
+                    <input type="text" class="form-control" formControlName="line" placeholder="xxxx">
                   </div>
                 </div>
               </div>
-
             </div>
+
           </div>
-          <button *ngIf="!isNewAlarm" type="button" class="btn btn-danger btn-sm pull-right" (click)="delete(alarm)">
+          <button *ngIf="!isNewAlarm" type="button" class="btn btn-secondary btn-sm pull-right" (click)="delete(alarm)">
             <i class="fa fa-trash-o fa-lg"></i>
           </button>
-          <button type="submit" class="btn btn-success btn-sm pull-right" [disabled]="!alarmForm.valid">
-            <i class="fa fa-floppy-o"></i>
+          <button type="submit" class="btn btn-success btn-sm" [disabled]="!alarmForm.valid">
+            <i class="fa fa-floppy-o"></i> Save
           </button>
 
         </form>
