@@ -58,7 +58,7 @@ export class HorseEditComponent implements OnInit {
       'displayName': ['', []],
       'owner': ['', []],
       'dueDate': ['', []],
-      'location': ['', []],
+      'camera': ['', []],
       'color': ['', []],
       'photoURL': ['', []]
     });
@@ -68,7 +68,7 @@ export class HorseEditComponent implements OnInit {
   get displayName() { return this.horseForm.get('displayName'); }
   get owner() { return this.horseForm.get('owner'); }
   get dueDate() { return this.horseForm.get('dueDate'); }
-  get location() { return this.horseForm.get('location'); }
+  get camera() { return this.horseForm.get('camera'); }
   get color() { return this.horseForm.get('color'); }
   get photoURL() { return this.horseForm.get('photoURL'); }
 
@@ -83,7 +83,7 @@ export class HorseEditComponent implements OnInit {
       displayName: this.displayName.value,
       owner: this.owner.value,
       dueDate: this.dueDate.value,
-      location: this.location.value,
+      camera: this.camera.value,
       color: this.color.value,
       photoURL: this.horseObject.photoURL,
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : '' ,
@@ -98,7 +98,7 @@ export class HorseEditComponent implements OnInit {
       displayName: this.displayName.value,
       owner: this.owner.value,
       dueDate: this.dueDate.value,
-      location: this.location.value,
+      camera: this.camera.value,
       color: this.color.value,
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       state: this.horseObject.alarmId ? true : horse.state,

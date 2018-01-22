@@ -9,3 +9,22 @@
   </div>
 </div>
 <!-- heading card element end -->
+
+<div class="row">
+  <ng-container *ngFor="let cam of cams$ | async">
+    <ng-container *ngIf="cam.camera">
+      <div class="col-md-6">
+        <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+          <div class="card-body">
+            <small>Foaling Camera</small>
+            <h6 class="card-title">{{cam.displayName}}</h6>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe width="560" height="315" [src]="getSource(cam.camera)" frameborder="0" encrypted-media allowfullscreen></iframe>
+              </div>
+          </div>
+          <!-- card body end -->
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

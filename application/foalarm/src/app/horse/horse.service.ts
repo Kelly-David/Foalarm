@@ -18,7 +18,7 @@ export class HorseService {
   horses$: Observable<Horse[]>;
   activeHorses$: Observable<Horse[]>;
   horseCollection: AngularFirestoreCollection<Horse>;
-  horseCams$: Observable<any[]>;
+  horseCams$: Observable<Horse[]>;
 
   constructor(
     private db: FirestoreService,
@@ -37,7 +37,7 @@ export class HorseService {
     // this.activeHorses$ = this.horseCollection.valueChanges();
 
     this.activeHorses$ = this.db.col$('horses', ref => ref.where('state', '==', true).where('deleted', '==', false));
-    this.horseCams$ = this.db.col$('horses', ref => ref.where('camera', '!=', '').where('deleted', '==', false));
+    this.horseCams$ = this.db.col$('horses', ref => ref.where('deleted', '==', false));
   }
 
   // Get horses
