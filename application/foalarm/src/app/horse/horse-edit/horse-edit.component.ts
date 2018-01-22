@@ -57,8 +57,8 @@ export class HorseEditComponent implements OnInit {
 
     // Create horse form
     this.horseForm = this.fb.group({
-      'displayName': ['', []],
-      'dueDate': ['', []],
+      'displayName': ['', [Validators.required]],
+      'dueDate': ['', [Validators.required]],
       'camera': ['', []],
       'photoURL': ['', []]
     });
