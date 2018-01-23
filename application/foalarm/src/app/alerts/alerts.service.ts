@@ -4,6 +4,7 @@ import { FirestoreService } from '../firestore.service';
 import { AlertHandlerService } from '../alert-handler.service';
 import { Router } from '@angular/router';
 import { Alert } from '../alert';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable()
 export class AlertsService {
@@ -14,7 +15,8 @@ export class AlertsService {
   constructor(
     private db: FirestoreService,
     private alertHandler: AlertHandlerService,
-    private router: Router
+    private router: Router,
+    private fs: AngularFirestore
   ) {
 
     // Define the data streams
@@ -40,6 +42,15 @@ export class AlertsService {
       console.log('Dismissing Alert');
       return this.db.update('alerts', alert.id, data)
       .catch(error => console.log(error));
+    }
+
+    // Remove an alert (delete from firestore)
+    removeAlert(key: string) {
+      this.fs.collection('alerts').doc(key).delete().then(function() {
+        console.log('Alert successfully deleted!');
+    }).catch(function(error) {
+        console.error('Error removing document: ', error);
+    });
     }
 
 }
