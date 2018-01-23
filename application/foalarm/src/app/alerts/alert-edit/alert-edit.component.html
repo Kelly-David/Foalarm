@@ -1,13 +1,17 @@
 <div class="card primaryCard">
     <div class="card-header">
       Alerts | All
+      <span class="pull-right">
+        <small>Filter</small>
+          <input name="term" [(ngModel)]="term" style="height: 1.2rem !important">
+      </span>
     </div>
   </div>
   <!-- card element end -->
 
   <div class="row">
-  <div class="col-md-6" *ngFor="let alert of alerts$ | async">
-      <div [ngClass]="(!alert.viewed ? 'bg-alert card primaryCard ' : 'card primaryCard')" style="padding-top: 0 !important; margin-top: 0">
+  <div class="col-md-4" *ngFor="let alert of alerts$ | async | filter : term">
+      <div [ngClass]="(!alert.viewed ? 'border-alert card primaryCard ' : 'card primaryCard')" style="padding-top: 0 !important; margin-top: 0">
         <div class="card-body">
           <small>Foaling Alert</small>
           <a *ngIf="!alert.viewed" class="btn btn-social-icon pull-right" (click)="dismissAlert(alert)">
@@ -17,7 +21,7 @@
           </a>
           <h6 class="card-title">{{alert.horseName}}</h6>
           <small>Date/Time </small>
-          <span [ngClass]="(!alert.viewed ? 'inline-small-text-alert' : 'inline-small-text')"> {{alert.createdAt | date:'short'}}</span>
+          <span class="inline-small-text"> {{alert.createdAt | date:'short'}}</span>
         </div>
         <!-- card body end -->
       </div>

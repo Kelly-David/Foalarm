@@ -20,6 +20,6 @@ export class FilterPipe implements PipeTransform {
   transform(items: any[], term ): any {
     console.log('Term: ', term);
 
-    return term ? items.filter(item => item.title.indexOf(term) !== -1) : items; // Else return all items in collection
+    return term ? items.filter(item => item.horseName.indexOf(term) !== -1) : items; // Else return all items in collection
   }
 }

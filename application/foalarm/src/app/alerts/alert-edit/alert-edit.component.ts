@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Alert } from '../../alert';
 import { AlertsService } from '../alerts.service';
+import { FilterPipe } from '../../pipes/alert.pipe';
 
 @Component({
   selector: 'app-alert-edit',
@@ -11,6 +12,7 @@ import { AlertsService } from '../alerts.service';
 export class AlertEditComponent implements OnInit {
 
   alerts$: Observable<Alert[]> | Observable<any> | null;
+  term: any;
 
   constructor(
     private alertsService: AlertsService

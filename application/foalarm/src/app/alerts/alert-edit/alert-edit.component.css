@@ -1,0 +1,11 @@
+input {
+    color: dimgray;
+    font-size: .8rem
+}
+
+.border-alert {
+    border-left: 4px solid #d36565 !important
+}
+
+.border-alert i { color: #d36565 }
+.border-alert i:hover { color: #e70d0d }
