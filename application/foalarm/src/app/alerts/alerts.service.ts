@@ -10,6 +10,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class AlertsService {
 
   alerts$: Observable<Alert[]> | Observable<any>;
+  alertsCount$: Observable<Alert[]> | Observable<any>;
   alertsHistory$: Observable<Alert[]> | Observable<any>;
 
   constructor(
@@ -20,8 +21,10 @@ export class AlertsService {
   ) {
 
     // Define the data streams
-    this.alerts$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false));
+    this.alerts$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false).limit(3));
+    this.alertsCount$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false));
     this.alertsHistory$ = this.db.col$('alerts', ref => ref.orderBy('createdAt', 'desc').limit(13));
+
   }
 
     // Get unseen alerts
@@ -32,6 +35,11 @@ export class AlertsService {
     // Get all alerts
     get alertsHistory(): Observable<Alert[]> {
       return this.alertsHistory$;
+    }
+
+    // Get all alertscount
+    get alertsCount(): Observable<Alert[]> {
+      return this.alertsCount$;
     }
 
 

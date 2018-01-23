@@ -22,6 +22,6 @@ export class NavListComponent implements OnInit {
   }
 
   getAlerts() {
-    this.alerts$ = this.alertsService.alerts$;
+    this.alerts$ = this.alertsService.alertsCount$;
   }
 }
