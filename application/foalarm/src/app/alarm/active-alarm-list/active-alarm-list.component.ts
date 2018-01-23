@@ -11,6 +11,7 @@ import { AlarmService } from '../alarm.service';
 export class ActiveAlarmListComponent implements OnInit {
 
   alarms$: Observable<Alarm[]> | Observable<any> | null;
+  collapse = true as boolean;
 
   constructor(
     private alarmService: AlarmService
@@ -27,7 +28,12 @@ export class ActiveAlarmListComponent implements OnInit {
     this.alarms$ = this.alarmService.activeAlarms;
   }
 
-  // TESTING: Tests the SMS alert cloud funtion is working
+
+  toggleCollapse() {
+    this.collapse = !this.collapse;
+  }
+
+  // TODO REMOVE: TESTING: Tests the SMS alert cloud funtion is working
   testAlarm(alarm: Alarm) {
     return this.alarmService.testAlarm(alarm.id, {
       alert: true,

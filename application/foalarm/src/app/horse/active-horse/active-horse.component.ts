@@ -11,6 +11,7 @@ import { HorseService } from '../horse.service';
 export class ActiveHorseComponent implements OnInit {
 
   public activeHorses$: Observable<Horse[]> | Observable<any>;
+  collapse = true as boolean;
 
   constructor(
     public horseService: HorseService
@@ -22,6 +23,10 @@ export class ActiveHorseComponent implements OnInit {
 
   getActiveHorses() {
     this.activeHorses$ = this.horseService.getActiveHorses();
+  }
+
+  toggleCollapse() {
+    this.collapse = !this.collapse;
   }
 
 }

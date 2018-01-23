@@ -1,3 +1,15 @@
+<div class="card primaryCard">
+  <div class="card-header">
+    Active Alarms
+    <span class="pull-right">
+      <a class="btn btn-social-icon" (click)="toggleCollapse()">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true" *ngIf="!collapse"></i>
+        <i class="fa fa-caret-square-o-up" aria-hidden="true" *ngIf="collapse"></i>
+      </a>
+    </span>
+  </div>
+</div>
+<ng-container *ngIf="collapse">
 <div *ngFor="let alarm of alarms$ | async">
   <div class="card primaryCard">
     <div class="card-body">
@@ -10,10 +22,13 @@
         </a>
       </span>
       <h6 class="card-title">{{alarm.displayName}}</h6>
-      <small>Phone: </small><span class="inline-small-text"> {{alarm.phone}}</span>
-      <small>Email: </small><span class="inline-small-text"> {{alarm.emailAddress}}</span>
+      <small>Phone: </small>
+      <span class="inline-small-text"> {{alarm.phone}}</span>
+      <small>Email: </small>
+      <span class="inline-small-text"> {{alarm.emailAddress}}</span>
     </div>
     <!-- card body end -->
     <!-- ng-container end -->
   </div>
 </div>
+</ng-container>
