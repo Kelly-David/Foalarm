@@ -40,6 +40,7 @@ import { SlicePipe } from '@angular/common';
 import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from './cams/camera-list/camera-list.component';
 import { CameraViewComponent } from './cams/camera-view/camera-view.component';
+import { FilterPipe } from './pipes/alert.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { CameraViewComponent } from './cams/camera-view/camera-view.component';
     NavListComponent,
     AlertEditComponent,
     CameraListComponent,
-    CameraViewComponent
+    CameraViewComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
