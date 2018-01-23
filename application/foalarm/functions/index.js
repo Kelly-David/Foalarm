@@ -134,7 +134,8 @@ exports.sendFoalAlertEmail = functions.firestore
                                             templateId: '957f3c38-c900-4ecb-8a02-8022509799a9',
                                             substitutionWrappers: ['{{', '}}'],
                                             substitutions: {
-                                                horseName: horse.displayName
+                                                horseName: horse.displayName,
+                                                camera: horse.camera
                                             }
                                         };
                                         return sgMail.send(msg)
