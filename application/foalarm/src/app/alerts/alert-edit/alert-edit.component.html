@@ -22,6 +22,12 @@
           <h6 class="card-title">{{alert.horseName}}</h6>
           <small>Date/Time </small>
           <span class="inline-small-text"> {{alert.createdAt | date:'short'}}</span>
+        
+          <span class="pull-right">
+              <button *ngIf="!isNewHorse" type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(alert.id)">
+                  <i class="fa fa-trash-o fa-lg"></i>
+                </button>
+          </span>
         </div>
         <!-- card body end -->
       </div>

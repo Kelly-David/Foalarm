@@ -33,4 +33,8 @@ export class AlertEditComponent implements OnInit {
     return this.alertsService.dismissAlert(alert);
   }
 
+  remove(key: string) {
+    console.log(key);
+  }
+
 }
