@@ -21,3 +21,15 @@ export class FilterPipe implements PipeTransform {
     return term ? items.filter(item => item.horseName.indexOf(term) !== -1) : items; // Else return all items in collection
   }
 }
+
+@Pipe({
+  name: 'filterDate',
+  pure: false
+})
+export class FilterDatePipe implements PipeTransform {
+
+  transform(items: any[], date ): any {
+    return date ? items.filter(item => item.createdAt.indexOf(date) !== -1) : items;
+  }
+
+}
