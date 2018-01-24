@@ -41,6 +41,7 @@ import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from './cams/camera-list/camera-list.component';
 import { CameraViewComponent } from './cams/camera-view/camera-view.component';
 import { FilterPipe, FilterDatePipe } from './pipes/alert.pipe';
+import { MessagingService } from './messaging.service';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { FilterPipe, FilterDatePipe } from './pipes/alert.pipe';
     FirestoreService,
     AlarmService,
     AlertsService,
+    MessagingService,
     SlicePipe
   ],
   bootstrap: [AppComponent]

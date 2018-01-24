@@ -3,3 +3,23 @@
 
 <app-active-horse></app-active-horse>
 <!-- card element end -->
+
+      <div class="card primaryCard">
+        <div class="card-body">
+          <small>Alert</small>
+          <span class="pull-right">
+            <a class="btn btn-social-icon">
+              <span class="bg-alert">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+              </span>
+            </a>
+          </span>
+          <h6 class="card-title">{{(message | async)?.notifiction.title}}</h6>
+          <small>Due Date: </small>
+          <span class="inline-small-text">{{(message | async)?.notifiction.body}}</span>
+
+          {{message | async | json}}
+  
+        </div>
+        <!-- card body end -->
+      </div>
