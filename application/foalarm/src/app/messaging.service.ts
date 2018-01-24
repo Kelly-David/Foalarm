@@ -1,0 +1,51 @@
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+import 'rxjs/add/operator/take';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+
+@Injectable()
+export class MessagingService {
+
+  messaging = firebase.messaging();
+  currentMessage = new BehaviorSubject(null);
+
+  constructor(
+    private db: AngularFireDatabase,
+    private auth: AngularFireAuth
+  ) { }
+
+  private updateToken(token) {
+    this.auth.authState.take(1).subscribe(user => {
+      if (!user) { return; }
+
+      const data = { [user.uid]: token };
+      this.db.object('fcmTokens/').update(data);
+    });
+  }
+
+  getPermission() {
+    this.messaging.requestPermission()
+    .then(() => {
+      console.log('Notifcation permission granted');
+      return this.messaging.getToken();
+    })
+    .then(token => {
+      console.log(token);
+      this.updateToken(token);
+    })
+    .catch((error) => {
+      console.log('Unable to get permission to notify ', error);
+    });
+  }
+
+  receiveMessage() {
+    this.messaging.onMessage((payload) => {
+      console.log('Message received:, ', payload);
+      this.currentMessage.next(payload); // Pass the behaviour subject the next value
+    });
+  }
+}

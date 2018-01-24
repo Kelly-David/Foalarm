@@ -1,0 +1,6 @@
+{
+    "short_name": "Foalarm",
+    "name": "Foalarm App",
+    "start_url": "/?utm_source=homescreen",
+    "gcm_sender_id": "103953800507"
+  }
