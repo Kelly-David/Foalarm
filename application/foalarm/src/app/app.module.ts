@@ -40,7 +40,7 @@ import { SlicePipe } from '@angular/common';
 import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from './cams/camera-list/camera-list.component';
 import { CameraViewComponent } from './cams/camera-view/camera-view.component';
-import { FilterPipe, FilterDatePipe } from './pipes/alert.pipe';
+import { FilterPipe, FilterDatePipe, AlertPipe } from './pipes/alert.pipe';
 import { MessagingService } from './messaging.service';
 
 @NgModule({
@@ -63,7 +63,7 @@ import { MessagingService } from './messaging.service';
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe,
+    FilterPipe, FilterDatePipe, AlertPipe,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +86,7 @@ import { MessagingService } from './messaging.service';
     AlarmService,
     AlertsService,
     MessagingService,
-    SlicePipe
+    SlicePipe,
   ],
   bootstrap: [AppComponent]
 })
