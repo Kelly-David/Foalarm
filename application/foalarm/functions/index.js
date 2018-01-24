@@ -192,6 +192,36 @@ exports.saveFoalingAlert = functions.firestore
             });
     });
 
+
+exports.pushNotication = functions.firestore
+    .document('alerts/{alertKey}').onCreate(event => {
+
+        const message = event.data.data();
+        const alertKey = event.params.alertKey;
+        const userId = message.owner;
+
+        const payload = {
+            notification: {
+                title: `Foaling Alert for ${message.horseName}`,
+                body: message.createdAt.toString()
+            }
+        };
+
+        return admin.database()
+            .ref(`/fcmTokens/${userId}`)
+            .once('value')
+            .then(token => token.val())
+            .then(usrFcmToken => {
+                return admin.messaging().sendToDevice(usrFcmToken, payload)
+            })
+            .then(res => {
+                console.log('Message sent successfully ', res);
+            })
+            .catch(err => {
+                console.log('Message error ', err);
+            });
+    });
+
 /**
 * function getTimeStamp: number
 * Description: return server timestamp
