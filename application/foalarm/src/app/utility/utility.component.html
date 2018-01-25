@@ -5,7 +5,7 @@
 <!-- card element end -->
 
 
-<div class="card primaryCard">
+<div class="card primaryCard" *ngIf="(message | async)?.notification">
     <div class="card-body">
         <small>Alert</small>
         <span class="pull-right">
