@@ -42,6 +42,7 @@ import { CameraListComponent } from './cams/camera-list/camera-list.component';
 import { CameraViewComponent } from './cams/camera-view/camera-view.component';
 import { FilterPipe, FilterDatePipe, AlertPipe } from './pipes/alert.pipe';
 import { MessagingService } from './messaging.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataGraphComponent } from './data/data-graph/data-graph.component';
 import { DataService } from './data/data.service';
 
@@ -69,6 +70,7 @@ import { DataService } from './data/data.service';
   ],
   imports: [
     BrowserModule,
+    NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

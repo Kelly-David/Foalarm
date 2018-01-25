@@ -19,7 +19,6 @@ export class DataGraphComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     // Get the alarm hey from the url
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
     // Retrieve the instance from FS
