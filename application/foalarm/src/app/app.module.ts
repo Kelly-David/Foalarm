@@ -42,6 +42,7 @@ import { CameraListComponent } from './cams/camera-list/camera-list.component';
 import { CameraViewComponent } from './cams/camera-view/camera-view.component';
 import { FilterPipe, FilterDatePipe, AlertPipe } from './pipes/alert.pipe';
 import { MessagingService } from './messaging.service';
+import { DataGraphComponent } from './data/data-graph/data-graph.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { MessagingService } from './messaging.service';
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe, AlertPipe,
+    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent,
   ],
   imports: [
     BrowserModule,
