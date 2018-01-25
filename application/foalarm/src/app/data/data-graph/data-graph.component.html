@@ -1,3 +1,14 @@
-<p>
-  data-graph works!
-</p>
+<div class="card primaryCard">
+  <div class="card-header">
+    Data
+  </div>
+</div>
+<!-- heading card element end -->
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let point of data$ | async">
+    <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+      {{point.x}};{{point.y}};{{point.z}}
+    </div>
+  </div>
+</div>
