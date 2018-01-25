@@ -207,7 +207,7 @@ exports.pushNotication = functions.firestore
             }
         };
 
-        return admin.database()
+        admin.database()
             .ref(`/fcmTokens/${userId}`)
             .once('value')
             .then(token => token.val())
