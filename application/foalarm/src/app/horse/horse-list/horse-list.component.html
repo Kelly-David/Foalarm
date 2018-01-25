@@ -27,6 +27,9 @@
         <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/alarm-edit', horse.id]">
           <i class="fa fa-video-camera" aria-hidden="true"></i>
         </a>
+        <a *ngIf="horse.alarmId!==''" class="btn btn-social-icon pull-right" [routerLink]="['/profile/data/', horse.alarmId]">
+          <i class="fa fa-area-chart" aria-hidden="true"></i>
+        </a>
         <small>Horse</small>
         <h6 class="card-title">{{horse.displayName}}</h6>
         <small>Due Date</small>
