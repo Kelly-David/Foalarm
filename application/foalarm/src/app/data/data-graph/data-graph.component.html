@@ -5,6 +5,17 @@
 </div>
 <!-- heading card element end -->
 
-<div #chart>
-  <!-- Chart -->
+<div style="width: 100%;" *ngIf="data$ | async as chartdata">
+  <div *ngFor="let data of chartdata">
+    {{data | json}}
+  </div>
+  <canvas
+      baseChart
+      [chartType]="'line'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartClick)="onChartClick($event)">
+  </canvas>
 </div>

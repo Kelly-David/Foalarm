@@ -44,6 +44,7 @@ import { FilterPipe, FilterDatePipe, AlertPipe } from './pipes/alert.pipe';
 import { MessagingService } from './messaging.service';
 import { DataGraphComponent } from './data/data-graph/data-graph.component';
 import { DataService } from './data/data.service';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { DataService } from './data/data.service';
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

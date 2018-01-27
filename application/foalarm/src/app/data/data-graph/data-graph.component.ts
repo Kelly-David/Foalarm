@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
-// import { ChartService } from '../chart.service';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-data-graph',
@@ -14,8 +12,13 @@ export class DataGraphComponent implements OnInit {
 
   alarmKey: string;
   data$: Observable<any> | null;
-
-  @ViewChild('chart') el: ElementRef;
+  chartOptions = { responsive: true };
+  chartData = [
+    { data: [330, 600, 260, 700], label: 'X', other: 'hello', k: 'g' },
+    { data: [120, 455, 100, 340], label: 'Y', other: 'hello'},
+    { data: [45, 67, 800, 500], label: 'Z', other: 'hello' }
+  ];
+  chartLabels = ['1am', '2am', '3am', '4am'];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,24 +31,14 @@ export class DataGraphComponent implements OnInit {
     // Retrieve the instance from FS
     this.getData();
 
-    this.basicChart();
   }
 
   getData() {
     this.data$ = this.dataService.getData(this.alarmKey);
   }
 
-  basicChart() {
-    const element = this.el.nativeElement;
-    const data = [{
-      x: [1, 2, 3, 4],
-      y: [1, 2, 3, 5]
-    }];
-
-    const style = {
-      margin: {t: 0 }
-    };
-
-    Plotly.plot( element, data, style );
+  onChartClick(event) {
+    console.log(event);
   }
+
 }
