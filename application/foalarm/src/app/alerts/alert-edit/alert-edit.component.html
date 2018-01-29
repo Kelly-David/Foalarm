@@ -9,6 +9,42 @@
   </div>
   <!-- card element end -->
 
+
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Date/Time</th>
+        <th scope="col">Horse Name</th>
+        <th scope="col">Dismiss</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alert of alerts$ | async | filter : term ">
+        <td>{{alert.createdAt | date:'short'}}</td>
+        <td>{{alert.horseName}}</td>
+        <td>
+          <a *ngIf="!alert.viewed" class="btn btn-social-icon pull-right" (click)="dismissAlert(alert)">
+            <span>
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            </span>
+          </a>
+        </td>
+        <td>
+          <button *ngIf="!isNewHorse" type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(alert.id)">
+            <i class="fa fa-trash-o fa-lg"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
   <div class="row">
   <div class="col-md-4" *ngFor="let alert of alerts$ | async | filter : term ">
       <div [ngClass]="(!alert.viewed ? 'border-alert card primaryCard ' : 'card primaryCard')" style="padding-top: 0 !important; margin-top: 0">

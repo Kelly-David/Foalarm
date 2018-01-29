@@ -14,3 +14,13 @@ input::placeholder {
 
 .border-alert i { color: #d36565 }
 .border-alert i:hover { color: #e70d0d }
+
+table {
+    background-color: white;
+}
+
+thead tr th {
+    font-size: .6rem;
+    color: #c3c3c3;
+    text-transform: uppercase;
+}
