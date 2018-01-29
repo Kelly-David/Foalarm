@@ -24,3 +24,33 @@ thead tr th {
     color: #c3c3c3;
     text-transform: uppercase;
 }
+
+tbody tr td {
+    font-size: .8rem;
+    padding-top: .6rem !important;
+    padding-bottom: .4rem !important;
+    border: none !important;
+}
+
+td small {
+    font-size: .6rem;
+    color: #c3c3c3;
+    text-transform: uppercase;
+    display: inline;
+}
+
+td h6 {
+    font-size: .7rem;
+}
+
+tr td button {
+    margin-top: .5rem
+}
+
+tr {
+    border-bottom: solid 1px whitesmoke; 
+}
+
+tr:hover {
+    background: whitesmoke
+}

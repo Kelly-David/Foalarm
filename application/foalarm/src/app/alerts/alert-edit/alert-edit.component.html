@@ -1,71 +1,64 @@
 <div class="card primaryCard">
-    <div class="card-header">
-      Alerts | All
-      <span class="pull-right">
-        <small>Filter</small>
-          <input name="term" [(ngModel)]="term" style="height: 1.2rem !important" placeholder="Horse name" autocomplete="off">
-      </span>
-    </div>
+  <div class="card-header">
+    Alerts | All
+    <span class="pull-right">
+      <small>Filter</small>
+      <input name="term" [(ngModel)]="term" style="height: 1.2rem !important" placeholder="Horse name" autocomplete="off">
+    </span>
   </div>
-  <!-- card element end -->
+</div>
+<!-- card element end -->
 
 
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Date/Time</th>
-        <th scope="col">Horse Name</th>
-        <th scope="col">Dismiss</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let alert of alerts$ | async | filter : term ">
-        <td>{{alert.createdAt | date:'short'}}</td>
-        <td>{{alert.horseName}}</td>
-        <td>
-          <a *ngIf="!alert.viewed" class="btn btn-social-icon pull-right" (click)="dismissAlert(alert)">
-            <span>
-                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            </span>
-          </a>
-        </td>
-        <td>
+<table class="table table-bordered">
+  <tbody>
+    <tr *ngFor="let alert of alerts$ | async | filter : term " [ngClass]="(!alert.viewed ? 'border-alert' : '')">
+      <td>
+        <small>Foaling Alert</small>
+        <h6>{{alert.horseName}}</h6>
+      </td>
+      <td>
+        <small>Date/Time</small>
+        <h6>{{alert.createdAt | date:'short'}}</h6>        
+      </td>
+      <td>
+        <button *ngIf="!alert.viewed" class="btn btn-secondary btn-sm pull-right" (click)="dismissAlert(alert)">
+          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="alert.viewed" type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(alert.id)">
+          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+<!-- <div class="row">
+  <div class="col-md-4" *ngFor="let alert of alerts$ | async | filter : term ">
+    <div [ngClass]="(!alert.viewed ? 'border-alert card primaryCard ' : 'card primaryCard')" style="padding-top: 0 !important; margin-top: 0">
+      <div class="card-body">
+        <small>Foaling Alert</small>
+        <a *ngIf="!alert.viewed" class="btn btn-social-icon pull-right" (click)="dismissAlert(alert)">
+          <span>
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          </span>
+        </a>
+        <h6 class="card-title">{{alert.horseName}}</h6>
+        <small>Date/Time </small>
+        <span class="inline-small-text"> {{alert.createdAt | date:'short'}}</span>
+
+        <span class="pull-right">
           <button *ngIf="!isNewHorse" type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(alert.id)">
             <i class="fa fa-trash-o fa-lg"></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-
-
-
-  <div class="row">
-  <div class="col-md-4" *ngFor="let alert of alerts$ | async | filter : term ">
-      <div [ngClass]="(!alert.viewed ? 'border-alert card primaryCard ' : 'card primaryCard')" style="padding-top: 0 !important; margin-top: 0">
-        <div class="card-body">
-          <small>Foaling Alert</small>
-          <a *ngIf="!alert.viewed" class="btn btn-social-icon pull-right" (click)="dismissAlert(alert)">
-            <span>
-                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            </span>
-          </a>
-          <h6 class="card-title">{{alert.horseName}}</h6>
-          <small>Date/Time </small>
-          <span class="inline-small-text"> {{alert.createdAt | date:'short'}}</span>
-        
-          <span class="pull-right">
-              <button *ngIf="!isNewHorse" type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(alert.id)">
-                  <i class="fa fa-trash-o fa-lg"></i>
-                </button>
-          </span>
-        </div>
-        <!-- card body end -->
+        </span>
       </div>
     </div>
-    </div>
+  </div>
+</div> -->
