@@ -16,3 +16,13 @@ label {
       padding: .2rem;
       font-size: .7rem;
   }
+
+  .input-group-sm input {
+    height: 1.8rem !important;
+    padding-top: 0;
+    padding-bottom: 0
+}
+
+input::placeholder {
+    color: rgb(241, 239, 239)
+}

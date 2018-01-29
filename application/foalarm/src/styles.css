@@ -148,9 +148,9 @@ a .card.card-as-button:hover {
      margin-bottom: 0;
  }
 
- .card form button {
+ /* .card form button {
      margin-left: .2rem !important;
- }
+ } */
 
  .card .active i {
     color: #53c7b7;

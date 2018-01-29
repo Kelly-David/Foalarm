@@ -20,7 +20,7 @@
         <form [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
 
           <div class="form-group input-group-sm">
-            <label for="email">Email</label>
+            <small>Email</small>
             <input type="email" class="form-control" formControlName="email">
 
             <div *ngIf="email.invalid && email.dirty">
@@ -30,7 +30,7 @@
 
           <div class="form-group input-group-sm">
 
-            <label for="password">Password</label>
+            <small>Password</small>
             <input type="password" class="form-control" formControlName="password">
 
             <div *ngIf="email.invalid && email.touched">
@@ -43,7 +43,7 @@
           </div>
           <br>
 
-          <button type="submit" class="btn btn-success btn-block" [disabled]="!signupForm.valid">
+          <button type="submit" class="btn btn-success btn-block btn-sm" [disabled]="!signupForm.valid">
             <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
           </button>
 
@@ -56,22 +56,22 @@
           </div>
 
           <div class="form-group input-group-sm">
-            <label for="fullName">Full Name</label>
+            <small>Full Name</small>
             <input type="text" class="form-control" formControlName="fullName">
           </div>
 
           <div class="form-group input-group-sm">
-            <label for="location">Location</label>
+            <small>Location</small>
             <input type="text" class="form-control" formControlName="location">
           </div>
 
           <div class="form-group input-group-sm">
-            <label for="foalarm">Foalarm Id</label>
+            <small>Foalarm Id</small>
             <input type="text" class="form-control" formControlName="foalarm">
           </div>
 
           <div class="form-group input-group-sm">
-            <label for="photoURL">Profile Image</label>
+            <small>Upload Profile Image</small>
             <input class="form-control" type="file" (change)="uploadFile(user, $event)" formControlName="photoURL">
             <div *ngIf="!loaded && loading">
               <div class="progress">
@@ -85,7 +85,7 @@
 
           </div>
 
-          <button type="submit" class="btn btn-success btn-block" [disabled]="!detailForm.valid || (loaded===false)">
+          <button type="submit" class="btn btn-success btn-block btn-sm" [disabled]="!detailForm.valid || (loaded===false)">
             <i class="fa fa-sign-in" aria-hidden="true"></i> Submit
           </button>
 
