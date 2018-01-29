@@ -45,6 +45,7 @@ import { MessagingService } from './messaging.service';
 import { DataGraphComponent } from './data/data-graph/data-graph.component';
 import { DataService } from './data/data.service';
 import { ChartsModule } from 'ng2-charts';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ChartsModule } from 'ng2-charts';
     AngularFirestoreModule, AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, CoreModule, AppRoutingModule, // imports firebase/auth, only needed for auth features
     SelectModule,
+    NgxChartsModule,
   ],
   providers: [
     AuthService,
