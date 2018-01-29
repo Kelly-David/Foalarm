@@ -48,7 +48,11 @@
         <!-- form end -->
 
         <p *ngIf="user.uid">
-          You are already logged in...
+<br>
+            <button type="submit" class="btn btn-success btn-block btn-sm" [routerLink]="['/profile']">
+                Dashboard
+              </button>
+          
         </p>
 
       </div>
