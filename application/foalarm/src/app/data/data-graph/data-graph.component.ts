@@ -38,9 +38,9 @@ export class DataGraphComponent implements OnInit {
   showYAxis = true;
   gradient = false;
   showLegend = true;
-  showXAxisLabel = true;
+  showXAxisLabel = false;
   xAxisLabel = 'Date/Time';
-  showYAxisLabel = true;
+  showYAxisLabel = false;
   yAxisLabel = 'Value';
 
   colorScheme = {
