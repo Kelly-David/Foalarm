@@ -22,15 +22,16 @@ export class DataGraphComponent implements OnInit {
   // ];
   // chartLabels = ['1am', '2am', '3am', '4am'];
   data = [ {
-    'name': 'X-axis',
+    'name': 'X axis',
     'series': [ ]
   }, {
-    'name': 'Y-axis',
+    'name': 'Y axis',
     'series': [ ]
   }, {
-    'name': 'Z-axis',
+    'name': 'Z axis',
     'series': [ ]
   }];
+
   view: any[] = [800, 500];
 
   // options
