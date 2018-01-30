@@ -44,7 +44,7 @@ export class DataGraphComponent implements OnInit {
   yAxisLabel = 'Value';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#2c6a87', '#A10A28', '#419171', '#AAAAAA']
   };
 
   // line, area
