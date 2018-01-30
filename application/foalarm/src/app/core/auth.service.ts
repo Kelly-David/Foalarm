@@ -17,6 +17,7 @@ export class AuthService {
   // userId$: Observable<any>;
   userIdString = new Subject<string>();
   userId$ = this.userIdString.asObservable();
+  uString: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -30,6 +31,7 @@ export class AuthService {
       .switchMap(user => {
         if (user) {
           this.userIdString.next(user.uid);
+          this.uString = user.uid;
           // Logged in: get user data
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {

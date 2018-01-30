@@ -5,6 +5,7 @@ import { AlertHandlerService } from '../alert-handler.service';
 import { Router } from '@angular/router';
 import { Alert } from '../alert';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class AlertsService {
@@ -17,13 +18,24 @@ export class AlertsService {
     private db: FirestoreService,
     private alertHandler: AlertHandlerService,
     private router: Router,
-    private fs: AngularFirestore
+    private fs: AngularFirestore,
+    private authService: AuthService
   ) {
 
   // Define the data streams
-  this.alerts$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false).limit(3));
-  this.alertsCount$ = this.db.col$('alerts', ref => ref.where('deleted', '==', false).where('viewed', '==', false));
-  this.alertsHistory$ = this.db.col$('alerts', ref => ref.orderBy('createdAt', 'desc').limit(13));
+  this.alerts$ = this.db.col$('alerts', ref => ref
+                        .where('deleted', '==', false)
+                        .where('viewed', '==', false).limit(3)
+                        .where('owner', '==', this.authService.uString));
+  // Alert observable - nav button alert count
+  this.alertsCount$ = this.db.col$('alerts', ref => ref
+                              .where('deleted', '==', false)
+                              .where('viewed', '==', false)
+                              .where('owner', '==', this.authService.uString));
+  // All alerts - alert edit comp
+  this.alertsHistory$ = this.db.col$('alerts', ref => ref
+                                .orderBy('createdAt', 'desc')
+                                .limit(13));
   }
 
   // Get unseen alerts
@@ -40,7 +52,6 @@ export class AlertsService {
   get alertsCount(): Observable<Alert[]> {
     return this.alertsCount$;
   }
-
 
   // Dismiss Alert
   dismissAlert(alert: Alert) {

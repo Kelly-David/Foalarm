@@ -4,6 +4,7 @@ import { AlertHandlerService } from '../alert-handler.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Alarm } from '../alarm';
+import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class AlarmService {
@@ -15,16 +16,25 @@ export class AlarmService {
   constructor(
     private db: FirestoreService,
     private alert: AlertHandlerService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
 
     // Define the alarms variables
     // All alarms
-    this.alarms$ = this.db.col$('alarms', ref => ref.where('deleted', '==', false));
+    this.alarms$ = this.db.col$('alarms', ref => ref
+                          .where('deleted', '==', false)
+                          .where('ownerUID', '==', this.authService.uString));
     // Alarms that are assigned to a horse
-    this.activeAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', true).where('deleted', '==', false));
+    this.activeAlarms$ = this.db.col$('alarms', ref => ref
+                                .where('state', '==', true)
+                                .where('deleted', '==', false)
+                                .where('ownerUID', '==', this.authService.uString));
     // Alarms that are not assigned to a horse
-    this.availAlarms$ = this.db.col$('alarms', ref => ref.where('state', '==', false).where('deleted', '==', false));
+    this.availAlarms$ = this.db.col$('alarms', ref => ref
+                               .where('state', '==', false)
+                               .where('deleted', '==', false)
+                               .where('ownerUID', '==', this.authService.uString));
   }
 
   // Get all alarms

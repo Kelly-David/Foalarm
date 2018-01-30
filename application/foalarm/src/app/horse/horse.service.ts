@@ -19,6 +19,7 @@ export class HorseService {
   activeHorses$: Observable<Horse[]>;
   horseCollection: AngularFirestoreCollection<Horse>;
   horseCams$: Observable<Horse[]>;
+  userUID: string;
 
   constructor(
     private db: FirestoreService,
@@ -27,17 +28,23 @@ export class HorseService {
     private router: Router,
     private authService: AuthService
   ) {
+    // Subscribe to AlertHnadlerService to recive authentication errors
+    this.authService.userIdString.subscribe((data) => {
+      this.userUID = data;
+    });
     // Define the Horse variable
-    this.horses$ = this.db.col$('horses', ref => ref.where('deleted', '==', false));
+    this.horses$ = this.db.col$('horses', ref => ref
+                          .where('deleted', '==', false)
+                          .where('ownerUID', '==', this.authService.uString));
 
-    // TODO test and remove
-    // this.horseCollection = this.afs.collection<Horse>('horses', ref => {
-    //   return ref.where('state', '==', true);
-    // });
-    // this.activeHorses$ = this.horseCollection.valueChanges();
+    this.activeHorses$ = this.db.col$('horses', ref => ref
+                                .where('state', '==', true)
+                                .where('deleted', '==', false)
+                                .where('ownerUID', '==', this.authService.uString));
 
-    this.activeHorses$ = this.db.col$('horses', ref => ref.where('state', '==', true).where('deleted', '==', false));
-    this.horseCams$ = this.db.col$('horses', ref => ref.where('deleted', '==', false));
+    this.horseCams$ = this.db.col$('horses', ref => ref
+                              .where('deleted', '==', false)
+                              .where('ownerUID', '==', this.authService.uString));
   }
 
   // Get horses
@@ -104,17 +111,5 @@ export class HorseService {
     return this.db.delete('horses', horse.id)
     .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
   }
-
-  // TODO test and remove
-  // setHorse(data: any) {
-  //   console.log('Saving new horse');
-  //   return this.db.set('horses', data);
-  // }
-
-  // TODO test and remove
-  // updateHorse(key: string, data: any) {
-  //   console.log('Updating horse');
-  //   return this.db.update('horses', key, data);
-  // }
 
 }
