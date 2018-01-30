@@ -14,13 +14,6 @@ export class DataGraphComponent implements OnInit {
   chartdata = false as boolean;
   alarmKey: string;
   data$: Observable<any> | null;
-  // chartOptions = { responsive: true };
-  // chartData = [
-  //   { data: [330, 600, 260, 700], label: 'X', other: 'hello', k: 'g' },
-  //   { data: [120, 455, 100, 340], label: 'Y', other: 'hello'},
-  //   { data: [45, 67, 800, 500], label: 'Z', other: 'hello' }
-  // ];
-  // chartLabels = ['1am', '2am', '3am', '4am'];
   data = [ {
     'name': 'X axis',
     'series': [ ]
