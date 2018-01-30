@@ -79,8 +79,8 @@ export class FirestoreService {
 
    /**
     * @description Custom set method - add a single doc to a specified collection
-    * @param ref 
-    * @param data 
+    * @param ref
+    * @param data
     */
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;

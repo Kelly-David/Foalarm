@@ -14,6 +14,7 @@ export class DataGraphComponent implements OnInit {
   chartdata = false as boolean;
   alarmKey: string;
   data$: Observable<any> | null;
+  activity$: Observable<any> | null;
   // chartOptions = { responsive: true };
   // chartData = [
   //   { data: [330, 600, 260, 700], label: 'X', other: 'hello', k: 'g' },
@@ -91,6 +92,10 @@ export class DataGraphComponent implements OnInit {
 
   onSelect(event) {
     console.log(event);
+  }
+
+  getActivityData() {
+    this.activity$ = this.dataService.getActivityData(this.alarmKey);
   }
 
 }
