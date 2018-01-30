@@ -106,8 +106,11 @@ export class FirestoreService {
      const timeStamp = this.timeStamp;
      const uniqueRef = key;
      // Create a reference in Firebase Real Time DB
-     const realTimeDBRef = this.rtdb.object(`/data/${key}`);
-     realTimeDBRef.update({ id: key });
+     const realTimeDBRef_Data = this.rtdb.object(`/data/${key}`);
+     realTimeDBRef_Data.update({ id: key });
+     // Create a reference in Firebase Real Time DB
+     const realTimeDBRef_Activity = this.rtdb.object(`/activity/${key}`);
+     realTimeDBRef_Activity.update({ id: key });
      return this.doc(ref + `/${key}`).set({
        ...data,
        id: key,
