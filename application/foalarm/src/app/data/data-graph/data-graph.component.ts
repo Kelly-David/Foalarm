@@ -14,7 +14,6 @@ export class DataGraphComponent implements OnInit {
   chartdata = false as boolean;
   alarmKey: string;
   data$: Observable<any> | null;
-  activity$: Observable<any> | null;
   // chartOptions = { responsive: true };
   // chartData = [
   //   { data: [330, 600, 260, 700], label: 'X', other: 'hello', k: 'g' },
@@ -65,7 +64,7 @@ export class DataGraphComponent implements OnInit {
   }
 
   getData() {
-    this.dataService.getData(this.alarmKey).subscribe((results) => {
+    this.dataService.getActivityData(this.alarmKey).subscribe((results) => {
       this.chartdata = true;
       this.prepChartData(results);
     });
@@ -73,15 +72,17 @@ export class DataGraphComponent implements OnInit {
 
   prepChartData(entries: any[]) {
     entries.forEach(element => {
-      const datetime = element.createdAt.toString();
+      // const datetime = Date.toString();
+      // TODO remove
+      // console.log(element);
       if (element.x) {
-        this.data[0]['series'].push({'name': datetime, 'value': element.x});
+        this.data[0]['series'].push({'name': element.date, 'value': element.x});
       }
       if (element.y) {
-        this.data[1]['series'].push({'name': datetime, 'value': element.y});
+        this.data[1]['series'].push({'name': element.date, 'value': element.y});
       }
       if (element.z) {
-        this.data[2]['series'].push({'name': datetime, 'value': element.z});
+        this.data[2]['series'].push({'name': element.date, 'value': element.z});
       }
     });
   }
@@ -92,10 +93,6 @@ export class DataGraphComponent implements OnInit {
 
   onSelect(event) {
     console.log(event);
-  }
-
-  getActivityData() {
-    this.activity$ = this.dataService.getActivityData(this.alarmKey);
   }
 
 }

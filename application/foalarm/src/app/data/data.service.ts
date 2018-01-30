@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { empty } from 'rxjs/Observer';
@@ -29,8 +29,10 @@ export class DataService {
     .orderBy('createdAt', 'desc').limit(50));
   }
 
-  getActivityData(key: any): Observable<any[]> {
-    return this.realTimeDB.list(`activity/${key}`, ref => ref.limitToLast(100)).valueChanges();
+  getActivityData(key: any) {
+    return this.realTimeDB.list(`/activity/${key}`, ref => ref.limitToLast(100)).valueChanges();
+
   }
+
 
 }
