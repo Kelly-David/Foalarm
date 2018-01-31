@@ -24,13 +24,14 @@ export class DataService {
     private realTimeDB: AngularFireDatabase
   ) {}
 
-  getData(key: any): Observable<any[]> {
+  getData(key: any): Observable<any> {
     return this.db.col$(`data/${key}/data`, ref => ref
-    .orderBy('createdAt', 'desc').limit(50));
+                  .orderBy('createdAt', 'desc').limit(50));
   }
 
-  getActivityData(key: any) {
-    return this.realTimeDB.list(`/activity/${key}`, ref => ref.limitToLast(100)).valueChanges();
+  getActivityData(key: any): Observable<any> {
+    return this.realTimeDB.list(`/activity/${key}`, ref => ref
+                          .limitToLast(500)).valueChanges();
 
   }
 

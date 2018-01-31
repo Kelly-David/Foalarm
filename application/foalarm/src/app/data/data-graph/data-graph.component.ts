@@ -14,16 +14,7 @@ export class DataGraphComponent implements OnInit {
   chartdata = false as boolean;
   alarmKey: string;
   data$: Observable<any> | null;
-  data = [ {
-    'name': 'X axis',
-    'series': [ ]
-  }, {
-    'name': 'Y axis',
-    'series': [ ]
-  }, {
-    'name': 'Z axis',
-    'series': [ ]
-  }];
+  data: any[];
 
   view: any[] = [800, 500];
 
@@ -53,30 +44,29 @@ export class DataGraphComponent implements OnInit {
     // Get the alarm hey from the url
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
     // Retrieve the instance from FS
-    this.getData();
-
-  }
-
-  getData() {
     this.dataService.getActivityData(this.alarmKey).subscribe((results) => {
       this.chartdata = true;
-      this.prepChartData(results);
+      this.prepChartData([...results]);
     });
+
   }
 
-  prepChartData(entries: any[]) {
+  prepChartData(entries) {
+    this.data = new Array();
+    this.data.push({'name': 'X axis', 'series': []});
+    this.data.push({'name': 'Y axis', 'series': []});
+    this.data.push({'name': 'Z axis', 'series': []});
+    let count = 0;
     entries.forEach(element => {
-      // const datetime = Date.toString();
-      // TODO remove
-      // console.log(element);
+      count++;
       if (element.x) {
-        this.data[0]['series'].push({'name': element.date, 'value': element.x});
+        this.data[0]['series'].push({'name': count, 'value': element.x});
       }
       if (element.y) {
-        this.data[1]['series'].push({'name': element.date, 'value': element.y});
+        this.data[1]['series'].push({'name': count, 'value': element.y});
       }
       if (element.z) {
-        this.data[2]['series'].push({'name': element.date, 'value': element.z});
+        this.data[2]['series'].push({'name': count, 'value': element.z});
       }
     });
   }
