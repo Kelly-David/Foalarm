@@ -14,7 +14,7 @@
         <div *ngIf="alertString" class="alert alert-warning alert-dismissible fade show authErrorAlert" role="alert">
           {{alertString}}
         </div>
-        <!-- login alert end -->
+        <!-- registration alert end -->
 
         <!-- If user is not registered -->
         <form [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
