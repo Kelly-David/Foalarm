@@ -46,6 +46,7 @@ import { DataGraphComponent } from './data/data-graph/data-graph.component';
 import { DataService } from './data/data.service';
 import { ChartsModule } from 'ng2-charts';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { CalcComponent } from './tools/calc/calc.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent,
+    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent,
   ],
   imports: [
     BrowserModule,
