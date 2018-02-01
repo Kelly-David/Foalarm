@@ -26,9 +26,15 @@
         <small>Service Date</small>
         <input type="date" class="form-control" [(ngModel)]="service" (change)="getFoalingDates()">
       </div>
-      <div *ngIf="foalDate320">
-        <small>320 Days</small>
-        <span class="inline-small-text">{{foalDate320 | date}}</span>
+      <div class="row">
+        <div *ngIf="foalDate320" class="col-sm-6">
+          <small>320 Days</small>
+          <span class="inline-small-text">{{foalDate320 | date}}</span>
+        </div>
+        <div *ngIf="foalDate320" class="col-sm-6">
+          <small>340 Days</small>
+          <span class="inline-small-text">{{foalDate340 | date}}</span>
+        </div>
       </div>
     </div>
   </div>

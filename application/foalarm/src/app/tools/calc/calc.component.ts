@@ -10,6 +10,7 @@ export class CalcComponent implements OnInit {
   collapse: Boolean = true;
   service: any;
   foalDate320: any;
+  foalDate340: any;
 
   constructor() { }
 
@@ -24,7 +25,8 @@ export class CalcComponent implements OnInit {
     this.foalDate320 = new Date(this.service);
     this.foalDate320.setDate( this.foalDate320.getDate() + 320 );
 
-    // this.foalDate.day340 = this.foalDate.service + 340;
+    this.foalDate340 = new Date(this.service);
+    this.foalDate340.setDate( this.foalDate340.getDate() + 340 );
   }
 
 }
