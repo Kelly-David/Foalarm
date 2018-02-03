@@ -31,7 +31,7 @@ export class DataService {
 
   getActivityData(key: any): Observable<any> {
     return this.realTimeDB.list(`/activity/${key}`, ref => ref
-                          .limitToLast(500)).valueChanges();
+                          .limitToLast(1000)).valueChanges();
 
   }
 
