@@ -95,6 +95,7 @@ export class HorseEditComponent implements OnInit {
       dueDate: this.dueDate.value,
       camera: this.camera.value ? this.camera.value : '',
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
+      photoURL: this.horseObject.photoURL ? this.horseObject.photoURL : horse.photoURL,
       state: this.horseObject.alarmId ? true : horse.state,
     }, currentAlarmId);
   }
