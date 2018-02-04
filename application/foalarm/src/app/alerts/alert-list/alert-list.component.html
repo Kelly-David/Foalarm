@@ -1,7 +1,7 @@
 <div  *ngFor="let alert of alerts$ | async">
     <div class="card primaryCard bg-alert">
       <div class="card-body">
-        <small>Foaling Alert</small>
+        <small>Foaling Alert | {{alert.createdAt | date:'shortTime'}}</small>
         <span class="pull-right">
           <a class="btn btn-social-icon" (click)="dismissAlert(alert)">
             <span>
@@ -10,7 +10,7 @@
           </a>
         </span>
         <h6 class="card-title">{{alert.horseName}}</h6>
-        <!-- <small>Date/Time </small><span class="inline-small-text-alert"> {{alert.createdAt | date:'short'}}</span> -->
+        <!-- <small>Date/Time </small><span class="inline-small-text-alert"></span> -->
       </div>
       <!-- card body end -->
       <!-- ng-container end -->
