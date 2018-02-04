@@ -25,8 +25,10 @@ export class AlertsService {
   // Define the data streams
   this.alerts$ = this.db.col$('alerts', ref => ref
                         .where('deleted', '==', false)
-                        .where('viewed', '==', false).limit(3)
-                        .where('owner', '==', this.authService.uString));
+                        .where('viewed', '==', false)
+                        .where('owner', '==', this.authService.uString)
+                        .limit(3)
+                        .orderBy('createdAt', 'desc'));
   // Alert observable - nav button alert count
   this.alertsCount$ = this.db.col$('alerts', ref => ref
                               .where('deleted', '==', false)
@@ -34,6 +36,7 @@ export class AlertsService {
                               .where('owner', '==', this.authService.uString));
   // All alerts - alert edit comp
   this.alertsHistory$ = this.db.col$('alerts', ref => ref
+                                .where('owner', '==', this.authService.uString)
                                 .orderBy('createdAt', 'desc')
                                 .limit(13));
   }
