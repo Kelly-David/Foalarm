@@ -36,6 +36,7 @@ export class AlertsService {
                               .where('owner', '==', this.authService.uString));
   // All alerts - alert edit comp
   this.alertsHistory$ = this.db.col$('alerts', ref => ref
+                                .where('owner', '==', this.authService.uString)
                                 .orderBy('createdAt', 'desc')
                                 .limit(13));
   }
