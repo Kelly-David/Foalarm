@@ -30,10 +30,9 @@ export class DataService {
   //                 .orderBy('createdAt', 'desc').limit(50));
   // }
 
-  getActivityData(key: any): Observable<any> {
+  getActivityData(key: any, limit = 1800 as number): Observable<any> {
     return this.realTimeDB.list(`/activity/${key}`, ref => ref
-                          .limitToLast(2000)).valueChanges();
-
+                          .limitToLast(limit)).valueChanges();
   }
 
 

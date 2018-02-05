@@ -15,13 +15,18 @@ export class DataGraphComponent implements OnInit {
   alarmKey: string;
   data$: Observable<any> | null;
   data: any[];
+  timeframe = [
+    {label: 1, value: 360},
+    {label: 5, value: 1800},
+    {label: 10, value: 3600},
+    {label: 24, value: 8640}] as object[];
 
-  view: any[] = [800, 500];
+  view: any[] = [923, 500];
 
   // options
   showXAxis = true;
   showYAxis = true;
-  gradient = false;
+  gradient = true;
   showLegend = true;
   showXAxisLabel = false;
   xAxisLabel = 'Date/Time';
@@ -44,7 +49,12 @@ export class DataGraphComponent implements OnInit {
     // Get the alarm hey from the url
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
     // Retrieve the instance from FS
-    this.dataService.getActivityData(this.alarmKey).subscribe((results) => {
+    this.subscribeToChart();
+
+  }
+
+  subscribeToChart(limit = 1800 as number) {
+    this.dataService.getActivityData(this.alarmKey, limit).subscribe((results) => {
       this.chartdata = true;
       this.prepChartData([...results]);
     });

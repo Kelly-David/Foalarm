@@ -16,6 +16,18 @@
 </div>
 <!-- heading card element end -->
 
+<div class="row">
+  <div class="col-sm-3" *ngFor="let time of timeframe">
+    <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="subscribeToChart(time.value)">
+      <div class="card-body">
+        <small>Timeframe</small>
+        <span class="inline-small-text">Previous {{time.label}} hour(s)</span>
+      </div>
+      <!-- card body end -->
+    </div>
+  </div>
+</div>
+
 <ngx-charts-line-chart *ngIf = "chartdata"
       [view]="view"
       [scheme]="colorScheme"
