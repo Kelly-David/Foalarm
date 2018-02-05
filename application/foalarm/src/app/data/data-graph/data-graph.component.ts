@@ -56,6 +56,7 @@ export class DataGraphComponent implements OnInit {
   subscribeToChart(limit = 1800 as number) {
     this.dataService.getActivityData(this.alarmKey, limit).subscribe((results) => {
       this.chartdata = true;
+      // Pass results as immutable
       this.prepChartData([...results]);
     });
 
