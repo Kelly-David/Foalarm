@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import 'rxjs/add/operator/takeWhile';
 
 @Component({
   selector: 'app-data-graph',
@@ -20,6 +21,8 @@ export class DataGraphComponent implements OnInit {
     {label: 5, value: 1800},
     {label: 10, value: 3600},
     {label: 24, value: 8640}] as object[];
+  subscription: any;
+  alive = true as boolean;
 
   view: any[] = [923, 500];
 
@@ -54,12 +57,18 @@ export class DataGraphComponent implements OnInit {
   }
 
   subscribeToChart(limit = 1800 as number) {
-    this.dataService.getActivityData(this.alarmKey, limit).subscribe((results) => {
+    this.alive = true;
+    this.subscription = this.dataService.getActivityData(this.alarmKey, limit).takeWhile(() => this.alive).subscribe((results) => {
       this.chartdata = true;
       // Pass results as immutable
       this.prepChartData([...results]);
     });
 
+  }
+
+  unsubscribe(limit: any) {
+    this.alive = false;
+    this.subscribeToChart(limit);
   }
 
   prepChartData(entries) {
