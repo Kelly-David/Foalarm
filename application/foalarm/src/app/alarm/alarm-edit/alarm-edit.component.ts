@@ -29,7 +29,7 @@ export class AlarmEditComponent implements OnInit {
     public authService: AuthService,
     public fb: FormBuilder,
     private ahs: AlertHandlerService
-  ) { }
+    ) { }
 
   ngOnInit() {
     // Get the key from the URL
