@@ -44,7 +44,6 @@ export class AlarmEditComponent implements OnInit {
     // TODO Subscribe to alert handler service
 
     // Create the alarm form
-
     this.buildForm();
 
   }
