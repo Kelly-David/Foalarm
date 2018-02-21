@@ -9,10 +9,13 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "@google-cloud/storage": "^1.6.0",
     "@sendgrid/mail": "^6.2.0",
     "cors": "^2.8.4",
     "firebase-admin": "~5.4.2",
     "firebase-functions": "^0.7.1",
+    "fs-extra": "^5.0.0",
+    "json2csv": "^3.11.5",
     "twilio": "^3.11.0"
   },
   "private": true

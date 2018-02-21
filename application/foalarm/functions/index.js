@@ -17,6 +17,13 @@ const SENDGRID_API_KEY = functions.config().sendgrid.key;
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(SENDGRID_API_KEY);
 
+// Export CSV
+const fs = require('fs-extra');
+const gcs = require('@google-cloud/storage')();
+const path = require('path');
+const os = require('os');
+const json2csv = require('json2csv');
+
 /**
  * Start Cloud Function firebaseToFirestore: promise
  * Description: onWrite event to Firebase RTDB, copy data to Firestore DB.
@@ -229,3 +236,47 @@ exports.pushNotication = functions.firestore
 function getTimeStamp() {
     return admin.firestore.FieldValue.serverTimestamp();
 };
+
+/**
+* function exportCSV
+* Description: exports Firebase activity to CSV
+*/
+exports.createCSV = functions.firestore
+       .document('reports/{reportId')
+       .onCreate(event => {
+           // Set main variables
+           const reportId = event.params.reportId;
+           const fileName = `reports/${reportId}.csv`;
+           const tempFilePath = path.join(os.tmpdir(), fileName);
+
+           // Reference report in Firestore
+           const db = admin.firestore();
+           const reportRef = db.collection('reports').doc(reportId);
+
+           // Reference storage bucket
+           const storage = gcs.bucket('foalarm.appspot.com');
+
+           // Query collection to export
+           return db.collection('orders')
+                    .get()
+                    .then(querySnapshot => {
+                        // Create CSV file from JS array
+                        const orders = [];
+                        querySnapshot.forEach(doc => {
+                            orders.push(doc.data());
+                        })
+
+                        return json2csv( { data: orders } );
+                    })
+                    .then(csv => {
+                        return fs.outputFile(tempFilePath, csv);
+                    })
+                    .then(() => {
+                        return storage.upload(tempFilePath, { destination: fileName });
+                    })
+                    .then(file => {
+                        return reportRef.update({status: 'complete'});
+                    })
+                    .catch(err => console.log(err));
+       })
+
