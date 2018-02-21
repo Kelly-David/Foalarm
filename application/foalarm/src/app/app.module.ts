@@ -48,6 +48,7 @@ import { ChartsModule } from 'ng2-charts';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { CalcComponent } from './tools/calc/calc.component';
 import { GenerateReportComponent } from './data/generate-report/generate-report.component';
+import { ReportLinkComponent } from './data/report-link/report-link.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { GenerateReportComponent } from './data/generate-report/generate-report.
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
+    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent, ReportLinkComponent,
   ],
   imports: [
     BrowserModule,
