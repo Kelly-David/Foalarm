@@ -2,16 +2,16 @@
   <div class="card-header">
     Data
     <span class="pull-right">
-        <small>X </small>
-        <i class="fa fa-square" aria-hidden="true" style="color: #2c6a87; font-size: 90%"></i>
+      <small>X </small>
+      <i class="fa fa-square" aria-hidden="true" style="color: #2c6a87; font-size: 90%"></i>
 
-        <small> Y </small>
-        <i class="fa fa-square" aria-hidden="true" style="color: #A10A28; font-size: 90%"></i>
+      <small> Y </small>
+      <i class="fa fa-square" aria-hidden="true" style="color: #A10A28; font-size: 90%"></i>
 
-        <small> Z </small>
-        <i class="fa fa-square" aria-hidden="true" style="color: #419171; font-size: 90%"></i>
+      <small> Z </small>
+      <i class="fa fa-square" aria-hidden="true" style="color: #419171; font-size: 90%"></i>
 
-      </span>
+    </span>
   </div>
 </div>
 <!-- heading card element end -->
@@ -27,19 +27,15 @@
   </div>
 </div>
 
-<ngx-charts-line-chart *ngIf = "chartdata"
-      [view]="view"
-      [scheme]="colorScheme"
-      [results]="data"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [autoScale]="autoScale"
-      (select)="onSelect($event)">
-    </ngx-charts-line-chart>
+<div class="row">
+  <ngx-charts-line-chart *ngIf="chartdata" [view]="view" [scheme]="colorScheme" [results]="data" [gradient]="gradient" [xAxis]="showXAxis"
+    [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+    [autoScale]="autoScale" (select)="onSelect($event)">
+  </ngx-charts-line-chart>
+</div>
 
-<app-generate-report></app-generate-report>
+<div class="row">
+  <div class="col-sm-3">
+    <app-generate-report></app-generate-report>
+  </div>
+</div>
