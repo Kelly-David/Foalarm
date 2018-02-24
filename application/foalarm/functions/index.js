@@ -272,8 +272,8 @@ exports.createCSV = functions.firestore
                     return storage.upload(tempFilePath, { destination: fileName })
                 })
                 .then(file => {
+                    file.getDownloadURL.then(url => console.log(url));
                     // Step 6. Update status to complete in Firestore 
-
                     return reportRef.update({ status: 'complete' })
                 })
                 .catch(err => console.log(err) )

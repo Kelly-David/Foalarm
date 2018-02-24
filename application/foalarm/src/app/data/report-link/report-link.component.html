@@ -1,8 +1,9 @@
-<a class="button is-info" 
-  [class.is-loading]="report.status === 'processing'"
-  [href]="downloadUrl | async" download>
-  {{ report.createdAt | date}}
-</a>
-<button type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(report.id)">
+<div *ngIf="report.status == 'complete'">
+  <a class="button is-info" [class.is-loading]="report.status === 'processing'" [href]="downloadUrl | async" download>
+    <!-- {{ report.createdAt | date}} -->
+    {{ report.id }}
+  </a>
+  <button type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(report.id)">
     <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
   </button>
+</div>

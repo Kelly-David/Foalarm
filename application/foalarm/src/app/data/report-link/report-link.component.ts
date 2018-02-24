@@ -19,7 +19,6 @@ export class ReportLinkComponent implements OnInit {
   ngOnInit() {
     const reportRef = firebase.storage().ref(`reports/${this.report.id}.csv`);
     const promise = reportRef.getDownloadURL();
-
     this.downloadUrl = Observable.fromPromise(promise);
   }
 

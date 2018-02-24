@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
+import { ReportService } from '../report.service';
 
 @Component({
   selector: 'app-generate-report',
@@ -16,35 +17,28 @@ export class GenerateReportComponent implements OnInit {
   reports: Observable<any>;
   alarmKey: string;
 
-  constructor(private afs: AngularFirestore,
-  private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private afs: AngularFirestore,
+    private activatedRoute: ActivatedRoute,
+    private reportService: ReportService
+  ) { }
 
   ngOnInit() {
 
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
     this.orders = this.afs.collection('orders').valueChanges();
-    this.reportsRef = this.afs.collection('reports');
 
-    // Map the snapshot to include the document ID
-    this.reports = this.reportsRef
-      .snapshotChanges().map(arr => {
-      return arr.map(snap => {
-        const data = snap.payload.doc.data();
-        const id = snap.payload.doc.id;
-        return { ...data, id };
-      });
-    });
+    this.reports = this.reportService.reports;
 
   }
 
-  // Creates new report, triggering FCF
+  // Creates new report, triggering Cloud Function
   requestReport() {
     const data = {
       alarmId: this.alarmKey,
-      status: 'processing',
-      createdAt: new Date()
+      status: 'processing'
     };
-    this.reportsRef.doc(this.alarmKey).set(data);
+    this.reportService.createReport(data);
   }
 
 }
