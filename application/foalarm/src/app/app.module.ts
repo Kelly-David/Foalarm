@@ -49,6 +49,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { CalcComponent } from './tools/calc/calc.component';
 import { GenerateReportComponent } from './data/generate-report/generate-report.component';
 import { ReportLinkComponent } from './data/report-link/report-link.component';
+import { ReportService } from './data/report.service';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { ReportLinkComponent } from './data/report-link/report-link.component';
     MessagingService,
     DataService,
     SlicePipe,
+    ReportService,
   ],
   bootstrap: [AppComponent]
 })

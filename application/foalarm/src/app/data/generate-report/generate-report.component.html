@@ -1,6 +1,20 @@
-<div class="card primaryCard request-data" (click)="requestReport()">
-  <div class="card-body text-center">
-    <small>Export data (csv) </small>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card primaryCard request-data" (click)="requestReport()">
+      <div class="card-body text-center">
+        <small>Export data (csv) </small>
+      </div>
+      <!-- card body end -->
+    </div>
   </div>
-  <!-- card body end -->
+
+  <div class="col-sm-3" *ngFor="let report of reports | async">
+    <div class="card primaryCard request-data" (click)="requestReport()">
+      <div class="card-body text-center">
+          <app-report-link [report]="report"></app-report-link>
+      </div>
+      <!-- card body end -->
+    </div>
+  </div>
+
 </div>

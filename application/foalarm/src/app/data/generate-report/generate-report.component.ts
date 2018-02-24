@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-generate-report',
@@ -13,11 +14,14 @@ export class GenerateReportComponent implements OnInit {
   orders: Observable<any>;
   reportsRef: AngularFirestoreCollection<any>;
   reports: Observable<any>;
+  alarmKey: string;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore,
+  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
+    this.alarmKey = this.activatedRoute.snapshot.params['id'];
     this.orders = this.afs.collection('orders').valueChanges();
     this.reportsRef = this.afs.collection('reports');
 
@@ -36,10 +40,11 @@ export class GenerateReportComponent implements OnInit {
   // Creates new report, triggering FCF
   requestReport() {
     const data = {
+      alarmId: this.alarmKey,
       status: 'processing',
       createdAt: new Date()
     };
-    this.reportsRef.add(data);
+    this.reportsRef.doc(this.alarmKey).set(data);
   }
 
 }
