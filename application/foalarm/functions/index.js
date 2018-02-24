@@ -229,16 +229,18 @@ exports.pushNotication = functions.firestore
             });
     });
 
-exports.createCSV = functions.firestore
+
+exports.createDataCSV = functions.firestore
     .document('reports/{reportId}')
     .onCreate(event => {
 
         // Step 1. Set main variables
-
         const reportId = event.params.reportId;
-        const fileName = `reports/${reportId}.csv`;
+        const fileName = `data/${reportId}.csv`;
         const tempFilePath = path.join(os.tmpdir(), fileName);
-        
+        const data = event.data.data();
+        const alarmId = data.alarmId;
+
         // Reference report in Firestore
         const db = admin.firestore()
         const reportRef = db.collection('reports').doc(reportId)
@@ -246,38 +248,36 @@ exports.createCSV = functions.firestore
         // Reference Storage Bucket
         const storage = gcs.bucket('foalarm.appspot.com') // or set to env variable
 
-
         // Step 2. Query collection
-        return db.collection('orders')
-                 .get() 
-                 .then(querySnapshot => {
-                    
-                    /// Step 3. Creates CSV file from with orders collection
-                    const orders = []
+        return admin.database().ref(`activity/${alarmId}`).limitToLast(40000)
+            .once('value')
+            .then(data => {
 
-                    // create array of order data
-                    querySnapshot.forEach(doc => {
-                        orders.push( doc.data() )
-                    });
+                /// Step 3. Creates CSV file from with activity collection
+                const activity = []
 
-                    
-                    return json2csv({ data: orders });
-                 })
-                .then(csv => {
-                    // Step 4. Write the file to cloud function tmp storage
-                    return fs.outputFile(tempFilePath, csv);
-                })
-                .then(() => {
-                    // Step 5. Upload the file to Firebase cloud storage
-                    return storage.upload(tempFilePath, { destination: fileName })
-                })
-                .then(file => {
-                    // Step 6. Update status to complete in Firestore 
-                    return reportRef.update({ status: 'complete' })
-                })
-                .catch(err => console.log(err) )
+                // create array of order data
+                data.forEach(doc => {
+                    activity.push(doc.val())
+                });
 
-})
+                return json2csv({ data: activity });
+            })
+            .then(csv => {
+                // Step 4. Write the file to cloud function tmp storage
+                return fs.outputFile(tempFilePath, csv);
+            })
+            .then(() => {
+                // Step 5. Upload the file to Firebase cloud storage
+                return storage.upload(tempFilePath, { destination: fileName })
+            })
+            .then(file => {
+                // Step 6. Update status to complete in Firestore 
+                return reportRef.update({ status: 'complete' })
+            })
+            .catch(err => console.log(err))
+    });
+
 
 /**
 * function getTimeStamp: number
