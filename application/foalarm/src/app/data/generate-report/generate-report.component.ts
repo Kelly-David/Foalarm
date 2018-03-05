@@ -12,7 +12,6 @@ import { ReportService } from '../report.service';
 })
 export class GenerateReportComponent implements OnInit {
 
-  orders: Observable<any>;
   reportsRef: AngularFirestoreCollection<any>;
   reports: Observable<any>;
   alarmKey: string;
@@ -24,12 +23,8 @@ export class GenerateReportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
-    this.orders = this.afs.collection('orders').valueChanges();
-
     this.reports = this.reportService.reports;
-
   }
 
   // Creates new report, triggering Cloud Function
@@ -40,5 +35,4 @@ export class GenerateReportComponent implements OnInit {
     };
     this.reportService.createReport(data);
   }
-
 }
