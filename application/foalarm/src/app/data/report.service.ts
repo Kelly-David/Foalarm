@@ -13,7 +13,9 @@ export class ReportService {
   private db: FirestoreService) {
 
     // Query the reports collection
-    this.$allReports = this.db.col$('reports', ref => ref.where('deleted', '==', false));
+    this.$allReports = this.db.col$('reports', ref => ref.where('deleted', '==', false)
+                                                          .limit(5)
+                                                          .orderBy('updatedAt', 'desc'));
   }
   // Save new report to Firestore
   createReport(data: any) {
