@@ -9,6 +9,11 @@
   <tbody>
     <tr *ngFor="let report of reports$ | async " [ngClass]="(!(report.status == 'complete') ? 'border-alert' : '')">
       <td>
+        <small>Horse</small>
+        <h6>{{report.status}}</h6>
+      </td>
+      <td>
+      <td>
         <small>Status</small>
         <h6>{{report.status}}</h6>
       </td>
