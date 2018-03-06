@@ -1,0 +1,4 @@
+<ng-container *ngIf="horse$ | async as horse">
+    <a [routerLink]="['/profile/horse-edit', horse.id]">{{horse.displayName}}</a>
+    <app-horse-link></app-horse-link>
+</ng-container>

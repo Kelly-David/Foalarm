@@ -18,5 +18,4 @@ export class AlarmLinkComponent implements OnInit {
   ngOnInit() {
     this.alarm$ = this.alarmService.getAlarm(this.report.alarmId);
   }
-
 }
