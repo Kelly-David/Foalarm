@@ -34,6 +34,5 @@ export class GenerateReportComponent implements OnInit {
 
   receiveSelectedOption($event) {
     this.alarmKey = $event;
-    // this.requestReport();
   }
 }
