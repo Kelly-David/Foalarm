@@ -1,3 +1,3 @@
-<p>
-  alarm-link works!
-</p>
+<ng-container *ngIf="alarm$ | async as alarm">
+    <a [routerLink]="['/profile/alarm-edit', alarm.id]">{{alarm.displayName}}</a>
+</ng-container>
