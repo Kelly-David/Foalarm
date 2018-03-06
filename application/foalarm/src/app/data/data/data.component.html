@@ -22,10 +22,9 @@
         <h6>{{report.updatedAt | date:'short'}}</h6>        
       </td>
       <td>
-        <button *ngIf="report.status == 'complete'" type="button" class="btn btn-secondary btn-sm pull-right" (click)="null">
-          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
-        </button>
-      </td>
+          <small>File</small>
+          <h6><app-report-link [report]="report"></app-report-link></h6>
+        </td>
     </tr>
   </tbody>
 </table>

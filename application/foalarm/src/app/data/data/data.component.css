@@ -9,11 +9,11 @@ input::placeholder {
 }
 
 .border-alert {
-    border-left: 4px solid #d36565 !important
+    border-left: 4px solid #7ccac4 !important
 }
 
-.border-alert i { color: #d36565 }
-.border-alert i:hover { color: #e70d0d }
+.border-alert i { color: #7ccac4 }
+.border-alert i:hover { color: #59b1a9 }
 
 table {
     background-color: white;
@@ -41,6 +41,7 @@ td small {
 
 td h6 {
     font-size: .7rem;
+    text-transform: capitalize;
 }
 
 tr td button {

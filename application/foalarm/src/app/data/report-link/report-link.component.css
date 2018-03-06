@@ -1,0 +1,56 @@
+input {
+    color: dimgray;
+    font-size: .8rem;
+    width: 100px
+}
+
+input::placeholder {
+    color: rgb(241, 239, 239)
+}
+
+.border-alert {
+    border-left: 4px solid #d36565 !important
+}
+
+.border-alert i { color: #d36565 }
+.border-alert i:hover { color: #e70d0d }
+
+table {
+    background-color: white;
+}
+
+thead tr th {
+    font-size: .6rem;
+    color: #c3c3c3;
+    text-transform: uppercase;
+}
+
+tbody tr td {
+    font-size: .8rem;
+    padding-top: .6rem !important;
+    padding-bottom: .4rem !important;
+    border: none !important;
+}
+
+td small {
+    font-size: .6rem;
+    color: #c3c3c3;
+    text-transform: uppercase;
+    display: inline;
+}
+
+td h6 {
+    font-size: .7rem;
+}
+
+tr td button {
+    margin-top: .5rem
+}
+
+tr {
+    border-bottom: solid 1px whitesmoke; 
+}
+
+tr:hover {
+    background: whitesmoke
+}
