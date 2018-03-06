@@ -1,7 +1,5 @@
-<div class="input-group-sm">
-  <select class="custom-select custom-select-sm col-sm-12" [(ngModel)]="selectedAlarm" (change)="sendMessage()">
-    <option [ngValue]="null" disabled>Choose Wearable</option>
-    <option *ngIf="parent === 'h'" [ngValue]="removeAlarm" >remove</option>
-    <option *ngFor="let alarm of alarms$ | async" [ngValue]="alarm.id">{{alarm.id}}</option>
-  </select>
-</div>
+<select [ngClass]="parent === 'h' ? 'col-sm-12 custom-select custom-select-sm' : 'col-sm-12 custom-select custom-select-sm-data'" [(ngModel)]="selectedAlarm" (change)="sendMessage()">
+  <option [ngValue]="null" disabled>Choose Wearable</option>
+  <option *ngIf="parent === 'h'" [ngValue]="removeAlarm">remove</option>
+  <option *ngFor="let alarm of alarms$ | async" [ngValue]="alarm.id">{{alarm.id}}</option>
+</select>

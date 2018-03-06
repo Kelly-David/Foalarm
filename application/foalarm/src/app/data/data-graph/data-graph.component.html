@@ -17,7 +17,7 @@
 <!-- heading card element end -->
 
 <div class="row">
-  <div class="col-sm-3" *ngFor="let time of timeframe">
+  <div class="col-sm-3" *ngFor="let time of timeframe ">
     <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="unsubscribe(time.value)">
       <div class="card-body text-center">
         <small>View previous {{time.label}} hour(s)</small>
@@ -33,5 +33,3 @@
     [autoScale]="autoScale" (select)="onSelect($event)">
   </ngx-charts-line-chart>
 </div>
-
-<app-generate-report></app-generate-report>

@@ -1,20 +1,24 @@
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card primaryCard request-data" (click)="requestReport()">
-      <div class="card-body text-center">
-        <small>Export data (csv) </small>
+<app-alarm-select parent="d" (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    G
+  </button>
+<!-- Modal -->
+<div #confirmModal class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Generate Activity Report</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Generate a CSV file of the previous 5 days of activity data. The file will be available to download after it has processed.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
-      <!-- card body end -->
     </div>
   </div>
-
-  <div class="col-sm-3" *ngFor="let report of reports | async">
-    <div class="card primaryCard request-data">
-      <div class="card-body text-center">
-          <app-report-link [report]="report"></app-report-link>
-      </div>
-      <!-- card body end -->
-    </div>
-  </div>
-
-</div>

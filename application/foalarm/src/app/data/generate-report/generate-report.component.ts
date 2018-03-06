@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { ReportService } from '../report.service';
 })
 export class GenerateReportComponent implements OnInit {
 
-  reports: Observable<any>;
+  @ViewChild('confirmModal') confirmModal: ElementRef;
   alarmKey: string;
 
   constructor(
@@ -20,8 +20,7 @@ export class GenerateReportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.alarmKey = this.activatedRoute.snapshot.params['id'];
-    this.reports = this.reportService.getReports(this.alarmKey);
+    // this.alarmKey = this.activatedRoute.snapshot.params['id'];
   }
 
   // Creates new report, triggering Cloud Function
@@ -31,5 +30,10 @@ export class GenerateReportComponent implements OnInit {
       status: 'processing'
     };
     this.reportService.createReport(data);
+  }
+
+  receiveSelectedOption($event) {
+    this.alarmKey = $event;
+    // this.requestReport();
   }
 }

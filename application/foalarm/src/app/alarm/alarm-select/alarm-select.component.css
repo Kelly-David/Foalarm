@@ -1,4 +1,9 @@
 .custom-select-sm {
     height: 1.8rem !important;
+}
 
+.custom-select-sm-data {
+    height: 1.3rem !important;
+    width: 150px;
+    font-size: .6rem;
 }
