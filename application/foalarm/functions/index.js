@@ -32,9 +32,10 @@ exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}
     .onWrite(event => {
         const alarmId = event.params.alarmkey;
         const datakey = event.params.dataKey;
+        // TESTING
         console.log('Alatm Key ', alarmId);
         console.log('Data ', event.params.dataKey);
-
+        // Retrieve the data ref
         return admin.database()
             .ref(`/data/${alarmId}/${datakey}`)
             .once('value')
@@ -69,17 +70,19 @@ exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}'
     .onWrite(event => {
         const alarmId = event.params.key;
         // const firestore = event.data.ref.firestore;
-
+        // Retrieve the reference to the alarm form Firestore collection
         return admin.firestore().doc(`alarms/${alarmId}`).get().then(function (doc) {
             if (doc.exists) {
+                // TESTING
                 console.log('Document data: ', doc.data());
                 const phoneNumber = doc.data().phone;
+                // TESTING
                 console.log('Phone number: ', phoneNumber);
                 if (doc.data().phone) {
 
                     const alarmKey = doc.data().id;
                     const phone = doc.data().phoneNumber;
-
+                    // REtrive the associated horse ref
                     admin.firestore().collection('horses')
                         .where('alarmId', '==', alarmKey)
                         .get()
@@ -87,13 +90,14 @@ exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}'
                             snapshotQuery.forEach(doc => {
                                 if (doc.data().alarmId == alarmKey) {
                                     const horse = doc.data().displayName;
+                                    // TESTING
                                     console.log('Horse name: ', doc.data().displayName);
-
                                     const textMessage = {
                                         body: `Foaling Alert for ${horse}`,
                                         to: phoneNumber,  // Text to this number
                                         from: twilioPhoneNumber // From a valid Twilio number
                                     }
+                                    // Send the SMS
                                     return client.messages.create(textMessage)
                                         .then(message => console.log(message.sid, 'Success'))
                                         .catch(error => console.log('Twilio send error: ', error));
@@ -118,6 +122,7 @@ exports.sendFoalAlertEmail = functions.firestore
     .document('data/{key}/data/{dataKey}')
     .onWrite(event => {
         const alarmId = event.params.key;
+        // Retrieve the alarm reference from Firestore        
         return admin.firestore().doc(`alarms/${alarmId}`)
             .get()
             .then(function (doc) {
@@ -126,13 +131,13 @@ exports.sendFoalAlertEmail = functions.firestore
                     if (email) {
                         const alarmKey = doc.data().id;
                         const email = doc.data().emailAddress;
-
+                        // Retrieve the associated horse reference
                         admin.firestore().collection('horses')
                             .where('alarmId', '==', alarmKey)
                             .get()
                             .then(snapshotQuery => {
                                 snapshotQuery.forEach(doc => {
-                                    if (doc.data().alarmId == alarmKey) {
+                                    if (doc.data().alarmId == alarmKey) { // Found the horse
                                         const horse = doc.data();
                                         const msg = {
                                             to: email,
@@ -145,6 +150,7 @@ exports.sendFoalAlertEmail = functions.firestore
                                                 camera: horse.camera
                                             }
                                         };
+                                        // Send the email
                                         return sgMail.send(msg)
                                             .then(() => console.log('email sent!'))
                                             .catch(err => console.log(err))
@@ -164,24 +170,26 @@ exports.saveFoalingAlert = functions.firestore
     .document('data/{key}/data/{dataKey}')
     .onWrite(event => {
         const alarmId = event.params.key;
+        // Retrieve the alarm reference from Firestore
         return admin.firestore().doc(`alarms/${alarmId}`)
             .get()
             .then(function (doc) {
                 if (doc.exists) {
                     const alarmKey = doc.data().id;
-
+                    // Retrieve the associated horse reference
                     admin.firestore().collection('horses')
                         .where('alarmId', '==', alarmKey)
                         .get()
                         .then(snapshotQuery => {
                             snapshotQuery.forEach(doc => {
                                 if (doc.data().alarmId == alarmKey) {
-
-                                    // Found the horse
+                                    // Found the horse in Firestore
                                     const horse = doc.data();
                                     const time = getTimeStamp();
+                                    // Point to the alerts collection
                                     var horseAlertRef = admin.firestore().collection('alerts').doc();
                                     const uniqueRef = horseAlertRef.id;
+                                    // Update the document in Firestore
                                     return horseAlertRef.set({
                                         id: uniqueRef,
                                         owner: horse.ownerUID,
@@ -199,26 +207,28 @@ exports.saveFoalingAlert = functions.firestore
             });
     });
 
-
+/**
+ * 
+ */
 exports.pushNotication = functions.firestore
     .document('alerts/{alertKey}').onCreate(event => {
-
         const message = event.data.data();
         const alertKey = event.params.alertKey;
         const userId = message.owner;
-
+        // Build the message
         const payload = {
             notification: {
                 title: `Foaling Alert for ${message.horseName}`,
                 body: message.createdAt.toString()
             }
         };
-
+        // Retreive the token from Firebase RT DB
         admin.database()
             .ref(`/fcmTokens/${userId}`)
             .once('value')
             .then(token => token.val())
             .then(usrFcmToken => {
+                // Send the message to the device
                 return admin.messaging().sendToDevice(usrFcmToken, payload)
             })
             .then(res => {
@@ -229,12 +239,12 @@ exports.pushNotication = functions.firestore
             });
     });
 
-
+/** 
+ * 
+*/
 exports.createDataCSV = functions.firestore
     .document('reports/{reportId}')
     .onCreate(event => {
-
-        // Step 1. Set main variables
         const reportId = event.params.reportId;
         const fileName = `data/${reportId}.csv`;
         const tempFilePath = path.join(os.tmpdir(), fileName);
@@ -246,17 +256,17 @@ exports.createDataCSV = functions.firestore
         const reportRef = db.collection('reports').doc(reportId)
 
         // Reference Storage Bucket
-        const storage = gcs.bucket('foalarm.appspot.com') // or set to env variable
+        const storage = gcs.bucket('foalarm.appspot.com')
 
-        // Step 2. Query collection
+        // Query collection
         return admin.database().ref(`activity/${alarmId}`).limitToLast(40000)
             .once('value')
             .then(data => {
 
-                /// Step 3. Creates CSV file from with activity collection
+                // Creates CSV file from with activity collection
                 const activity = []
 
-                // create array of order data
+                // Create array of activity data
                 data.forEach(doc => {
                     activity.push(doc.val())
                 });
@@ -264,15 +274,15 @@ exports.createDataCSV = functions.firestore
                 return json2csv({ data: activity });
             })
             .then(csv => {
-                // Step 4. Write the file to cloud function tmp storage
+                // Write the file to cloud function tmp storage
                 return fs.outputFile(tempFilePath, csv);
             })
             .then(() => {
-                // Step 5. Upload the file to Firebase cloud storage
+                // Upload the file to Firebase cloud storage
                 return storage.upload(tempFilePath, { destination: fileName })
             })
             .then(file => {
-                // Step 6. Update status to complete in Firestore 
+                // Update status to complete in Firestore 
                 return reportRef.update({ status: 'complete' })
             })
             .catch(err => console.log(err))
