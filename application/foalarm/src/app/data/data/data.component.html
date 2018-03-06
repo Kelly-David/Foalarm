@@ -4,3 +4,23 @@
   </div>
 </div>
 <!-- heading card element end -->
+
+<table class="table table-bordered">
+  <tbody>
+    <tr *ngFor="let report of reports$ | async " [ngClass]="(!(report.status == 'complete') ? 'border-alert' : '')">
+      <td>
+        <small>Status</small>
+        <h6>{{report.status}}</h6>
+      </td>
+      <td>
+        <small>Date/Time</small>
+        <h6>{{report.updatedAt | date:'short'}}</h6>        
+      </td>
+      <td>
+        <button *ngIf="report.status == 'complete'" type="button" class="btn btn-secondary btn-sm pull-right" (click)="null">
+          <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

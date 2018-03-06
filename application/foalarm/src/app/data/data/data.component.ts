@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { ReportService } from '../report.service';
 
 @Component({
   selector: 'app-data',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataComponent implements OnInit {
 
-  constructor() { }
+  reports$: Observable<any>;
+
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
+    this.reports$ = this.reportService.allReports;
   }
 
 }

@@ -7,15 +7,14 @@ import { Observable } from 'rxjs/Observable';
 export class ReportService {
 
   private $reports: Observable<any[]> | Observable<null> | null;
+  private $allReports: Observable<any[]> | Observable<null> | null;
 
   constructor(private fs: AngularFirestore,
   private db: FirestoreService) {
 
     // Query the reports collection
-    this.$reports = this.db.col$('reports', ref => ref.where('deleted', '==', false));
-
+    this.$allReports = this.db.col$('reports', ref => ref.where('deleted', '==', false));
   }
-
   // Save new report to Firestore
   createReport(data: any) {
     // Testing - TODO remove
@@ -34,7 +33,11 @@ export class ReportService {
     });
   }
 
-  get reports() {
-    return this.$reports;
+  getReports(key) {
+    return this.db.col$('reports', ref => ref.where('deleted', '==', false).where('alarmId', '==', key));
+  }
+
+  get allReports() {
+    return this.$allReports;
   }
 }

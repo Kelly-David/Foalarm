@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
@@ -12,19 +11,17 @@ import { ReportService } from '../report.service';
 })
 export class GenerateReportComponent implements OnInit {
 
-  reportsRef: AngularFirestoreCollection<any>;
   reports: Observable<any>;
   alarmKey: string;
 
   constructor(
-    private afs: AngularFirestore,
     private activatedRoute: ActivatedRoute,
     private reportService: ReportService
   ) { }
 
   ngOnInit() {
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
-    this.reports = this.reportService.reports;
+    this.reports = this.reportService.getReports(this.alarmKey);
   }
 
   // Creates new report, triggering Cloud Function
