@@ -18,6 +18,7 @@ import { AlarmEditComponent } from '../alarm/alarm-edit/alarm-edit.component';
 import { AlertEditComponent } from '../alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from '../cams/camera-list/camera-list.component';
 import { DataGraphComponent } from '../data/data-graph/data-graph.component';
+import { DataComponent } from '../data/data/data.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',  redirectTo: 'profile' },
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'alarm-edit/:id', component: AlarmEditComponent, canActivate: [AuthGuard] },
     { path: 'alert-edit', component: AlertEditComponent, canActivate: [AuthGuard] },
     { path: 'camera-list', component: CameraListComponent, canActivate: [AuthGuard] },
+    { path: 'data', component: DataComponent, canActivate: [AuthGuard]},
     { path: 'data/:id', component: DataGraphComponent, canActivate: [AuthGuard] }
   ],
   canActivate: [AuthGuard]}

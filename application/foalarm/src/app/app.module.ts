@@ -50,6 +50,7 @@ import { CalcComponent } from './tools/calc/calc.component';
 import { GenerateReportComponent } from './data/generate-report/generate-report.component';
 import { ReportLinkComponent } from './data/report-link/report-link.component';
 import { ReportService } from './data/report.service';
+import { DataComponent } from './data/data/data.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { ReportService } from './data/report.service';
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent, ReportLinkComponent,
+    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent, ReportLinkComponent, DataComponent,
   ],
   imports: [
     BrowserModule,
