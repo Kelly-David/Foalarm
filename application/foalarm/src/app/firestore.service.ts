@@ -84,12 +84,13 @@ export class FirestoreService {
     */
    set<T>(ref: DocPredicate<T>, data: any) {
      const timeStamp = this.timeStamp;
-     const uniqueRef = this.afs.createId();
+     const uniqueRef = data.id ? data.id : this.afs.createId();
+     // const uniqueRef = this.afs.createId();
      // If creating a new alarm - create a reference in the Firebase Real Time DB also
      if (ref === 'alarms') { this.setReference('data', uniqueRef, {}); }
      return this.doc(ref + `/${uniqueRef}`).set({
        ...data,
-       id: uniqueRef,
+       // id: uniqueRef,
        updatedAt: timeStamp,
        createdAt: timeStamp,
        deleted: false

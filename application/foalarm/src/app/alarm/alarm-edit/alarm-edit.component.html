@@ -24,7 +24,7 @@
             <div class="col-sm-6">
               <div class="form-group input-group-sm">
                 <small>Foalarm ID</small>
-                <app-alarm-id-list></app-alarm-id-list>
+                <app-alarm-id-list (selectIDEvent)="receiveSelectedId($event)"></app-alarm-id-list>
               </div>
             </div>
 

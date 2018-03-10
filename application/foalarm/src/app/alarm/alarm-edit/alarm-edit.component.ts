@@ -22,6 +22,7 @@ export class AlarmEditComponent implements OnInit {
   alarm$: Observable<Alarm> | Observable<any>;
   public alertString;
   exists = false as boolean;
+  selectedId = '' as string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -99,16 +100,17 @@ export class AlarmEditComponent implements OnInit {
 
   save(user: User, alarm: Alarm) {
     if (this.alarmKey === 'new') {
-      return this.saveAlarm(user, alarm);
+      return this.saveAlarm(user, alarm, this.selectedId);
     } else {
       return this.updateAlarm(user, alarm);
     }
   }
 
   // Save the alarm
-  saveAlarm(user: User, alarm: Alarm) {
+  saveAlarm(user: User, alarm: Alarm, selectedId?: string) {
     const form = this.alarmForm.value;
     return this.alarmService.saveAlarmData(this.alarmKey, {
+      id: selectedId ? selectedId : '',
       power: '100',
       state: false,
       ownerUID: user.uid,
@@ -137,7 +139,15 @@ export class AlarmEditComponent implements OnInit {
       return false;
     }
   }
+  // Delete the alarm from collection
   delete(alarm: Alarm) {
     return this.alarmService.deleteAlarm(alarm);
+  }
+
+  // Receive the alarm Id (new alarms only)
+  public receiveSelectedId($event) {
+    this.selectedId = $event;
+    console.log(this.selectedId);
+
   }
 }
