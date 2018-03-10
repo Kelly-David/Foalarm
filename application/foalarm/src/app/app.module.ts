@@ -53,6 +53,7 @@ import { ReportService } from './data/report.service';
 import { DataComponent } from './data/data/data.component';
 import { AlarmLinkComponent } from './data/alarm-link/alarm-link.component';
 import { HorseLinkComponent } from './data/horse-link/horse-link.component';
+import { AlarmIdListComponent } from './alarm/alarm-id-list/alarm-id-list.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { HorseLinkComponent } from './data/horse-link/horse-link.component';
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent, ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent,
+    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent, ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
   ],
   imports: [
     BrowserModule,

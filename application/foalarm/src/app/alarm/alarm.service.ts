@@ -12,6 +12,7 @@ export class AlarmService {
   alarms$: Observable<Alarm[]> | Observable<any>;
   activeAlarms$: Observable<Alarm[]> | Observable<any>;
   availAlarms$: Observable<Alarm[]> | Observable<any>;
+  alarmIDs$: Observable<{}[]> | Observable<any>;
 
   constructor(
     private db: FirestoreService,
@@ -35,6 +36,9 @@ export class AlarmService {
                                .where('state', '==', false)
                                .where('deleted', '==', false)
                                .where('ownerUID', '==', this.authService.uString));
+    // Unassigned alarm ids
+    this.alarmIDs$ = this.db.col$('alarmID', ref => ref
+                                .where('deleted', '==', false));
   }
 
   // Get all alarms

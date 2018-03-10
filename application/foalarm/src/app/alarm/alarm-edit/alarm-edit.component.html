@@ -13,12 +13,22 @@
   <ng-container *ngIf="alarm$ | async as alarm">
 
 
-      <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+    <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
 
       <div class="card-body">
 
-        <!-- If user is registered -->
         <form [formGroup]="alarmForm" (ngSubmit)="save(user, alarm)">
+
+          <div class="form-row" *ngIf="isNewAlarm">
+
+            <div class="col-sm-6">
+              <div class="form-group input-group-sm">
+                <small>Foalarm ID</small>
+                <app-alarm-id-list></app-alarm-id-list>
+              </div>
+            </div>
+
+          </div>
 
           <div class="form-row">
 
@@ -40,11 +50,11 @@
                 <small>Alert SMS Telephone</small>
                 <input type="text" class="form-control" [value]="alarm.phone" disabled>
               </div>
-              </div>
+            </div>
 
-              <div class="col-sm-8">
+            <div class="col-sm-8">
               <div class="form-group input-group-sm">
-                  <small>Alert SMS Telephone</small>
+                <small>Alert SMS Telephone</small>
                 <div class="form-row">
                   <div class="col-sm-3">
                     <input type="text" class="form-control" formControlName="country" placeholder="353">
