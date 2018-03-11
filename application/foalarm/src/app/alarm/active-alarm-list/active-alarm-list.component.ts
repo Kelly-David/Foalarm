@@ -11,7 +11,7 @@ import { AlarmService } from '../alarm.service';
 export class ActiveAlarmListComponent implements OnInit {
 
   alarms$: Observable<Alarm[]> | Observable<any> | null;
-  collapse = true as boolean;
+  collapse = false as boolean;
 
   constructor(
     private alarmService: AlarmService

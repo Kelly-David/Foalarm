@@ -3,11 +3,8 @@
  * @Date: 2017-10-26 14:58:28
  * @Last Modified time: 2017-10-26 14:58:28
  */
-@import url('https://fonts.googleapis.com/css?family=Muli:300');
-@import url('https://fonts.googleapis.com/css?family=Philosopher');
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
-@import url('https://fonts.googleapis.com/css?family=Assistant:300');
+@import url('https://fonts.googleapis.com/css?family=Padauk');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300&subset=cyrillic');
 @font-face {
     font-family: 'Quantify';
     font-style: normal;
@@ -24,7 +21,7 @@ body {
     background-position: 10% 0, 100%;
     background-repeat: repeat-x, no-repeat;
     background-size: 210px auto, auto;
-    font-family: 'Muli', sans-serif;;
+    font-family: 'Montserrat', sans-serif;;
     font-size: .8rem;
     margin: 0 0 50px 0!important;
     padding: 0 !important;    
