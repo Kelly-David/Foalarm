@@ -16,7 +16,7 @@ import { User } from './user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Foalarm';
   items: Observable<any[]>;
   user: Observable<User>;
 
