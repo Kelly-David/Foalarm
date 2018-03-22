@@ -1,6 +1,6 @@
 <app-alarm-select parent="d" (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-icon" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="btn btn-icon" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="!alarmKey">
     <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
 </button>
 <!-- Modal -->
@@ -14,10 +14,12 @@
           </button>
         </div>
         <div class="modal-body">
-          Generate a CSV file of the previous 5 days of activity data. The file will be available to download after it has processed.
+          <small>
+              Generate a CSV file of the previous 5 days of activity data. The file will be available to download after it has processed.
+          </small>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal" (click)="requestReport()">Continue</button>
+          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" (click)="requestReport()">Continue</button>
         </div>
       </div>
     </div>
