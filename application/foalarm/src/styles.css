@@ -16,8 +16,8 @@ html {
     position: relative;
     min-height: 100%;
 }
-body {
-    background: url(assets/layout/1.png), url(assets/layout/bg.jpg);
+/* body {
+    background: url(assets/layout/1a.png), url(assets/layout/bg.jpg);
     background-position: 10% 0, 100%;
     background-repeat: repeat-x, no-repeat;
     background-size: 210px auto, auto;
@@ -25,8 +25,18 @@ body {
     font-size: .8rem;
     margin: 0 0 50px 0!important;
     padding: 0 !important;    
+} */
+body {
+    background: url(assets/layout/bg.jpg);
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: auto;
+    font-family: 'Montserrat', sans-serif;;
+    font-size: .8rem;
+    margin: 0 0 50px 0!important;
+    padding: 0 !important;    
 }
-.app-content { margin-top: 2rem}
+.app-content { margin-top: 1rem}
 
 h1, h2, h3, h4, h5, h6 { font-weight: bold}
 
