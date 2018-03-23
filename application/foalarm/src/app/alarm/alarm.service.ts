@@ -73,9 +73,15 @@ export class AlarmService {
     console.log('Saving new alarm' + key);
     // Also create a reference in the data collection
     return this.db.set('alarms', data)
+    .then(_ => this.markIdAsUsed(data.id))
     .then(_ => this.router.navigate(['/profile/alarm-list']))
     .catch(error =>
       console.log(error));
+  }
+
+  // Updates the selected alarm id to remove it from available list of ids
+  markIdAsUsed(key) {
+    return this.db.update('alarmID', key, {'deleted': true});
   }
 
   // Delete alarm from Firestore - sets deleted to true
