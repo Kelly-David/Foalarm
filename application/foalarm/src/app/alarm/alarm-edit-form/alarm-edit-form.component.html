@@ -72,16 +72,16 @@
               <small>Alert SMS Telephone</small>
               <div class="form-row">
                 <div class="col-sm-3">
-                  <input type="text" class="form-control" formControlName="country" [value]="alarm.phone | slice:1:4" placeholder="353">
+                  <input type="text" class="form-control" formControlName="country" [value]="alarm.phone | slice:1:4" placeholder="">
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" formControlName="area" [value]="alarm.phone | slice:4:6" placeholder="xx">
+                  <input type="text" class="form-control" formControlName="area" [value]="alarm.phone | slice:4:6" placeholder="">
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control" formControlName="prefix" [value]="alarm.phone | slice:6:9" placeholder="xxx">
+                  <input type="text" class="form-control" formControlName="prefix" [value]="alarm.phone | slice:6:9" placeholder="">
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" formControlName="line" [value]="alarm.phone | slice:9:13" placeholder="xxxx">
+                  <input type="text" class="form-control" formControlName="line" [value]="alarm.phone | slice:9:13" placeholder="">
                 </div>
               </div>
             </div>
