@@ -92,7 +92,8 @@ export class HorseEditFormComponent implements OnChanges {
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : '' ,
       state: this.horseObject.alarmId ? true : false,
       ownerUID: user.uid
-    });
+    })
+    .then(_ => this.closeParent.emit('close'));
   }
 
   // Update an existing horse
@@ -104,7 +105,8 @@ export class HorseEditFormComponent implements OnChanges {
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       photoURL: this.horseObject.photoURL ? this.horseObject.photoURL : horse.photoURL,
       state: this.horseObject.alarmId ? true : horse.state,
-    }, currentAlarmId);
+    }, currentAlarmId)
+    .then(_ => this.closeParent.emit('close'));
   }
 
   save(user: User, horse: Horse, currentAlarmId?: string) {
@@ -131,7 +133,8 @@ export class HorseEditFormComponent implements OnChanges {
   }
 
   delete(horse: Horse) {
-    return this.horseService.deleteHorse(horse);
+    return this.horseService.deleteHorse(horse)
+    .then(_ => this.closeParent.emit('close'));
   }
 
   getStyle(imageUrl) {
