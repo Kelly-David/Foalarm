@@ -11,7 +11,7 @@
 <!-- card element end -->
 
 <div class="row">
-  <div class="col-md-6" *ngFor="let alarm of alarms$ | async">
+  <div class="col-md-4" *ngFor="let alarm of alarms$ | async">
     <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0" (click)="openClientModal(alarm.id)">
       <div class="card-body">
         <small>Alarm</small>
@@ -28,9 +28,6 @@
         <span class="inline-small-text"> {{alarm.phone}}</span>
         <small>Email: </small>
         <span class="inline-small-text"> {{alarm.emailAddress}}</span>
-        <small>ID: </small>
-        <span class="inline-small-text"> {{alarm.id}}</span>
-
       </div>
       <!-- card body end -->
     </div>
