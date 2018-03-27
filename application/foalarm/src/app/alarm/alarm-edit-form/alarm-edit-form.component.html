@@ -1,3 +1,5 @@
 <p>
-  {{alarmId}}
+  <ng-container *ngIf="alarm$ | async as alarm">
+    {{alarm.displayName}}
+  </ng-container>
 </p>
