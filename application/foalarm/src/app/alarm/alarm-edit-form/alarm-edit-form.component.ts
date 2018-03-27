@@ -37,7 +37,6 @@ export class AlarmEditFormComponent implements OnChanges {
     ) { }
 
   ngOnChanges() {
-    console.log('Input Alarm Id ', this.alarmId);
     // Get the key from the URL
     this.alarmKey = this.alarmId;
     // Is it a new alarm?
@@ -46,6 +45,7 @@ export class AlarmEditFormComponent implements OnChanges {
     !this.isNewAlarm ? this.getAlarm() : this.alarm$ = Observable.of({}) as Observable<Alarm>;
     // Testing
     console.log(this.alarmKey);
+    if (this.isNewAlarm) { this.edit = this.editNumber = true; }
 
     // TODO Subscribe to alert handler service
 

@@ -1,4 +1,4 @@
-<select class="col-sm-12 custom-select custom-select-sm" [(ngModel)]="selectedID" (change)="sendID()"> 
+<select class="col-sm-12 custom-select" [(ngModel)]="selectedID" (change)="sendID()"> 
   <option [ngValue]="null" disabled>Select Foalarm ID</option>
   <option *ngFor="let alarm of alarms$ | async" [ngValue]="alarm.id">{{alarm.id}}</option>
 </select>

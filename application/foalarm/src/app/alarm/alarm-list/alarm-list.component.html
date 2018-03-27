@@ -12,7 +12,7 @@
 
 <div class="row">
   <div class="col-md-6" *ngFor="let alarm of alarms$ | async">
-    <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+    <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0" (click)="openClientModal(alarm.id)">
       <div class="card-body">
         <small>Alarm</small>
         <a class="btn btn-social-icon pull-right">
@@ -20,9 +20,9 @@
             <i class="fa fa-circle" aria-hidden="true"></i>
           </span>
         </a>
-        <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/alarm-edit', alarm.id]">
+        <!-- <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/alarm-edit', alarm.id]">
           <i class="fa fa-wrench" aria-hidden="true"></i>
-        </a>
+        </a> -->
         <h6 class="card-title" (click)="openClientModal(alarm.id)">{{alarm.displayName}}</h6>
         <small>Phone: </small>
         <span class="inline-small-text"> {{alarm.phone}}</span>
