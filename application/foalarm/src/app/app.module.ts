@@ -45,7 +45,7 @@ import { MessagingService } from './messaging.service';
 import { DataGraphComponent } from './data/data-graph/data-graph.component';
 import { DataService } from './data/data.service';
 import { ChartsModule } from 'ng2-charts';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CalcComponent } from './tools/calc/calc.component';
 import { GenerateReportComponent } from './data/generate-report/generate-report.component';
 import { ReportLinkComponent } from './data/report-link/report-link.component';
@@ -55,6 +55,7 @@ import { AlarmLinkComponent } from './data/alarm-link/alarm-link.component';
 import { HorseLinkComponent } from './data/horse-link/horse-link.component';
 import { AlarmIdListComponent } from './alarm/alarm-id-list/alarm-id-list.component';
 import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-modal.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-mod
     AngularFireAuthModule, CoreModule, AppRoutingModule, // imports firebase/auth, only needed for auth features
     SelectModule,
     NgxChartsModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     AuthService,
@@ -105,6 +107,9 @@ import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-mod
     DataService,
     SlicePipe,
     ReportService,
+  ],
+  entryComponents: [
+    AlarmEditModalComponent,
   ],
   bootstrap: [AppComponent]
 })

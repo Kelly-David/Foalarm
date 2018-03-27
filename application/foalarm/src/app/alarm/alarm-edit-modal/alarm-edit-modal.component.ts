@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-alarm-edit-modal',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlarmEditModalComponent implements OnInit {
 
-  constructor() { }
+  public title: string;
+
+  constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
   }
