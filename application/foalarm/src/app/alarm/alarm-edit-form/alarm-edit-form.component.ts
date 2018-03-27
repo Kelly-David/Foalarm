@@ -40,7 +40,6 @@ export class AlarmEditFormComponent implements OnChanges {
 
   ngOnChanges() {
     this.setTitle.emit('Alarm | Edit');
-    // Get the key from the URL
     this.alarmKey = this.alarmId;
     // Is it a new alarm?
     this.isNewAlarm = this.alarmKey === 'new';
