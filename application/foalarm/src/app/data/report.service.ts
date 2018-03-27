@@ -26,7 +26,7 @@ export class ReportService {
     .catch(error => console.log(error));
   }
 
-  // Remove an alert (delete from firestore)
+  // Remove a report (delete from firestore)
   removeReport(key: string) {
     this.fs.collection('reports').doc(key).update({deleted: true}).then(function () {
       console.log('Report successfully deleted!');

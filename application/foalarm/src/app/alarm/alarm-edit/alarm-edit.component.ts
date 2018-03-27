@@ -109,15 +109,15 @@ export class AlarmEditComponent implements OnInit {
   // Save the alarm
   saveAlarm(user: User, alarm: Alarm, selectedId?: string) {
     const form = this.alarmForm.value;
+    const id = selectedId ? selectedId : '';
     return this.alarmService.saveAlarmData(this.alarmKey, {
-      id: selectedId ? selectedId : '',
       power: '100',
       state: false,
       ownerUID: user.uid,
       phone: this.e164,
       displayName: form.displayName,
       emailAddress: form.emailAddress,
-    });
+    }, id ? id : undefined);
   }
 
   // Save the alarm

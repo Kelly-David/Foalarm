@@ -69,11 +69,11 @@ export class AlarmService {
   }
 
   // Firstore set
-  saveAlarmData(key: any, data: any) {
+  saveAlarmData(key: any, data: any, id?: string) {
     console.log('Saving new alarm' + key);
     // Also create a reference in the data collection
     return this.db.set('alarms', data)
-    .then(_ => this.markIdAsUsed(data.id))
+    .then(_ => this.markIdAsUsed(id))
     .then(_ => this.router.navigate(['/profile/alarm-list']))
     .catch(error =>
       console.log(error));
