@@ -1,5 +1,108 @@
-<p>
+<ng-container *ngIf="(authService.user | async) || {} as user">
   <ng-container *ngIf="alarm$ | async as alarm">
-    {{alarm.displayName}}
+
+
+    <ng-container *ngIf="!edit">
+
+      <small>Alarm</small>
+      <h6>{{alarm.displayName}}</h6>
+      <small>Phone: </small>
+      <span class="inline-small-text"> {{alarm.phone}}</span>
+      <small>Email: </small>
+      <span class="inline-small-text"> {{alarm.emailAddress}}</span>
+      <small>ID: </small>
+      <span class="inline-small-text"> {{alarm.id}}</span>
+
+      <button type="button" class="btn btn-primary btn-block" (click)="edit = !edit">Edit Alarm</button>
+
+    </ng-container>
+
+    <ng-container *ngIf="edit">
+
+      <form [formGroup]="alarmForm" (ngSubmit)="save(user, alarm)">
+
+        <div class="form-row" *ngIf="isNewAlarm">
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <small>Foalarm ID</small>
+              <app-alarm-id-list (selectIDEvent)="receiveSelectedId($event)"></app-alarm-id-list>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <small>Foalarm ID</small>
+              <input type="text" class="form-control" [value]="alarm.id" disabled>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <small>Foalarm Name</small>
+              <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="alarm.displayName" [value]="">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <small>Alert Email</small>
+              <input type="text" class="form-control" formControlName="emailAddress" [(ngModel)]="alarm.emailAddress" [value]="">
+            </div>
+          </div>
+
+          <div class="col-sm-12" *ngIf="!editNumber">
+            <div class="form-group">
+              <small>Alert SMS Telephone</small>
+              <div class="input-group">
+                  <input type="text" class="form-control" [value]="alarm.phone" disabled>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary" (click)="editNumber = !editNumber">
+                      Edit
+                    </button>
+                  </span>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12" *ngIf="editNumber">
+            <div class="form-group">
+              <small>Alert SMS Telephone</small>
+              <div class="form-row">
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" formControlName="country" [value]="alarm.phone | slice:1:4" placeholder="353">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" formControlName="area" [value]="alarm.phone | slice:4:6" placeholder="xx">
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" formControlName="prefix" [value]="alarm.phone | slice:6:9" placeholder="xxx">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" formControlName="line" [value]="alarm.phone | slice:9:13" placeholder="xxxx">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-success btn-block" [disabled]="!alarmForm.valid">
+          <ng-container *ngIf="isNewAlarm">Save</ng-container>
+          <ng-container *ngIf="!isNewAlarm">Update</ng-container>
+        </button>
+        <button *ngIf="!isNewAlarm" type="button" class="btn btn-danger btn-block" (click)="delete(alarm)">
+          Delete Alarm
+        </button>
+        <button type="submit" class="btn btn-primary btn-block" (click)="edit = !edit; editNumber = false">
+          Cancel
+        </button>
+
+      </form>
+
+
+    </ng-container>
+
   </ng-container>
-</p>
+</ng-container>

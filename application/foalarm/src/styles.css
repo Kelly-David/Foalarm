@@ -206,6 +206,39 @@ a:hover { text-decoration: none }
     color: #448599
 }
 
+/* Modal -------------------------*/
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important; 
+}
+
+.modal-header {
+    border-bottom: none !important;
+    padding-bottom: 0;
+}
+
+.modal-body small {
+    font-size: .6rem;
+    display: inline-block;
+    color: #c3c3c3;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.modal-body .inline-small-text {
+    font-size: .7rem;     
+    display: block;
+    color: #333131;
+    margin-bottom: 0;
+    padding-bottom: 0;
+ }
+
+ .modal-body .btn-block {
+     margin-top: 1rem;
+ }
+
 .footer {
     position: absolute;
     bottom: 0;

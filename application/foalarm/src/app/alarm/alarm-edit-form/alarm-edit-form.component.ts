@@ -25,6 +25,8 @@ export class AlarmEditFormComponent implements OnChanges {
   public alertString;
   exists = false as boolean;
   selectedId = '' as string;
+  edit = false as boolean;
+  editNumber = false as boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
