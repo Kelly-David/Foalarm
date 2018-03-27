@@ -23,6 +23,9 @@
         <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/alarm-edit', alarm.id]">
           <i class="fa fa-wrench" aria-hidden="true"></i>
         </a>
+        <a class="btn btn-social-icon pull-right" (click)="openClientModal(alarm.id)">
+          <i class="fa fa-wrench" aria-hidden="true"></i>
+        </a>
         <h6 class="card-title">{{alarm.displayName}}</h6>
         <small>Phone: </small>
         <span class="inline-small-text"> {{alarm.phone}}</span>

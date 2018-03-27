@@ -32,10 +32,10 @@ export class AlarmListComponent implements OnInit {
     this.alarms$ = this.alarmService.alarms;
   }
 
-  openClientModal() {
+  openClientModal(id?: string) {
     this.bsModalRef = this.modalService.show(AlarmEditModalComponent, {class: 'modal-lg'});
     console.log(this.bsModalRef);
-    this.bsModalRef.content.title = 'New Client';
+    this.bsModalRef.content.title = id;
   }
 
 }
