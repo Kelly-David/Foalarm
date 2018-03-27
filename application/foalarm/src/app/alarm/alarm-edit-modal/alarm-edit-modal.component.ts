@@ -9,6 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 })
 export class AlarmEditModalComponent implements OnInit {
 
+  public parent: string;
   public title: string;
   public key: string;
 

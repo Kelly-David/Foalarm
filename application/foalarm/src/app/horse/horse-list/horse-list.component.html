@@ -2,7 +2,7 @@
   <div class="card-header">
     Horses | All
     <span class="pull-right">
-      <a class="btn btn-social-icon" [routerLink]="['/profile/horse-edit/new']">
+      <a class="btn btn-social-icon" (click)="openClientModal('new')">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
       </a>
     </span>
@@ -12,7 +12,7 @@
 
 <div class="row">
   <div class="col-md-4" *ngFor="let horse of horses$ | async">
-    <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+    <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0" (click)="openClientModal(horse.id)">
       <div class="card-body card-img-bg" [style]="getStyle(horse.photoURL)">
         <a class="btn btn-social-icon pull-right">
           <span [ngClass]="horse.state ? 'active' : 'inactive'">

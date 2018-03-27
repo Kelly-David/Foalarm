@@ -46,6 +46,7 @@ export class HorseListComponent implements OnInit {
   // Create a model dialog - title is passed as input to the child component.
   openClientModal(id?: string) {
     this.bsModalRef = this.modalService.show(AlarmEditModalComponent, {class: 'modal-dialog'});
+    this.bsModalRef.content.parent = 'horse';
     this.bsModalRef.content.key = id;
   }
 
