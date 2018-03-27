@@ -72,7 +72,7 @@ export class AlarmService {
   saveAlarmData(key: any, data: any, id?: string) {
     console.log('Saving new alarm' + key);
     // Also create a reference in the data collection
-    return this.db.set('alarms', data)
+    return this.db.set('alarms', data, id)
     .then(_ => this.markIdAsUsed(id))
     .then(_ => this.router.navigate(['/profile/alarm-list']))
     .catch(error =>
@@ -84,10 +84,17 @@ export class AlarmService {
     return this.db.update('alarmID', key, {'deleted': true});
   }
 
+  // TODO - refactor methods above and below to one!
+
+  // Updates the selected alarm id to add it to the available list of ids
+  markIdAsFree(key) {
+    return this.db.update('alarmID', key, {'deleted': false});
+  }
+
   // Delete alarm from Firestore - sets deleted to true
   deleteAlarm(alarm: Alarm) {
     console.log('Deleteing alarm' + alarm.id);
-
+    this.markIdAsFree(alarm.id);
     // Remove the alarm reference from the associated horse
     if (alarm.state) {
       this.db.col('horses', a => a.where('alarmId', '==', alarm.id).where('deleted', '==', false).where('state', '==', true))
