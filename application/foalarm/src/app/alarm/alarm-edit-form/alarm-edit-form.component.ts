@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Alarm } from '../../alarm';
 import { Observable } from 'rxjs/Observable';
@@ -16,17 +16,19 @@ import { User } from '../../user';
 export class AlarmEditFormComponent implements OnChanges {
 
   @Input() alarmId: any;
+  @Output() setTitle = new EventEmitter<string>();
+  @Output() closeParent = new EventEmitter<string>();
 
-  alarmForm: FormGroup;
+  public alarmForm: FormGroup;
   public alarmObject = {} as Alarm;
-  isNewAlarm: boolean;
-  alarmKey: string;
-  alarm$: Observable<Alarm> | Observable<any>;
+  public isNewAlarm: boolean;
+  public alarmKey: string;
+  public alarm$: Observable<Alarm> | Observable<any>;
   public alertString;
-  exists = false as boolean;
-  selectedId = '' as string;
-  edit = false as boolean;
-  editNumber = false as boolean;
+  public exists = false as boolean;
+  public selectedId = '' as string;
+  public edit = false as boolean;
+  public editNumber = false as boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,21 +39,20 @@ export class AlarmEditFormComponent implements OnChanges {
     ) { }
 
   ngOnChanges() {
+    this.setTitle.emit('Alarm | Edit');
     // Get the key from the URL
     this.alarmKey = this.alarmId;
     // Is it a new alarm?
     this.isNewAlarm = this.alarmKey === 'new';
     // Retrieve the alarm instance OR create a new object observable
     !this.isNewAlarm ? this.getAlarm() : this.alarm$ = Observable.of({}) as Observable<Alarm>;
-    // Testing
-    console.log(this.alarmKey);
-    if (this.isNewAlarm) { this.edit = this.editNumber = true; }
-
+    if (this.isNewAlarm) {
+      this.setTitle.emit('Alarm | New');
+      this.edit = this.editNumber = true;
+    }
     // TODO Subscribe to alert handler service
-
     // Create the alarm form
     this.buildForm();
-
   }
 
   // Form getters
@@ -122,7 +123,9 @@ export class AlarmEditFormComponent implements OnChanges {
       phone: this.e164,
       displayName: form.displayName,
       emailAddress: form.emailAddress,
-    }, id ? id : undefined);
+    }, id ? id : undefined)
+    // Signal the parent modal to close
+    .then(_ => this.closeParent.emit('close'));
   }
 
   // Save the alarm
@@ -133,7 +136,8 @@ export class AlarmEditFormComponent implements OnChanges {
       emailAddress: form.emailAddress,
       // phone: this.e164,
       phone: this.updatedPhone() ? this.e164 : alarm.phone,
-    });
+    }) // Signal the parent modal to close
+    .then(_ => this.closeParent.emit('close'));
   }
 
   // Has the phone number changed
@@ -146,7 +150,8 @@ export class AlarmEditFormComponent implements OnChanges {
   }
   // Delete the alarm from collection
   delete(alarm: Alarm) {
-    return this.alarmService.deleteAlarm(alarm);
+    return this.alarmService.deleteAlarm(alarm)
+    .then(_ => this.closeParent.emit('close'));
   }
 
   // Receive the alarm Id (new alarms only)

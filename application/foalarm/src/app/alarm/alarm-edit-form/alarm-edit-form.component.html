@@ -95,7 +95,7 @@
         <button *ngIf="!isNewAlarm" type="button" class="btn btn-danger btn-block" (click)="delete(alarm)">
           Delete Alarm
         </button>
-        <button type="submit" class="btn btn-primary btn-block" (click)="edit = !edit; editNumber = false">
+        <button *ngIf="!isNewAlarm" type="button" class="btn btn-primary btn-block" (click)="edit = !edit; editNumber = false">
           Cancel
         </button>
 

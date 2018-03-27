@@ -10,10 +10,15 @@ import { BsModalRef } from 'ngx-bootstrap';
 export class AlarmEditModalComponent implements OnInit {
 
   public title: string;
+  public key: string;
 
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
+  }
+
+  setTitle($event: string) {
+    this.title = $event;
   }
 
 }
