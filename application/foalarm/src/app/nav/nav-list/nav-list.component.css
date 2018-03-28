@@ -1,0 +1,28 @@
+
+
+@media only screen and (max-width: 1200px) {
+    .nav-text {
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-text {
+        font-size: 70%;
+    }
+}
+
+@media only screen and (max-width: 910px) {
+    .nav-text {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .nav-text {
+        display: unset;
+        font-size: 100%;
+
+    }
+}
+

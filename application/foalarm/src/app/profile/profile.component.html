@@ -1,12 +1,12 @@
 <!-- <small (click)="collapse = !collapse">toggle</small> -->
 <div class=row>
-  <div class="col-sm-2">
+  <div class="col-lg-2">
     <app-nav-list></app-nav-list>
     <app-user-proifle></app-user-proifle>
     <app-alert-list></app-alert-list>
   </div>
-  <div [ngClass]="collapse ? 'col-sm-8' : 'col-sm-8'">
+  <div [ngClass]="collapse ? 'col-lg-8' : 'col-lg-8'">
     <router-outlet></router-outlet>
   </div>
-  <app-utility [ngClass]="collapse ? 'col-sm-2' : 'col-sm-2'"> </app-utility>
+  <app-utility [ngClass]="collapse ? 'col-lg-2' : 'col-lg-2'"> </app-utility>
 </div>
