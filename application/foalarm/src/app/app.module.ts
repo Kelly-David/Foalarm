@@ -58,6 +58,7 @@ import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-mod
 import { ModalModule } from 'ngx-bootstrap';
 import { AlarmEditFormComponent } from './alarm/alarm-edit-form/alarm-edit-form.component';
 import { HorseEditFormComponent } from './horse/horse-edit-form/horse-edit-form.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { HorseEditFormComponent } from './horse/horse-edit-form/horse-edit-form.
     CameraListComponent,
     CameraViewComponent,
     FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
-    ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent, AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent,
+    ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent, AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent,
   ],
   imports: [
     BrowserModule,
