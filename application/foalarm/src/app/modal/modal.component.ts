@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-modal',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  constructor() { }
+  public parent: any;
+  public title: any;
+  public key: any;
+
+  constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
+  }
+
+  /**
+   * Emitted from child component
+   * @param  string
+   */
+  setTitle($event: string) {
+    this.title = $event;
   }
 
 }
