@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AlarmService } from '../../alarm/alarm.service';
 import { Alarm } from '../../alarm';
@@ -8,14 +8,14 @@ import { Alarm } from '../../alarm';
   templateUrl: './alarm-link.component.html',
   styleUrls: ['./alarm-link.component.css']
 })
-export class AlarmLinkComponent implements OnInit {
+export class AlarmLinkComponent implements OnChanges {
 
-  @Input() report: any;
+  @Input() key: any;
   alarm$: Observable<Alarm> | Observable<{}> | null;
 
   constructor(private alarmService: AlarmService) { }
 
-  ngOnInit() {
-    this.alarm$ = this.alarmService.getAlarm(this.report.alarmId);
+  ngOnChanges() {
+    this.alarm$ = this.alarmService.getAlarm(this.key);
   }
 }

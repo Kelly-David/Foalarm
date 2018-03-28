@@ -13,7 +13,7 @@
     <tr *ngFor="let report of reports$ | async " [ngClass]="(!(report.status == 'complete') ? 'border-alert' : '')">
       <td>
         <small>Alarm</small>
-        <h6><app-alarm-link [report]="report"></app-alarm-link></h6>
+        <h6><app-alarm-link [key]="report.alarmId"></app-alarm-link></h6>
       </td>
       <td>
       <td>

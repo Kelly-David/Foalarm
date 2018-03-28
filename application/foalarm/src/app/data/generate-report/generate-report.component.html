@@ -1,26 +1,25 @@
 <app-alarm-select parent="d" (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-icon" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="!alarmKey">
-    <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+
+<button type="button" class="btn btn-icon" [disabled]="!alarmKey" (click)="openModal(template)">
+  <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
 </button>
-<!-- Modal -->
-<div #confirmModal class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5>Generate Activity Report</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <small>
-              Generate a CSV file of the previous 5 days of activity data. The file will be available to download after it has processed.
-          </small>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" (click)="requestReport()">Continue</button>
-        </div>
-      </div>
-    </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Data Report</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <div class="modal-body">
+    <p>
+      Generate a 5 day activity data report for  
+      <strong>
+        <app-alarm-link *ngIf="alarmKey" [key]="alarmKey"></app-alarm-link>
+      </strong>.
+      The file will be available to download after it has processed.
+    </p>
+    <button type="button" class="btn btn-primary btn-block" (click)="requestReport()">Continue</button>
+    <button type="button" class="btn btn-danger btn-block" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>

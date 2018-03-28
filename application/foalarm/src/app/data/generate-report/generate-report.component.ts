@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { ReportService } from '../report.service';
+import { Alarm } from '../../alarm';
+import { AlarmService } from '../../alarm/alarm.service';
 
 @Component({
   selector: 'app-generate-report',
@@ -13,10 +17,14 @@ export class GenerateReportComponent implements OnInit {
 
   @ViewChild('confirmModal') confirmModal: ElementRef;
   alarmKey: string;
+  modalRef: BsModalRef;
+  alarm$: Observable<Alarm> | Observable<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private reportService: ReportService
+    private alarmService: AlarmService,
+    private reportService: ReportService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -34,5 +42,15 @@ export class GenerateReportComponent implements OnInit {
 
   receiveSelectedOption($event) {
     this.alarmKey = $event;
+    this.getAlarm(this.alarmKey);
   }
+
+  private getAlarm(key: any) {
+    this.alarmService.getAlarm(key);
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: ''});
+  }
+
 }
