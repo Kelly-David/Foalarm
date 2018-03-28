@@ -35,7 +35,8 @@ export class HorseService {
     // Define the Horse variable
     this.horses$ = this.db.col$('horses', ref => ref
                           .where('deleted', '==', false)
-                          .where('ownerUID', '==', this.authService.uString));
+                          .where('ownerUID', '==', this.authService.uString)
+                          .orderBy('displayName'));
 
     this.activeHorses$ = this.db.col$('horses', ref => ref
                                 .where('state', '==', true)
