@@ -6,9 +6,9 @@ export interface Horse {
     wearable?: string;
     camera?: string;
     owner?: string;
-    color?: string;
     state?: Boolean;
     alert?: Boolean;
     alarmId?: string;
     ownerUID?: string;
+    public?: boolean;
 }
