@@ -55,7 +55,7 @@ import { AlarmLinkComponent } from './data/alarm-link/alarm-link.component';
 import { HorseLinkComponent } from './data/horse-link/horse-link.component';
 import { AlarmIdListComponent } from './alarm/alarm-id-list/alarm-id-list.component';
 import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-modal.component';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { AlarmEditFormComponent } from './alarm/alarm-edit-form/alarm-edit-form.component';
 import { HorseEditFormComponent } from './horse/horse-edit-form/horse-edit-form.component';
 import { ModalComponent } from './modal/modal.component';
@@ -81,7 +81,8 @@ import { ModalComponent } from './modal/modal.component';
     CameraListComponent,
     CameraViewComponent,
     FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
-    ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent, AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent,
+    ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
+    AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +97,7 @@ import { ModalComponent } from './modal/modal.component';
     AngularFireAuthModule, CoreModule, AppRoutingModule, // imports firebase/auth, only needed for auth features
     SelectModule,
     NgxChartsModule,
-    ModalModule.forRoot(),
+    ModalModule.forRoot(), CollapseModule.forRoot(),
   ],
   providers: [
     AuthService,

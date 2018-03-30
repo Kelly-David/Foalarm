@@ -77,13 +77,29 @@
             <div *ngIf="loaded && loading" class="alert alert-info">
               Image uploaded successfully
             </div>
+
+            <div class="form-inline justify-content-center">
+              <div class="input-group">
+                <small class="inline-label" (click)="isCollapsed = !isCollapsed">Share</small>
+                <div class="form-check">
+                  <input [(ngModel)]="isPublic" [ngModelOptions]="{standalone: true}" (change)="togglePublic()" type="checkbox" name="onoffswitch"
+                    class="onoffswitch-checkbox" id="myonoffswitch">
+                </div>
+              </div>
+            </div>
+            <div [collapse]="!isCollapsed">
+                <p class="form-info text-center">
+                    The horse's name, due date and camera link is made public to all registered Foalarm users. All foaling alerts
+                    will be viewable by any user reducing the likelihood of a missed alert and foaling.
+                </p>
+            </div>
           </div>
         </div>
 
-        <button *ngIf="isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid || (loaded===false)" >
+        <button *ngIf="isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid || (loaded===false)">
           Save
         </button>
-        <button *ngIf="!isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid" >
+        <button *ngIf="!isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid">
           Update
         </button>
         <button *ngIf="!isNewHorse" type="button" class="btn btn-danger btn-block" (click)="delete(horse)">

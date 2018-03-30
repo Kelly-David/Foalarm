@@ -34,6 +34,7 @@ export class HorseEditFormComponent implements OnChanges {
   public alertString: string;
   public loading = false as Boolean;
   public loaded = false as Boolean; // image is required
+  public isPublic = false as Boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +46,7 @@ export class HorseEditFormComponent implements OnChanges {
     private sanitizer: DomSanitizer) { }
     public edit = false as boolean;
     public editNumber = false as boolean;
+    public isCollapsed: boolean;
 
   ngOnChanges() {
     this.setTitle.emit('Horse | Edit');
@@ -102,7 +104,7 @@ export class HorseEditFormComponent implements OnChanges {
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : '' ,
       state: this.horseObject.alarmId ? true : false,
       ownerUID: user.uid,
-      public: false
+      isPublic: false
     })
     .then(_ => this.closeParent.emit('close'));
   }
@@ -115,7 +117,8 @@ export class HorseEditFormComponent implements OnChanges {
       camera: this.camera.value ? this.camera.value : '',
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       photoURL: this.horseObject.photoURL ? this.horseObject.photoURL : horse.photoURL,
-      state: this.horseObject.alarmId ? true : horse.state
+      state: this.horseObject.alarmId ? true : horse.state,
+      isPublic: this.isPublic
     }, currentAlarmId)
     .then(_ => this.closeParent.emit('close'));
   }
@@ -151,6 +154,14 @@ export class HorseEditFormComponent implements OnChanges {
   getStyle(imageUrl) {
     const style = `background-image: url(${imageUrl}) !important; background-size: cover; background-position: center`;
     return this.sanitizer.bypassSecurityTrustStyle(style);
+  }
+
+  public togglePublic() {
+    if (this.isPublic) {
+      console.log('Public');
+    } else if (!this.isPublic) {
+      console.log('Not Public');
+    }
   }
 
 }
