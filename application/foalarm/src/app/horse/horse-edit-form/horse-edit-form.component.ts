@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertHandlerService } from '../../alert-handler.service';
 import { FirestoreService } from '../../firestore.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HorseObj } from '../../horse-obj';
 
 @Component({
   selector: 'app-horse-edit-form',
@@ -26,14 +27,13 @@ export class HorseEditFormComponent implements OnChanges {
   @Output() closeParent = new EventEmitter<string>();
 
   horseForm: FormGroup;
-
   public horseObject = {} as Horse;
   isNewHorse: boolean;
   horseKey: string;
   horse$: Observable<Horse> | Observable<any>;
   public alertString: string;
   public loading = false as Boolean;
-  public loaded = true as Boolean;
+  public loaded = false as Boolean; // image is required
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,6 +53,16 @@ export class HorseEditFormComponent implements OnChanges {
     this.isNewHorse = this.horseKey === 'new';
     // Retrieve the horse instance OR create a new object observable
     !this.isNewHorse ? this.getHorse() : this.horse$ = Observable.of({}) as Observable<Horse>;
+    // this.horse$.map((user: Array<any>) => {
+    //   const result: Array<HorseObj> = [];
+    //   if (user) {
+    //     user.forEach((erg) => {
+    //       result.push(new HorseObj(erg.displayName, erg.id, erg.photoURL, erg.due, erg.pictURL, erg.city ));
+    //     });
+    //   }
+    //   return result; // <<<=== missing return
+    // })
+    // .subscribe(user => this.horse = user);
     if (this.isNewHorse) {
       this.setTitle.emit('Horse | New');
       this.edit = this.editNumber = true;
@@ -91,7 +101,8 @@ export class HorseEditFormComponent implements OnChanges {
       photoURL: this.horseObject.photoURL,
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : '' ,
       state: this.horseObject.alarmId ? true : false,
-      ownerUID: user.uid
+      ownerUID: user.uid,
+      public: false
     })
     .then(_ => this.closeParent.emit('close'));
   }
@@ -104,7 +115,7 @@ export class HorseEditFormComponent implements OnChanges {
       camera: this.camera.value ? this.camera.value : '',
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       photoURL: this.horseObject.photoURL ? this.horseObject.photoURL : horse.photoURL,
-      state: this.horseObject.alarmId ? true : horse.state,
+      state: this.horseObject.alarmId ? true : horse.state
     }, currentAlarmId)
     .then(_ => this.closeParent.emit('close'));
   }

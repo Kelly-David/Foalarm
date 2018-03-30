@@ -80,9 +80,11 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid || (loaded===false)">
-          <ng-container *ngIf="isNewHorse">Save</ng-container>
-          <ng-container *ngIf="!isNewHorse">Update</ng-container>
+        <button *ngIf="isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid || (loaded===false)" >
+          Save
+        </button>
+        <button *ngIf="!isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid" >
+          Update
         </button>
         <button *ngIf="!isNewHorse" type="button" class="btn btn-danger btn-block" (click)="delete(horse)">
           Delete
