@@ -22,3 +22,11 @@
     padding-top: 1rem;
     font-size: .7rem;
 }
+
+.form-inline small {
+    text-decoration: underline;
+}
+
+.form-inline small:hover {
+    cursor: pointer;
+}
