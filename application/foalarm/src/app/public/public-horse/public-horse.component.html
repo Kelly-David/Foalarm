@@ -14,7 +14,9 @@
         <small>Due Date</small>
         <span class="inline-small-text"> {{horse.dueDate | date}}</span>
         <small>Owner</small>
-        <span class="inline-small-text"> {{horse.ownerUID}}</span>
+        <span class="inline-small-text">
+          <app-horse-owner [userKey]="horse.ownerUID"></app-horse-owner>
+        </span>
       </div>
     </div>
   </div>
