@@ -1,3 +1,29 @@
-<p>
-  public-horse-list works!
-</p>
+<div class="card primaryCard">
+  <div class="card-header">
+    Public Horses
+    <span class="pull-right">
+      <a class="btn btn-social-icon" (click)="toggleCollapse()">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true" *ngIf="!collapse"></i>
+        <i class="fa fa-caret-square-o-up" aria-hidden="true" *ngIf="collapse"></i>
+      </a>
+    </span>
+  </div>
+</div>
+
+<ng-container *ngIf="!collapse">
+  <div *ngFor="let horse of horses$ | async">
+    <div class="card primaryCard">
+      <div class="card-body">
+        <small>Horse</small>
+        <span class="pull-right">
+          <a class="btn btn-social-icon">
+            <span [ngClass]="horse.state ? 'active' : 'inactive'">
+              <i class="fa fa-circle" aria-hidden="true"></i>
+            </span>
+          </a>
+        </span>
+        <h6 class="card-title">{{horse.displayName}}</h6>
+      </div>
+    </div>
+  </div>
+</ng-container>

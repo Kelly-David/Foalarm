@@ -11,6 +11,7 @@ import { Horse } from '../../horse';
 export class PublicHorseListComponent implements OnInit {
 
   public horses$: Observable<Horse[]>;
+  public collapse = false as boolean;
 
   constructor(
     private publicService: PublicService
@@ -18,6 +19,10 @@ export class PublicHorseListComponent implements OnInit {
 
   ngOnInit() {
     this.horses$ = this.publicService.publicHorses;
+  }
+
+  public toggleCollapse() {
+    this.collapse = !this.collapse;
   }
 
 }

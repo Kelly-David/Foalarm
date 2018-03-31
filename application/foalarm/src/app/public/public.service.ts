@@ -18,7 +18,7 @@ export class PublicService {
   get publicHorses() {
     return this.db.col$('horses', ref => ref
                     .where('deleted', '==', false)
-                    .where('public', '==', true)
+                    .where('isPublic', '==', true)
                     .orderBy('displayName'));
   }
 
