@@ -12,6 +12,7 @@ export class PublicHorseListComponent implements OnInit {
 
   public horses$: Observable<Horse[]>;
   public collapse = false as boolean;
+  public isCollapsed: boolean;
 
   constructor(
     private publicService: PublicService

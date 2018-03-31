@@ -12,18 +12,6 @@
 
 <ng-container *ngIf="!collapse">
   <div *ngFor="let horse of horses$ | async">
-    <div class="card primaryCard">
-      <div class="card-body">
-        <small>Horse</small>
-        <span class="pull-right">
-          <a class="btn btn-social-icon">
-            <span [ngClass]="horse.state ? 'active' : 'inactive'">
-              <i class="fa fa-circle" aria-hidden="true"></i>
-            </span>
-          </a>
-        </span>
-        <h6 class="card-title">{{horse.displayName}}</h6>
-      </div>
-    </div>
+    <app-public-horse [horseKey]="horse.id"></app-public-horse>
   </div>
 </ng-container>

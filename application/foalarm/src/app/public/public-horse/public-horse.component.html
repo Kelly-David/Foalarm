@@ -1,0 +1,21 @@
+<ng-container>
+  <div class="card primaryCard" *ngIf="horse$ | async as horse">
+    <div class="card-body" (click)="isCollapsed = !isCollapsed">
+      <small>Horse</small>
+      <span class="pull-right">
+        <a class="btn btn-social-icon">
+          <span [ngClass]="horse.state ? 'active' : 'inactive'">
+            <i class="fa fa-circle" aria-hidden="true"></i>
+          </span>
+        </a>
+      </span>
+      <h6 class="card-title">{{horse.displayName}}</h6>
+      <div [collapse]="!isCollapsed">
+        <small>Due Date</small>
+        <span class="inline-small-text"> {{horse.dueDate | date}}</span>
+        <small>Owner</small>
+        <span class="inline-small-text"> {{horse.ownerUID}}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
