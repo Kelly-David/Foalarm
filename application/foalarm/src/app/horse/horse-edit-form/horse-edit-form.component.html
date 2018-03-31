@@ -82,8 +82,9 @@
               <div class="input-group">
                 <small class="inline-label" (click)="isCollapsed = !isCollapsed">Share</small>
                 <div class="form-check">
-                  <input [(ngModel)]="isPublic" [ngModelOptions]="{standalone: true}" (change)="togglePublic()" type="checkbox" name="onoffswitch"
+                  <input [(ngModel)]="horse.isPublic" formControlName="check" (change)="togglePublic(horse.isPublic)" type="checkbox" name="onoffswitch"
                     class="onoffswitch-checkbox" id="myonoffswitch">
+                    <!-- [ngModelOptions]="{standalone: true}" -->
                 </div>
               </div>
             </div>

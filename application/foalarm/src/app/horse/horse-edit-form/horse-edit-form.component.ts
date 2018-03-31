@@ -35,6 +35,7 @@ export class HorseEditFormComponent implements OnChanges {
   public loading = false as Boolean;
   public loaded = false as Boolean; // image is required
   public isPublic = false as Boolean;
+  public isCollapsed: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,7 +47,6 @@ export class HorseEditFormComponent implements OnChanges {
     private sanitizer: DomSanitizer) { }
     public edit = false as boolean;
     public editNumber = false as boolean;
-    public isCollapsed: boolean;
 
   ngOnChanges() {
     this.setTitle.emit('Horse | Edit');
@@ -79,7 +79,8 @@ export class HorseEditFormComponent implements OnChanges {
       'displayName': ['', [Validators.required]],
       'dueDate': ['', [Validators.required]],
       'camera': ['', []],
-      'photoURL': ['', []]
+      'photoURL': ['', []],
+      'check': ['', []]
     });
   }
 
@@ -88,6 +89,7 @@ export class HorseEditFormComponent implements OnChanges {
   get dueDate() { return this.horseForm.get('dueDate'); }
   get camera() { return this.horseForm.get('camera'); }
   get photoURL() { return this.horseForm.get('photoURL'); }
+  get check() { return this.horseForm.get('check'); }
 
   // Returns an observable of type Horse
   getHorse() {
@@ -118,7 +120,7 @@ export class HorseEditFormComponent implements OnChanges {
       alarmId: this.horseObject.alarmId ? this.horseObject.alarmId : horse.alarmId,
       photoURL: this.horseObject.photoURL ? this.horseObject.photoURL : horse.photoURL,
       state: this.horseObject.alarmId ? true : horse.state,
-      isPublic: this.isPublic
+      isPublic: this.check.value
     }, currentAlarmId)
     .then(_ => this.closeParent.emit('close'));
   }
@@ -156,11 +158,14 @@ export class HorseEditFormComponent implements OnChanges {
     return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 
-  public togglePublic() {
-    if (this.isPublic) {
+  public togglePublic(val: boolean) {
+    console.log('Form: ', this.check.value);
+    if (val) {
       console.log('Public');
-    } else if (!this.isPublic) {
+      this.isPublic = true;
+    } else if (!val) {
       console.log('Not Public');
+      this.isPublic = false;
     }
   }
 
