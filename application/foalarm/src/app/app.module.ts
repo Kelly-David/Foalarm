@@ -59,6 +59,8 @@ import { ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { AlarmEditFormComponent } from './alarm/alarm-edit-form/alarm-edit-form.component';
 import { HorseEditFormComponent } from './horse/horse-edit-form/horse-edit-form.component';
 import { ModalComponent } from './modal/modal.component';
+import { PublicHorseListComponent } from './public/public-horse-list/public-horse-list.component';
+import { PublicService } from './public/public.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,7 @@ import { ModalComponent } from './modal/modal.component';
     CameraViewComponent,
     FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
     ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
-    AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent,
+    AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent, PublicHorseListComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +113,7 @@ import { ModalComponent } from './modal/modal.component';
     DataService,
     SlicePipe,
     ReportService,
+    PublicService,
   ],
   entryComponents: [
     AlarmEditModalComponent,
