@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ReportService } from '../report.service';
 import { Alarm } from '../../alarm';
 import { AlarmService } from '../../alarm/alarm.service';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-generate-report',
@@ -24,7 +25,8 @@ export class GenerateReportComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private alarmService: AlarmService,
     private reportService: ReportService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class GenerateReportComponent implements OnInit {
   // Creates new report, triggering Cloud Function
   requestReport() {
     const data = {
+      ownerUID: this.authService.uString,
       alarmId: this.alarmKey,
       status: 'processing'
     };
