@@ -36,7 +36,9 @@ const routes: Routes = [
     { path: 'camera-list', component: CameraListComponent, canActivate: [AuthGuard] },
     { path: 'data', component: DataComponent, canActivate: [AuthGuard]},
     { path: 'data/:id', component: DataGraphComponent, canActivate: [AuthGuard] },
-    { path: 'user-list/:all', component: UserListComponent, canActivate: [AuthGuard] }
+    { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
+    { path: 'user-list/:all', component: UserListComponent, canActivate: [AuthGuard] },
+    { path: 'user-list/:friends', component: UserListComponent, canActivate: [AuthGuard] }
   ],
   canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'profile'}, // Fallback route (TODO page not found component)
