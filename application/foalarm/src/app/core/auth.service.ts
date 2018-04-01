@@ -52,13 +52,13 @@ export class AuthService {
 
   // Create a user using email and password
   register(email: string, password: string) {
-    return this.alertError('Registration is disabled by admin');
-    // this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-    //   .then(user => {
-    //     // Create a user in Firestore
-    //     return this.setUserData(user);
-    //   })
-    //   .catch(error => this.alertError(error));
+    // return this.alertError('Registration is disabled by admin');
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        // Create a user in Firestore
+        return this.setUserData(user);
+      })
+      .catch(error => this.alertError(error));
   }
 
   // Returns a reference to the user data
