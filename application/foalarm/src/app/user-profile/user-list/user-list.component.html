@@ -11,7 +11,7 @@
 
   <div class="row">
       <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
-        <app-user [uid]="user.uid" [user]="uString"></app-user>
+        <app-user *ngIf="user.uid !== uString" [uid]="user.uid" [user]="uString"></app-user>
         <!-- card element end -->
       </div>
     </div>
