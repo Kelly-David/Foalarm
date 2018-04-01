@@ -21,8 +21,9 @@ export class UserComponent implements OnChanges {
     this.user$ = this.userService.getUser(this.uid);
   }
 
-  addFriend(uid: String) {
-    return console.log('Added friend', uid, ' By', this.user);
+  addFriend(uid: string) {
+    console.log('Added friend', uid, ' By', this.user);
+    return this.userService.addFriend(this.user, {uid: uid}, uid);
   }
 
 }
