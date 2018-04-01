@@ -14,13 +14,18 @@ export class UserService {
     this.users$ = this.db.col$('users');
   }
 
-  getUser(key) {
+  public getUser(key) {
     return this.db.doc$(`users/${key}`);
   }
 
   public users(uid?: boolean) {
     console.log(uid);
     return !uid ? this.db.col$('users') : this.db.col$(`users/${uid}/friends`);
+  }
+
+  public addFriend(user: String, data: any) {
+    return this.db.set(`users/${user}/friends`, data)
+    .catch(error => console.log(error));
   }
 
 }

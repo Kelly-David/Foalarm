@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 export class UserComponent implements OnChanges {
 
   @Input() uid: any;
+  @Input() user: any;
   user$: Observable<{}> | Observable<any>;
 
   constructor(
@@ -18,6 +19,10 @@ export class UserComponent implements OnChanges {
 
   ngOnChanges() {
     this.user$ = this.userService.getUser(this.uid);
+  }
+
+  addFriend(uid: String) {
+    return console.log('Added friend', uid, ' By', this.user);
   }
 
 }
