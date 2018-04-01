@@ -11,14 +11,7 @@
 
   <div class="row">
       <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
-        <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0">
-          <div class="card-body">
-            <small>User</small>
-            <h6 class="card-title">{{user.fullName}}</h6>
-          </div>
-          <!-- card body end -->
-          <!-- ng-container end -->
-        </div>
+        <app-user [uid]="user.uid"></app-user>
         <!-- card element end -->
       </div>
     </div>
