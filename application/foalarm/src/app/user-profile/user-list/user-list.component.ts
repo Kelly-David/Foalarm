@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../user.service';
 import { FilterPipe, FilterDatePipe, FilterUserPipe } from '../../pipes/alert.pipe';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -11,14 +12,19 @@ import { FilterPipe, FilterDatePipe, FilterUserPipe } from '../../pipes/alert.pi
 export class UserListComponent implements OnInit {
 
   public users$: Observable<{}[]> | Observable<any>;
-  term: any;
+  public term: any;
+  private param;
+  public title: String;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.users$ = this.userService.allUsers;
+    this.param = this.route.snapshot.params['id'];
+    this.title = this.param ? 'Friends' : 'All';
+    this.users$ = (this.param === undefined) ? this.userService.users() : this.userService.users(this.param);
   }
 
 }
