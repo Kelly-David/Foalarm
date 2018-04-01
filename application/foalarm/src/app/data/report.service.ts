@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreService } from '../firestore.service';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class ReportService {
@@ -9,11 +10,14 @@ export class ReportService {
   private $reports: Observable<any[]> | Observable<null> | null;
   private $allReports: Observable<any[]> | Observable<null> | null;
 
-  constructor(private fs: AngularFirestore,
-  private db: FirestoreService) {
+  constructor(
+    private fs: AngularFirestore,
+    private db: FirestoreService,
+    private authService: AuthService) {
 
     // Query the reports collection
     this.$allReports = this.db.col$('reports', ref => ref.where('deleted', '==', false)
+                                                          .where('ownerUID', '==', this.authService.uString)
                                                           .limit(5)
                                                           .orderBy('updatedAt', 'desc'));
   }
