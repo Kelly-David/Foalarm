@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { UserService } from '../user.service';
+import { FilterPipe, FilterDatePipe, FilterUserPipe } from '../../pipes/alert.pipe';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  constructor() { }
+  public users$: Observable<{}[]> | Observable<any>;
+  term: any;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.users$ = this.userService.allUsers;
   }
 
 }

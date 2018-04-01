@@ -23,6 +23,17 @@ export class FilterPipe implements PipeTransform {
 }
 
 @Pipe({
+  name: 'filterUser',
+  pure: false
+})
+export class FilterUserPipe implements PipeTransform {
+
+  transform(items: any[], term ): any {
+    return term ? items.filter(item => item.fullName.indexOf(term) !== -1) : items; // Else return all items in collection
+  }
+}
+
+@Pipe({
   name: 'filterDate',
   pure: false
 })

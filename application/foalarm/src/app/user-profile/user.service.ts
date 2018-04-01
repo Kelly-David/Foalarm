@@ -13,4 +13,8 @@ export class UserService {
     return this.db.doc$(`users/${key}`);
   }
 
+  get allUsers() {
+    return this.db.col$('users');
+  }
+
 }

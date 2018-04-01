@@ -40,7 +40,7 @@ import { SlicePipe } from '@angular/common';
 import { AlertEditComponent } from './alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from './cams/camera-list/camera-list.component';
 import { CameraViewComponent } from './cams/camera-view/camera-view.component';
-import { FilterPipe, FilterDatePipe, AlertPipe } from './pipes/alert.pipe';
+import { FilterPipe, FilterDatePipe, AlertPipe, FilterUserPipe } from './pipes/alert.pipe';
 import { MessagingService } from './messaging.service';
 import { DataGraphComponent } from './data/data-graph/data-graph.component';
 import { DataService } from './data/data.service';
@@ -86,9 +86,10 @@ import { UserListComponent } from './user-profile/user-list/user-list.component'
     AlertEditComponent,
     CameraListComponent,
     CameraViewComponent,
-    FilterPipe, FilterDatePipe, AlertPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
+    FilterPipe, FilterDatePipe, AlertPipe, FilterUserPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
     ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
-    AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent, PublicHorseListComponent, PublicHorseComponent, HorseOwnerComponent, UserListComponent,
+    AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent, PublicHorseListComponent,
+    PublicHorseComponent, HorseOwnerComponent, UserListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+input {
+    color: dimgray;
+    font-size: .8rem;
+    width: 100px
+}
+
+input::placeholder {
+    color: rgb(241, 239, 239)
+}
