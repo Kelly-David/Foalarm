@@ -125,6 +125,7 @@ import { FriendComponent } from './user-profile/friend/friend.component';
   ],
   entryComponents: [
     AlarmEditModalComponent,
+    ModalComponent
   ],
   bootstrap: [AppComponent]
 })
