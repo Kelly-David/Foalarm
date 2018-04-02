@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   private param: any;
   public title: string;
   public uString: string;
-  public userListView = true as boolean;
+  public userListView = false as boolean;
 
   constructor(
     private userService: UserService,

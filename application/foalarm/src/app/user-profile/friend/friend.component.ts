@@ -29,6 +29,7 @@ export class FriendComponent implements OnChanges {
     this.bsModalRef = this.modalService.show(ModalComponent, {class: 'modal-dialog'});
     this.bsModalRef.content.parent = 'user';
     this.bsModalRef.content.key = uid;
+    this.bsModalRef.content.title = 'User';
   }
 
 }
