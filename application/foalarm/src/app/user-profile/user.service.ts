@@ -20,7 +20,7 @@ export class UserService {
     return this.db.doc$(`users/${key}`);
   }
 
-  public users(uid?: boolean) {
+  public users(uid?: string) {
     console.log(uid);
     return !uid ? this.db.col$('users') : this.db.col$(`users/${uid}/friends`);
   }

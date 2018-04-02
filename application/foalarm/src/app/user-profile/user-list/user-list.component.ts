@@ -13,10 +13,12 @@ import { AuthService } from '../../core/auth.service';
 export class UserListComponent implements OnInit {
 
   public users$: Observable<{}[]> | Observable<any>;
+  public friends$: Observable<{}[]> | Observable<any>;
   public term: any;
-  private param;
-  public title: String;
-  public uString;
+  private param: any;
+  public title: string;
+  public uString: string;
+  public userListView = true as boolean;
 
   constructor(
     private userService: UserService,
@@ -27,8 +29,16 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.uString = this.auth.uString;
     this.param = this.route.snapshot.params['id'];
-    this.title = this.param ? 'Friends' : 'All';
-    this.users$ = (this.param === undefined) ? this.userService.users() : this.userService.users(this.param);
+    // this.title = this.param ? 'Friends' : 'All Users';
+    this.title = this.userListView ? 'All Users' : 'Friends';
+    // this.users$ = (this.param === undefined) ? this.userService.users() : this.userService.users(this.param);
+    this.users$ = this.userService.users();
+    this.friends$ = this.userService.users(this.param);
+  }
+
+  public toggleUserList() {
+    this.userListView = !this.userListView;
+    this.title = this.userListView ? 'All Users' : 'Friends';
   }
 
 }

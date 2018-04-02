@@ -9,8 +9,8 @@ import { UserService } from '../user.service';
 })
 export class UserComponent implements OnChanges {
 
-  @Input() uid: any;
-  @Input() user: any;
+  @Input() uid: any; // The UID of the user
+  @Input() user: any; // The UID of auth user
   user$: Observable<{}> | Observable<any>;
 
   constructor(
