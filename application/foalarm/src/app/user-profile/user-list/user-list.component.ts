@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../user.service';
 import { FilterPipe, FilterDatePipe, FilterUserPipe } from '../../pipes/alert.pipe';

@@ -7,3 +7,8 @@ input {
 input::placeholder {
     color: rgb(241, 239, 239)
 }
+
+.time-select:hover {
+    background-color: whitesmoke;
+    cursor: pointer !important
+}

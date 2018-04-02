@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-friend',
   templateUrl: './friend.component.html',
   styleUrls: ['./friend.component.css']
 })
-export class FriendComponent implements OnInit {
+export class FriendComponent implements OnChanges {
 
-  constructor() { }
+  @Input() uid: any;
+  public friend$: Observable<{}> | Observable<any>;
 
-  ngOnInit() {
+  constructor(
+    private user: UserService
+  ) { }
+
+  ngOnChanges() {
+    this.friend$ = this.user.getUser(this.uid);
   }
 
 }

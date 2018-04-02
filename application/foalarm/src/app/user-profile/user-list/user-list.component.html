@@ -1,13 +1,8 @@
 <div class="card primaryCard">
   <div class="card-header">
-    Users | 
-    <button (click)="toggleUserList()" class="btn">
-
-      <ng-container *ngIf="userListView">Show Friends</ng-container>
-      <ng-container *ngIf="!userListView">Show All Users</ng-container>
-    
-    </button>
-    <span class="pull-right">
+    <ng-container *ngIf="userListView">All Users</ng-container>
+    <ng-container *ngIf="!userListView">Friends</ng-container>
+    <span *ngIf="userListView" class="pull-right">
       <small>Filter</small>
       <input name="term" [(ngModel)]="term" style="height: 1.2rem !important" placeholder="Find a user" autocomplete="off">
     </span>
@@ -15,9 +10,28 @@
 </div>
 <!-- heading card element end -->
 
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="userListView = true">
+        <div class="card-body text-center">
+          <small>Show All Users</small>
+        </div>
+        <!-- card body end -->
+      </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="userListView = false">
+          <div class="card-body text-center">
+            <small>Show Friends</small>
+          </div>
+          <!-- card body end -->
+        </div>
+      </div>
+  </div>
+
 <ng-container *ngIf="userListView">
   <div class="row">
-    <div class="col-md-3" *ngFor="let user of users$ | async | filterUser : term">
+    <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
       <app-user *ngIf="user.uid !== uString" [uid]="user.uid" [user]="uString"></app-user>
       <!-- card element end -->
     </div>
@@ -26,8 +40,8 @@
 
 <ng-container *ngIf="!userListView">
   <div class="row">
-    <div class="col-md-3" *ngFor="let friend of friends$ | async | filterUser : term">
-      <app-user *ngIf="friend.uid !== uString" [uid]="friend.uid" [user]="uString"></app-user>
+    <div class="col-md-4" *ngFor="let friend of friends$ | async | filterUser : term">
+      <app-friend *ngIf="friend.uid !== uString" [uid]="friend.uid"></app-friend>
       <!-- card element end -->
     </div>
   </div>
