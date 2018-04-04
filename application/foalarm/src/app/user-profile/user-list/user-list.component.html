@@ -35,7 +35,7 @@
 <ng-container *ngIf="userListView">
   <div class="row">
     <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
-      <app-user *ngIf="user.uid !== uString" [uid]="user.uid" [user]="uString"></app-user>
+      <app-public-user *ngIf="user.uid !== uString" [uid]="user.uid" [user]="uString"></app-public-user>
       <!-- card element end -->
     </div>
   </div>
