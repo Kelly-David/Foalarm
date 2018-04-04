@@ -16,17 +16,21 @@ export class UserService {
     this.users$ = this.db.col$('users');
   }
 
-  public getUser(key) {
+  public getUser(key: string) {
     return this.db.doc$(`users/${key}`);
   }
 
-  public getFriend(key) {
+  public getFriend(key: string) {
     return this.db.doc$(`users/${this.auth.uString}/friends/${key}`);
+  }
+
+  public removeUserFromFriendList(key: string) {
+    return this.db.delete(`users/${this.auth.uString}/friends`, key);
   }
 
   public users(uid?: string) {
     console.log(uid);
-    return !uid ? this.db.col$('users') : this.db.col$(`users/${uid}/friends`);
+    return !uid ? this.db.col$('users') : this.db.col$(`users/${uid}/friends`, ref => ref.where('deleted', '==', false));
   }
 
   public addFriend(user: String, data: any, key?: string) {

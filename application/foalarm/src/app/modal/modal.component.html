@@ -5,5 +5,5 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-user [uid]="key"></app-user>
+    <app-user [uid]="key" (closeParent)="bsModalRef.hide()"></app-user>
   </div>
