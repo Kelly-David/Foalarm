@@ -11,23 +11,26 @@
 <!-- heading card element end -->
 
 <div class="row">
-    <div class="col-sm-6">
-      <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="userListView = true">
-        <div class="card-body text-center">
-          <small>Show All Users</small>
-        </div>
-        <!-- card body end -->
+
+  <div class="col-sm-6">
+    <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="userListView = false">
+      <div class="card-body text-center">
+        <small>Show Friends</small>
       </div>
+      <!-- card body end -->
     </div>
-    <div class="col-sm-6">
-        <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="userListView = false">
-          <div class="card-body text-center">
-            <small>Show Friends</small>
-          </div>
-          <!-- card body end -->
-        </div>
-      </div>
   </div>
+
+  <div class="col-sm-6">
+    <div class="card primaryCard time-select" style="padding-top: 0 !important; margin-top: 0" (click)="userListView = true">
+      <div class="card-body text-center">
+        <small>Show All Users</small>
+      </div>
+      <!-- card body end -->
+    </div>
+  </div>
+
+</div>
 
 <ng-container *ngIf="userListView">
   <div class="row">
