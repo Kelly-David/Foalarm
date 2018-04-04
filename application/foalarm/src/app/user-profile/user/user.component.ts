@@ -10,8 +10,8 @@ import { UserService } from '../user.service';
 export class UserComponent implements OnChanges {
 
   @Input() uid: any; // The UID of the user
-  @Input() user: any; // The UID of auth user
   user$: Observable<{}> | Observable<any>;
+  friend$: Observable<{}>;
 
   constructor(
     private userService: UserService
@@ -19,11 +19,7 @@ export class UserComponent implements OnChanges {
 
   ngOnChanges() {
     this.user$ = this.userService.getUser(this.uid);
-  }
-
-  addFriend(uid: string, fullName: string) {
-    console.log('Added friend', uid, ' By', this.user);
-    return this.userService.addFriend(this.user, {uid: uid, fullName: fullName}, uid);
+    this.friend$ = this.userService.getFriend(this.uid);
   }
 
 }

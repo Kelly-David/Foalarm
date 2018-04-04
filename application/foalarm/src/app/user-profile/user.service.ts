@@ -20,6 +20,10 @@ export class UserService {
     return this.db.doc$(`users/${key}`);
   }
 
+  public getFriend(key) {
+    return this.db.doc$(`users/${this.auth.uString}/friends/${key}`);
+  }
+
   public users(uid?: string) {
     console.log(uid);
     return !uid ? this.db.col$('users') : this.db.col$(`users/${uid}/friends`);

@@ -1,19 +1,9 @@
 <ng-container *ngIf="user$ | async as user">
-  <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0">
-    <div class="card-body">
-      <small>User</small>
-      <span class="pull-right">
-        <a class="btn btn-social-icon" (click)="addFriend(user.uid, user.fullName)" 
-        tooltip="Add to friends list"
-          placement="bottom">
-          <span class="inactive">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-          </span>
-        </a>
-      </span>
-      <h6 class="card-title">{{user.fullName}}</h6>
-    </div>
-    <!-- card body end -->
+  <ng-container *ngIf="friend$ | async as friend">
+    <h6 class="card-title">{{user.fullName}}</h6>
+    <small>Friends Since</small>
+    <span class="inline-small-text"> {{friend.createdAt | date}}</span>
     <!-- ng-container end -->
-  </div>
+  </ng-container>
+  <!-- ng-container end -->
 </ng-container>
