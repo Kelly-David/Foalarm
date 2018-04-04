@@ -67,6 +67,7 @@ import { HorseOwnerComponent } from './user-profile/horse-owner/horse-owner.comp
 import { UserListComponent } from './user-profile/user-list/user-list.component';
 import { UserComponent } from './user-profile/user/user.component';
 import { FriendComponent } from './user-profile/friend/friend.component';
+import { PublicUserComponent } from './user-profile/public-user/public-user.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import { FriendComponent } from './user-profile/friend/friend.component';
     FilterPipe, FilterDatePipe, AlertPipe, FilterUserPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
     ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
     AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent, PublicHorseListComponent,
-    PublicHorseComponent, HorseOwnerComponent, UserListComponent, UserComponent, FriendComponent,
+    PublicHorseComponent, HorseOwnerComponent, UserListComponent, UserComponent, FriendComponent, PublicUserComponent,
   ],
   imports: [
     BrowserModule,
