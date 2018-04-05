@@ -38,8 +38,11 @@ export class PublicService {
     });
   }
 
-  friendsHorses() {
-    return null;
+  friendsHorses(key: any) {
+    return this.db.col$(`horses`, ref => ref
+                                        .where('isPublic', '==', true)
+                                        .where('ownerUID', '==', key)
+                                        .where('deleted', '==', false));
   }
 
   friendsHorses2() {

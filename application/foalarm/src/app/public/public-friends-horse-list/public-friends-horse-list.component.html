@@ -1,3 +1,5 @@
-<p>
-  public-friends-horse-list works!
-</p>
+<ng-container *ngFor="let horse of frHorses$ | async">
+
+    <app-public-horse [horseKey]="horse.id"></app-public-horse>
+
+</ng-container>

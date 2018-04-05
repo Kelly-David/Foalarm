@@ -11,7 +11,7 @@
 </div>
 
 <ng-container *ngIf="!collapse">
-  <div *ngFor="let horse of horses$ | async">
-    <app-public-horse [horseKey]="horse.id"></app-public-horse>
+  <div *ngFor="let friend of friends$ | async">
+    <app-public-friends-horse-list [friend]="friend.id"></app-public-friends-horse-list>
   </div>
 </ng-container>

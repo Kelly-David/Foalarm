@@ -33,6 +33,10 @@ export class UserService {
     return !uid ? this.db.col$('users') : this.db.col$(`users/${uid}/friends`, ref => ref.where('deleted', '==', false));
   }
 
+  public friends() {
+    return this.db.col$(`users/${this.auth.uString}/friends`, ref => ref.where('deleted', '==', false));
+  }
+
   public addFriend(user: String, data: any, key?: string) {
     return this.db.set(`users/${user}/friends`, data, key)
     .catch(error => console.log(error));
