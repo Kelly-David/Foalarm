@@ -42,4 +42,15 @@ export class UserService {
     .catch(error => console.log(error));
   }
 
+  /**
+   * Adds a user to user's friendrequests collection
+   * @param user the user to requesting the action
+   * @param data
+   * @param key the UID of the requested friend
+   */
+  public requestFriend(user: String, data: any, key?: string) {
+    return this.db.set(`users/${user}/friendrequests`, data, key)
+      .catch(error => console.log(error));
+  }
+
 }
