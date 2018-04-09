@@ -9,7 +9,6 @@
   </div>
 </div>
 <!-- heading card element end -->
-
 <div class="row">
   <div class="col-md-4" *ngFor="let horse of horses$ | async">
     <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0">
@@ -21,9 +20,11 @@
         </a>
       </div>
       <div class="card-body">
-        <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/alarm-edit', horse.id]">
-          <i class="fa fa-video-camera" aria-hidden="true"></i>
-        </a>
+        <ng-container *ngIf="horse.camera">
+            <a class="btn btn-social-icon pull-right" [routerLink]="['/profile/camera', horse.alarmId]">
+              <i class="fa fa-video-camera" aria-hidden="true"></i>
+            </a>
+        </ng-container>
         <a *ngIf="horse.alarmId!==''" class="btn btn-social-icon pull-right" [routerLink]="['/profile/data/', horse.alarmId]">
           <i class="fa fa-area-chart" aria-hidden="true"></i>
         </a>
