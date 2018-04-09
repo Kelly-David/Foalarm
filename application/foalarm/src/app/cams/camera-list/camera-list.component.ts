@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Horse } from '../../horse';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { forEach } from '@angular/router/src/utils/collection';
   templateUrl: './camera-list.component.html',
   styleUrls: ['./camera-list.component.css']
 })
-export class CameraListComponent implements OnInit {
+export class CameraListComponent implements OnInit, OnDestroy {
 
   public cams$: Observable<any[]> | Observable<any>;
 
@@ -22,6 +22,10 @@ export class CameraListComponent implements OnInit {
   ngOnInit() {
 
     this.getCameras();
+  }
+
+  ngOnDestroy() {
+    console.clear();
   }
 
   getCameras() {

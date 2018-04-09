@@ -1,3 +1,36 @@
-<p>
-  camera-view works!
-</p>
+<div class="card primaryCard">
+    <div class="card-header">
+      Camera
+    </div>
+  </div>
+  <!-- heading card element end -->
+
+<ng-container *ngIf="horse$ | async as horse">
+    <ng-container *ngIf="horse.camera">
+        <div class="col-md-12">
+          <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
+            <div class="card-body">
+                <span class="pull-right">
+                    <a class="btn btn-social-icon" [href]="getSource(horse.camera)">
+                      <span>
+                          <i class="fa fa-external-link" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                    <a class="btn btn-social-icon">
+                        <span [ngClass]="horse.state ? 'active' : 'inactive'">
+                          <i class="fa fa-circle" aria-hidden="true"></i>
+                        </span>
+                      </a>
+                  </span>
+              <small>Foaling Camera</small>
+              <h6 class="card-title">{{horse.displayName}}</h6>
+              <div class="embed-responsive embed-responsive-16by9">
+                  <iframe [src]="getSource(horse.camera)" frameborder="0" encrypted-media allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- card body end -->
+          </div>
+        </div>
+      </ng-container>
+
+</ng-container>

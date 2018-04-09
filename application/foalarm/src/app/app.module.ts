@@ -95,7 +95,8 @@ import { FriendRequestComponent } from './user-profile/friend-request/friend-req
     FilterPipe, FilterDatePipe, AlertPipe, FilterUserPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
     ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
     AlarmEditModalComponent, AlarmEditFormComponent, HorseEditFormComponent, ModalComponent, PublicHorseListComponent,
-    PublicHorseComponent, HorseOwnerComponent, UserListComponent, UserComponent, FriendComponent, PublicUserComponent, PublicFriendsHorseListComponent, FriendRequestListComponent, FriendRequestComponent,
+    PublicHorseComponent, HorseOwnerComponent, UserListComponent, UserComponent, FriendComponent, PublicUserComponent,
+    PublicFriendsHorseListComponent, FriendRequestListComponent, FriendRequestComponent,
   ],
   imports: [
     BrowserModule,

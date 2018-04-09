@@ -17,6 +17,20 @@
         <span class="inline-small-text">
           <app-horse-owner [userKey]="horse.ownerUID"></app-horse-owner>
         </span>
+        <!-- If the horse has an alarmID -->
+        <ng-container *ngIf="horse.alarmId">
+            <small>Activity</small>
+            <button type="button" class="btn btn-primary btn-block" [routerLink]="['/profile/data/', horse.alarmId]">
+                View Activity
+            </button>
+          </ng-container>
+          <!-- If the horse has a camera link -->
+          <ng-container *ngIf="horse.camera">
+              <small>Foaling Camera</small>
+              <button type="button" class="btn btn-primary btn-block" [routerLink]="['/profile/camera/', horse.id]">
+                View Camera Feed
+            </button>
+            </ng-container>
       </div>
     </div>
   </div>
