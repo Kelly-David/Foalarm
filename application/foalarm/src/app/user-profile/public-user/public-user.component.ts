@@ -21,9 +21,14 @@ export class PublicUserComponent implements OnChanges {
     this.user$ = this.userService.getUser(this.uid);
   }
 
+  /**
+   * Request friend, returns promise
+   * @param uid
+   * @param fullName
+   */
   addFriend(uid: string, fullName: string) {
     console.log('Added friend', uid, ' By', this.user);
-    return this.userService.addFriend(this.user, {uid: uid, fullName: fullName}, uid);
+    return this.userService.requestFriend(this.user, {uid: this.uid, fullName: fullName}, this.uid);
   }
 
 }
