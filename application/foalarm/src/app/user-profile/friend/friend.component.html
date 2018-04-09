@@ -1,7 +1,7 @@
 <ng-container *ngIf="friend$ | async as user">
     <div class="card primaryCard clickable" style="padding-top: 0 !important; margin-top: 0" (click)="openClientModal(user.uid)">
         <div class="card-body">
-          <small>User</small>
+          <small>Friend</small>
           <h6 class="card-title">{{user.fullName}}</h6>
         </div>
         <!-- card body end -->

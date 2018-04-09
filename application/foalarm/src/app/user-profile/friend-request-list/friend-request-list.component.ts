@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-friend-request-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendRequestListComponent implements OnInit {
 
-  constructor() { }
+  public requests$: Observable<{}[]> | Observable<any>;
+
+  constructor(
+    private us: UserService
+  ) { }
 
   ngOnInit() {
+    this.requests$ = this.us.requests();
   }
 
 }

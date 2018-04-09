@@ -37,8 +37,14 @@ export class UserService {
     return this.db.col$(`users/${this.auth.uString}/friends`, ref => ref.where('deleted', '==', false));
   }
 
-  public addFriend(user: String, data: any, key?: string) {
-    return this.db.set(`users/${user}/friends`, data, key)
+  public requests() {
+    return this.db.col$(`users/${this.auth.uString}/friendrequests`, ref => ref.where('deleted', '==', false));
+  }
+
+  public addFriend(data: any, key?: string) {
+    return this.db.set(`users/${this.auth.uString}/friends`, data, key)
+    .then(_ =>
+      this.removeUserFromFriendRequestList(key))
     .catch(error => console.log(error));
   }
 
@@ -48,9 +54,13 @@ export class UserService {
    * @param data
    * @param key the UID of the requested friend
    */
-  public requestFriend(user: String, data: any, key?: string) {
+  public requestFriend(user: string, data: any, key?: string) {
     return this.db.set(`users/${user}/friendrequests`, data, key)
       .catch(error => console.log(error));
+  }
+
+  public removeUserFromFriendRequestList(key: string) {
+    return this.db.delete(`users/${this.auth.uString}/friendrequests`, key);
   }
 
 }

@@ -1,3 +1,11 @@
-<p>
-  friend-request-list works!
-</p>
+
+<div class="row">
+  <ng-container *ngFor="let req of requests$ | async">
+    <div class="col-md-4" >
+
+      <app-friend-request [uid]="req.uid"></app-friend-request>
+
+    </div>
+  </ng-container>
+</div>
+ 
