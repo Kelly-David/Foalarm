@@ -25,7 +25,10 @@ export class UserService {
   }
 
   public removeUserFromFriendList(key: string) {
-    return this.db.delete(`users/${this.auth.uString}/friends`, key);
+    return this.db.delete(`users/${this.auth.uString}/friends`, key)
+    .then(_ => {
+      this.db.delete(`users/${key}/friends`, this.auth.uString);
+    });
   }
 
   public users(uid?: string) {
