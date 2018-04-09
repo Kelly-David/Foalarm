@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
 
   public users$: Observable<{}[]> | Observable<any>;
   public friends$: Observable<{}[]> | Observable<any>;
+  public authUser$: Observable<any>;
   public term: any;
   private param: any;
   public title: string;
@@ -28,6 +29,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.uString = this.auth.uString;
+    this.authUser$ = this.userService.getUser(this.uString);
     this.param = this.route.snapshot.params['id'];
     // this.title = this.param ? 'Friends' : 'All Users';
     this.title = this.userListView ? 'All Users' : 'Friends';

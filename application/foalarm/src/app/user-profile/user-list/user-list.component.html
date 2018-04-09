@@ -32,21 +32,25 @@
 
 </div>
 
-<ng-container *ngIf="userListView">
-  <div class="row">
-    <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
-      <app-public-user *ngIf="user.uid !== uString" [uid]="user.uid" [user]="uString"></app-public-user>
-      <!-- card element end -->
-    </div>
-  </div>
-</ng-container>
+<ng-container *ngIf="authUser$ | async as authUser">
 
-<ng-container *ngIf="!userListView">
-  <div class="row">
-    <div class="col-md-4" *ngFor="let friend of friends$ | async | filterUser : term">
-      <app-friend *ngIf="friend.uid !== uString" [uid]="friend.uid"></app-friend>
-      <!-- card element end -->
+  <ng-container *ngIf="userListView">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
+        <app-public-user *ngIf="user.uid !== uString" [uid]="user.uid" [user]="uString" [authUserFullName]="authUser.fullName"></app-public-user>
+        <!-- card element end -->
+      </div>
     </div>
-  </div>
-    <app-friend-request-list></app-friend-request-list>
+  </ng-container>
+  
+  <ng-container *ngIf="!userListView">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let friend of friends$ | async | filterUser : term">
+        <app-friend *ngIf="friend.uid !== uString" [uid]="friend.uid"></app-friend>
+        <!-- card element end -->
+      </div>
+    </div>
+      <app-friend-request-list></app-friend-request-list>
+  </ng-container>
+
 </ng-container>

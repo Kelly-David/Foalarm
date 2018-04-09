@@ -11,6 +11,7 @@ export class PublicUserComponent implements OnChanges {
 
   @Input() uid: any; // The UID of the user
   @Input() user: any; // The UID of auth user
+  @Input() authUserFullName: any;
   user$: Observable<{}> | Observable<any>;
 
   constructor(
@@ -27,8 +28,7 @@ export class PublicUserComponent implements OnChanges {
    * @param fullName
    */
   addFriend(uid: string, fullName: string) {
-    console.log('Added friend', uid, ' By', this.user);
-    return this.userService.requestFriend(this.user, {uid: this.uid, fullName: fullName}, this.uid);
+    return this.userService.requestFriend(this.uid, {uid: this.user, fullName: this.authUserFullName}, this.user);
   }
 
 }
