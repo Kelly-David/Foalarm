@@ -22,6 +22,9 @@ export class PublicService {
 
   ) { }
 
+  /**
+   * Get observable to horses where isPublic = true
+   */
   get publicHorses() {
     return this.db.col$('horses', ref => ref
                     .where('deleted', '==', false)
@@ -29,6 +32,10 @@ export class PublicService {
                     .orderBy('displayName'));
   }
 
+  /**
+   * Friends public horses
+   * TODO - flatten horse queries into one
+   */
   get firendsPublicHorses() {
     return this.db.col$(`users/${this.auth.uString}/friends`, ref => ref.where('deleted', '==', false)).forEach(col => {
       col.forEach(doc => {
@@ -38,6 +45,7 @@ export class PublicService {
     });
   }
 
+  // Returns observable of public horse of specified user uid
   friendsHorses(key: any) {
     return this.db.col$(`horses`, ref => ref
                                         .where('isPublic', '==', true)
@@ -45,6 +53,9 @@ export class PublicService {
                                         .where('deleted', '==', false));
   }
 
+  /**
+   * TODO - test and remove
+   */
   friendsHorses2() {
     return this.afs
       .collection(`users/${this.auth.uString}/friends`)
