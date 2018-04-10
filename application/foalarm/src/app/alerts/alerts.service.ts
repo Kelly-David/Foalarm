@@ -41,22 +41,31 @@ export class AlertsService {
                                 .limit(13));
   }
 
-  // Get unseen alerts
+  /**
+   * Get unseen alerts. Returns observable
+   */
   get alerts(): Observable<Alert[]> {
     return this.alerts$;
   }
 
-  // Get all alerts
+  /**
+   * Get all alerts. Returns observable
+   */
   get alertsHistory(): Observable<Alert[]> {
     return this.alertsHistory$;
   }
 
-  // Get all alertscount
+  /**
+   * Get unseen alert count. Returns observable
+   */
   get alertsCount(): Observable<Alert[]> {
     return this.alertsCount$;
   }
 
-  // Dismiss Alert
+  /**
+   * Dismiss an alert (update viewed = true)
+   * @param alert
+   */
   dismissAlert(alert: Alert) {
     // Set viewed to false
     const data = { viewed: true };
@@ -65,7 +74,10 @@ export class AlertsService {
       .catch(error => console.log(error));
   }
 
-  // Remove an alert (delete from firestore)
+  /**
+   * Delete an alert (update deleted = true)
+   * @param key
+   */
   removeAlert(key: string) {
     this.fs.collection('alerts').doc(key).delete().then(function () {
       console.log('Alert successfully deleted!');
