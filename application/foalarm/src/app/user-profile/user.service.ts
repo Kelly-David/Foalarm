@@ -6,7 +6,7 @@ import { AuthService } from '../core/auth.service';
 @Injectable()
 export class UserService {
 
-  users$: Observable<{}[]> | Observable<any>;
+  users$: Observable<{}[]> | Observable<any> | null;
   friends$: Observable<{}[]> | Observable<any> | null;
 
   constructor(
