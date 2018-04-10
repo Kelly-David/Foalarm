@@ -26,7 +26,11 @@ export class CameraViewComponent implements OnInit {
     this.horse$ = this.hs.getHorse(this.horseKey);
   }
 
-  getSource(videoURL) {
+  /**
+   * Santizes the videoURL to bypass XSS security
+   * @param videoURL
+   */
+  public getSource(videoURL) {
     let source = `${videoURL}`;
     source = source.replace('watch?v=', 'v/');
     return this.sanitizer.bypassSecurityTrustResourceUrl(source);
