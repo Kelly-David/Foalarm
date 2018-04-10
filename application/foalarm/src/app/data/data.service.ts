@@ -24,12 +24,11 @@ export class DataService {
     private realTimeDB: AngularFireDatabase
   ) {}
 
-  // TODO: Test and remove
-  // getData(key: any): Observable<any> {
-  //   return this.db.col$(`data/${key}/data`, ref => ref
-  //                 .orderBy('createdAt', 'desc').limit(50));
-  // }
-
+  /**
+   * Returns an observable to Firebase Realtime DB alarm activity list
+   * @param key alarm id
+   * @param limit number of documents to query (no. of data points to plot)
+   */
   getActivityData(key: any, limit = 1800 as number): Observable<any> {
     return this.realTimeDB.list(`/activity/${key}`, ref => ref
                           .limitToLast(limit)).valueChanges();
