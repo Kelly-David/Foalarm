@@ -21,6 +21,9 @@ export class CalcComponent implements OnInit {
     this.collapse = !this.collapse;
   }
 
+  /**
+   * Calculate and set the expected foaling dates
+   */
   getFoalingDates() {
     this.foalDate320 = new Date(this.service);
     this.foalDate320.setDate( this.foalDate320.getDate() + 320 );
