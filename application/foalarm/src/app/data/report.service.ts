@@ -21,16 +21,20 @@ export class ReportService {
                                                           .limit(5)
                                                           .orderBy('updatedAt', 'desc'));
   }
-  // Save new report to Firestore
+  /**
+   * Creates a new report doc
+   * @param data
+   */
   createReport(data: any) {
-    // Testing - TODO remove
-    console.log('Saving new report');
     // Set the reference to the alarm
     return this.db.set('reports', data)
     .catch(error => console.log(error));
   }
 
-  // Remove a report (delete from firestore)
+  /**
+   * Remove a report doc (update delete = true)
+   * @param key
+   */
   removeReport(key: string) {
     this.fs.collection('reports').doc(key).update({deleted: true}).then(function () {
       console.log('Report successfully deleted!');
@@ -39,10 +43,17 @@ export class ReportService {
     });
   }
 
+  /**
+   * Returns observable to all reports relating to an alarm
+   * @param key
+   */
   getReports(key) {
     return this.db.col$('reports', ref => ref.where('deleted', '==', false).where('alarmId', '==', key));
   }
 
+  /**
+   * Returns observable to reports collection
+   */
   get allReports() {
     return this.$allReports;
   }
