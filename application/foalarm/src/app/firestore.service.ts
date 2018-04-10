@@ -27,24 +27,40 @@ export class FirestoreService {
   /**********
    * GET DATA
    *********/
+  /**
+   * @description Document snapshot
+   */
   doc$<T>(ref: DocPredicate<T>): Observable<T> {
     return this.doc(ref).snapshotChanges().map(doc => {
       return doc.payload.data() as T;
     });
   }
 
+  /**
+   * @description Collection snapshot
+   * @param ref
+   * @param queryFn
+   */
   colSnapShot$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
     return this.col(ref, queryFn).snapshotChanges().map(docs => {
       return docs.map(a => a.payload.doc.data()) as T[];
     });
   }
 
-  // Value Changes Observable
+  /**
+   * @description Value Changes Observable
+   * @param ref
+   * @param queryFn
+   */
   col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
     return this.col(ref, queryFn).valueChanges();
   }
 
-  // With Document Ids
+  /**
+   * @description Collection snapshot map id to data and return as observable
+   * @param ref
+   * @param queryFn
+   */
   colWithIds$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<any[]> {
     return this.col(ref, queryFn).snapshotChanges().map(actions => {
       return actions.map(a => {
@@ -59,17 +75,30 @@ export class FirestoreService {
    * WRITE DATA
    *********/
 
-   // Get Firebase timestamp
+   /**
+    * @description Return server timestamp
+    */
    get timeStamp() {
      return firebase.firestore.FieldValue.serverTimestamp();
    }
 
+   /**
+    * @description Updates a firestore doc ref property deleted = true
+    * @param ref
+    * @param key
+    */
    delete<T>(ref: DocPredicate<T>, key?: string) {
      return this.doc(ref + `/${key}`).update({
        deleted: true
      });
    }
 
+   /**
+    * @description Updates a firestore doc ref
+    * @param ref
+    * @param key
+    * @param data
+    */
    update<T>(ref: DocPredicate<T>, key: string, data: any) {
     return this.doc(ref + `/${key}`).update({
       ...data,

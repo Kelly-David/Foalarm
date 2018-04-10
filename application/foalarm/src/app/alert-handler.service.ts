@@ -17,17 +17,29 @@ export class AlertHandlerService {
 
   constructor() { }
 
+  /**
+   * Next (emits the error string value on authError subject)
+   * @param error
+   */
   authenticationErrorAlert(error?: Error) {
     error ? this.dataStringSource$.next(error.message) :
     this.dataStringSource$.next('Authentication error');
   }
 
+  /**
+   * Next (emits message string value on login subject)
+   * @param message
+   */
   authenticationSuccessAlert(message?: string) {
     message ? this.dataStringSource$.next(message) :
     this.dataStringSource$.next('Successful Login');
 
   }
 
+  /**
+   * Next (emits error string value on reg error subject)
+   * @param error
+   */
   registrationErrorAlert(error?: Error) {
     error ? this.dataStringSource$.next(error.message) :
     this.dataStringSource$.next('Firebase registration error');
