@@ -21,7 +21,7 @@ export class AlarmService {
     private authService: AuthService
   ) {
 
-    // Define the alarms variables
+    // Define the alarm observables
     // All alarms
     this.alarms$ = this.db.col$('alarms', ref => ref
                           .where('deleted', '==', false)
@@ -41,26 +41,40 @@ export class AlarmService {
                                 .where('deleted', '==', false));
   }
 
-  // Get all alarms
+  /**
+   * Get all alarms
+   */
   get alarms(): Observable<Alarm[]> {
     return this.alarms$;
   }
 
-  // Get all active alarms
+  /**
+   * Get all active alarms
+   */
   get activeAlarms(): Observable<Alarm[]> {
     return this.activeAlarms$;
   }
 
+  /**
+   * Returns observable to all alarm docs where state is false (available)
+   */
   get availAlarms(): Observable<Alarm[]> {
     return this.availAlarms$;
   }
 
-  // Get an alarm instance by alarmID
+  /**
+   * Get an alarm instance by alarmID. Returns observable
+   * @param key
+   */
   getAlarm(key: any) {
     return this.db.doc$(`alarms/${key}`);
   }
 
-  // Firestore non-destructive update
+  /**
+   * Updates an alarm doc. Firestore non-destructive update
+   * @param key
+   * @param data
+   */
   updateAlarmData(key: any, data: any) {
     console.log('Updating alarm: ', key);
     return this.db.update('alarms', key, data)
@@ -68,7 +82,12 @@ export class AlarmService {
     .catch(error => console.log(error));
   }
 
-  // Firstore set
+  /**
+   * Creates a new alarm doc, using exisiting id from available alarms
+   * @param key
+   * @param data
+   * @param id
+   */
   saveAlarmData(key: any, data: any, id?: string) {
     console.log('Saving new alarm' + key);
     // Also create a reference in the data collection
@@ -79,19 +98,28 @@ export class AlarmService {
       console.log(error));
   }
 
-  // Updates the selected alarm id to remove it from available list of ids
+  /**
+   * Updates the selected alarm id to remove it from available list of ids
+   * @param key available alarm id that has been used to create an alarm
+   */
   markIdAsUsed(key) {
     return this.db.update('alarmID', key, {'deleted': true});
   }
 
   // TODO - refactor methods above and below to one!
 
-  // Updates the selected alarm id to add it to the available list of ids
+  /**
+   * Updates the selected alarm id to add it to the available list of ids
+   * @param key
+   */
   markIdAsFree(key) {
     return this.db.update('alarmID', key, {'deleted': false});
   }
 
-  // Delete alarm from Firestore - sets deleted to true
+  /**
+   * Remove an alarm (document update deleted = true)
+   * @param alarm
+   */
   deleteAlarm(alarm: Alarm) {
     console.log('Deleteing alarm' + alarm.id);
     this.markIdAsFree(alarm.id);
@@ -113,6 +141,12 @@ export class AlarmService {
     .then(_ => this.router.navigate(['/profile/alarm-list'])).catch(error => console.log(error));
   }
 
+  /**
+   * TESTING ONLY
+   * Replicates behaviour of the hub posting a foaling alert request
+   * @param key
+   * @param data
+   */
   testAlarm(key: any, data: any) {
     console.log('Testing Alarm SMS ', key);
     return this.db.update('data', key, data)
