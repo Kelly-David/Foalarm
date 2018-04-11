@@ -15,11 +15,13 @@
       <div class="card-body">
         <small>Horse</small>
         <span class="pull-right">
-          <a class="btn btn-social-icon" [href]="horse.camera">
-            <span class="inactive">
-              <i class="fa fa-video-camera" aria-hidden="true"></i>
-            </span>
-          </a>
+          <ng-container *ngIf="horse.camera">
+            <a class="btn btn-social-icon" [href]="horse.camera">
+              <span class="inactive">
+                <i class="fa fa-video-camera" aria-hidden="true"></i>
+              </span>
+            </a>
+          </ng-container>
           <a class="btn btn-social-icon">
             <span [ngClass]="horse.state ? 'active' : 'inactive'">
               <i class="fa fa-circle" aria-hidden="true"></i>
