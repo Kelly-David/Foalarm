@@ -1,3 +1,15 @@
+/*
+ * File: alarm-edit.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Tuesday, 27th March 2018 10:45:49 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 1:08:48 pm
+ * Modified By: david
+ * -----
+ * Description: Creat or Edit an alarm document
+ */
+
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Alarm } from '../../alarm';
@@ -22,7 +34,6 @@ export class AlarmEditComponent implements OnChanges {
   public alarmForm: FormGroup;
   public alarmObject = {} as Alarm;
   public isNewAlarm: boolean;
-  public alarmKey: string;
   public alarm$: Observable<Alarm> | Observable<any>;
   public alertString;
   public exists = false as boolean;
@@ -40,16 +51,14 @@ export class AlarmEditComponent implements OnChanges {
 
   ngOnChanges() {
     this.setTitle.emit('Alarm | Edit');
-    this.alarmKey = this.alarmId;
     // Is it a new alarm?
-    this.isNewAlarm = this.alarmKey === 'new';
+    this.isNewAlarm = this.alarmId === 'new';
     // Retrieve the alarm instance OR create a new object observable
     !this.isNewAlarm ? this.getAlarm() : this.alarm$ = Observable.of({}) as Observable<Alarm>;
     if (this.isNewAlarm) {
       this.setTitle.emit('Alarm | New');
       this.edit = this.editNumber = true;
     }
-    // TODO Subscribe to alert handler service
     // Create the alarm form
     this.buildForm();
   }
@@ -58,7 +67,9 @@ export class AlarmEditComponent implements OnChanges {
   get displayName() { return this.alarmForm.get('displayName'); }
   get emailAddress() { return this.alarmForm.get('emailAddress'); }
 
-  // Build the Alarm form
+  /**
+   * Build the Alarm form
+   */
   buildForm() {
     this.alarmForm = this.fb.group({
       displayName:  this.validateString(),
@@ -70,8 +81,12 @@ export class AlarmEditComponent implements OnChanges {
     });
   }
 
-  /// helper to add validations to form based on min/max length
-  validateMinMax(min, max) {
+  /**
+   * helper to add validations to form based on min/max length
+   * @param min
+   * @param max
+   */
+  public validateMinMax(min, max) {
     return ['', [
       // Validators.required,
       Validators.minLength(min),
@@ -80,8 +95,10 @@ export class AlarmEditComponent implements OnChanges {
     ]];
   }
 
-  // helper function to validate email and displayName
-  validateString() {
+  /**
+   * Helper function to validate email and displayName
+   */
+  public validateString() {
     return ['', [
       Validators.required,
       Validators.minLength(1),
@@ -90,32 +107,45 @@ export class AlarmEditComponent implements OnChanges {
     ]];
   }
 
-  /// converts the current form values to E164
+  /**
+   * Converts the current form phone values to E164 compliant
+   */
   get e164() {
     const form = this.alarmForm.value;
     const num = form.country + form.area + form.prefix + form.line;
     return `+${num}`;
   }
 
-  // Return an observable of the alarm
+  /**
+   * Return an observable of the alarm
+   */
   private getAlarm() {
-    // TODO
-    this.alarm$ = this.alarmService.getAlarm(this.alarmKey);
+    this.alarm$ = this.alarmService.getAlarm(this.alarmId);
   }
 
-  save(user: User, alarm: Alarm) {
-    if (this.alarmKey === 'new') {
+  /**
+   * Save form data
+   * @param user authUser
+   * @param alarm this.alarm
+   */
+  public save(user: User, alarm: Alarm) {
+    if (this.alarmId === 'new') {
       return this.saveAlarm(user, alarm, this.selectedId);
     } else {
       return this.updateAlarm(user, alarm);
     }
   }
 
-  // Save the alarm
-  saveAlarm(user: User, alarm: Alarm, selectedId?: string) {
+  /**
+   * Save the alarm
+   * @param user authUser
+   * @param alarm this.alarm
+   * @param selectedId the selected id (id or '')
+   */
+  private saveAlarm(user: User, alarm: Alarm, selectedId?: string) {
     const form = this.alarmForm.value;
     const id = selectedId ? selectedId : '';
-    return this.alarmService.saveAlarmData(this.alarmKey, {
+    return this.alarmService.saveAlarmData(this.alarmId, {
       power: '100',
       state: false,
       ownerUID: user.uid,
@@ -127,10 +157,14 @@ export class AlarmEditComponent implements OnChanges {
     .then(_ => this.closeParent.emit('close'));
   }
 
-  // Save the alarm
-  updateAlarm(user: User, alarm: Alarm) {
+  /**
+   * Update the alarm
+   * @param user authUser
+   * @param alarm this.alarm
+   */
+  private updateAlarm(user: User, alarm: Alarm) {
     const form = this.alarmForm.value;
-    return this.alarmService.updateAlarmData(this.alarmKey, {
+    return this.alarmService.updateAlarmData(this.alarmId, {
       displayName: form.displayName,
       emailAddress: form.emailAddress,
       // phone: this.e164,
@@ -139,21 +173,30 @@ export class AlarmEditComponent implements OnChanges {
     .then(_ => this.closeParent.emit('close'));
   }
 
-  // Has the phone number changed
-  updatedPhone(): Boolean {
+  /**
+   * Check if the number has changed
+   */
+  public updatedPhone(): Boolean {
     if (this.e164.length > 1) {
       return true;
     } else {
       return false;
     }
   }
-  // Delete the alarm from collection
-  delete(alarm: Alarm) {
+
+  /**
+   * Delete the alarm from collection
+   * @param alarm this.alarm
+   */
+  public delete(alarm: Alarm) {
     return this.alarmService.deleteAlarm(alarm)
     .then(_ => this.closeParent.emit('close'));
   }
 
-  // Receive the alarm Id (new alarms only)
+  /**
+   * Receive the alarm Id (new alarms only) from child component
+   * @param  event alarmID
+   */
   public receiveSelectedId($event) {
     this.selectedId = $event;
     console.log(this.selectedId);
