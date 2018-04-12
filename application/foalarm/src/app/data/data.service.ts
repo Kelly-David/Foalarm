@@ -1,26 +1,27 @@
+/*
+ * File: data.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 25th January 2018 12:14:55 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 3:04:39 pm
+ * Modified By: david
+ * -----
+ * Description: Data Service
+ */
+
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-import { empty } from 'rxjs/Observer';
-import { FirestoreService } from '../firestore.service';
-import { firestore } from 'firebase/app';
-import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class DataService {
 
-  data$: Observable<any[]>;
+  public data$: Observable<any[]> | null;
 
   constructor(
-    private db: FirestoreService,
-    private afs: AngularFirestore,
-    private router: Router,
-    private authService: AuthService,
     private realTimeDB: AngularFireDatabase
   ) {}
 
@@ -33,6 +34,5 @@ export class DataService {
     return this.realTimeDB.list(`/activity/${key}`, ref => ref
                           .limitToLast(limit)).valueChanges();
   }
-
 
 }
