@@ -1,3 +1,15 @@
+/*
+ * File: auth.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 14th December 2017 2:56:20 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 2:53:47 pm
+ * Modified By: david
+ * -----
+ * Description: Authentication Service
+ */
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
@@ -12,12 +24,11 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
-  user: Observable<User>;
-  // userIdString: Subject<string>;
-  // userId$: Observable<any>;
-  userIdString = new Subject<string>();
-  userId$ = this.userIdString.asObservable();
-  uString: string;
+
+  public user: Observable<User>;
+  public userIdString = new Subject<string>();
+  public userId$ = this.userIdString.asObservable();
+  public uString: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -40,8 +51,12 @@ export class AuthService {
       });
   }
 
-  // Login with email and password
-  login(email: string, password: string) {
+  /**
+   * Login with email and password
+   * @param email
+   * @param password
+   */
+  public login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(user => {
         this.getUserData(user);
@@ -50,8 +65,12 @@ export class AuthService {
       .catch(error => this.alertError(error));
   }
 
-  // Create a user using email and password
-  register(email: string, password: string) {
+  /**
+   * Create a user using email and password
+   * @param email
+   * @param password
+   */
+  public register(email: string, password: string) {
     // return this.alertError('Registration is disabled by admin');
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(user => {
@@ -61,13 +80,20 @@ export class AuthService {
       .catch(error => this.alertError(error));
   }
 
-  // Returns a reference to the user data
+  /**
+   * Returns a reference to the user data
+   * @param user
+   */
   private getUserData(user) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     return userRef.valueChanges;
   }
 
-  // Set user data - creates a new user document in firestore returns a reference ot the user
+  /**
+   * Set user data
+   * Creates a new user document in firestore returns a reference to the user
+   * @param user
+   */
   private setUserData(user) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     // Set uid and email
@@ -78,30 +104,43 @@ export class AuthService {
     return userRef.set(data);
   }
 
-  // Update user document with additional data
-  updateUserData(user: User, data: any) {
+  /**
+   * Update user document with additional data
+   * @param user
+   * @param data
+   */
+  public updateUserData(user: User, data: any) {
     // Update User doc with additional data
     return this.afs.doc(`users/${user.uid}`).update(data)
       .then(_ => this.router.navigate(['/profile']));
   }
 
-  // If theres an error alert the user
+  /**
+   * If theres an error, alert the user
+   * @param error
+   */
   private alertError(error) {
     console.log(error);
     this.alert.registrationErrorAlert(error);
   }
 
-  // Logout
-  signOut() {
+  /**
+   * Logout
+   */
+  public signOut() {
     return this.afAuth.auth.signOut()
     .then(() => {
       this.router.navigate(['/login']);
     })
     .then(() => {
+      // Force a refresh to unsubscribe
       this.refresh();
     });
   }
 
+  /**
+   * Refresh the window
+   */
   private refresh(): void {
     window.location.reload();
   }
