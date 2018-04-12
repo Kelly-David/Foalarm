@@ -1,3 +1,15 @@
+/*
+ * File: auth.guard.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 14th December 2017 3:23:24 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 2:49:12 pm
+ * Modified By: david
+ * -----
+ * Description: Authentication Guard
+ */
+
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +22,11 @@ import 'rxjs/add/operator/take';
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 
+  /**
+   * Determines if the user can activate the target route
+   * @param next
+   * @param state
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

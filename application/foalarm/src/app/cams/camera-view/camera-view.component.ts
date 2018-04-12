@@ -1,3 +1,15 @@
+/*
+ * File: camera-view.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Monday, 22nd January 2018 2:27:21 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 2:46:21 pm
+ * Modified By: david
+ * -----
+ * Description: Displays a horses camera URL as embedded link
+ */
+
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
