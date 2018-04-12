@@ -13,7 +13,6 @@ import { RegisterComponent } from '../register/register.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { HorseListComponent } from '../horse/horse-list/horse-list.component';
 import { AlarmListComponent } from '../alarm/alarm-list/alarm-list.component';
-import { AlarmEditComponent } from '../alarm/alarm-edit/alarm-edit.component';
 import { AlertEditComponent } from '../alerts/alert-edit/alert-edit.component';
 import { CameraListComponent } from '../cams/camera-list/camera-list.component';
 import { DataGraphComponent } from '../data/data-graph/data-graph.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'horse-list' },
     { path: 'horse-list', component: HorseListComponent, canActivate: [AuthGuard] },
     { path: 'alarm-list', component: AlarmListComponent, canActivate: [AuthGuard] },
-    { path: 'alarm-edit/:id', component: AlarmEditComponent, canActivate: [AuthGuard] },
     { path: 'alert-edit', component: AlertEditComponent, canActivate: [AuthGuard] },
     { path: 'camera-list', component: CameraListComponent, canActivate: [AuthGuard] },
     { path: 'camera/:id', component: CameraViewComponent, canActivate: [AuthGuard] },

@@ -28,7 +28,6 @@ import { ActiveHorseComponent } from './horse/active-horse/active-horse.componen
 import { AlarmListComponent } from './alarm/alarm-list/alarm-list.component';
 import { AlarmService } from './alarm/alarm.service';
 import { ActiveAlarmListComponent } from './alarm/active-alarm-list/active-alarm-list.component';
-import { AlarmEditComponent } from './alarm/alarm-edit/alarm-edit.component';
 import { AlarmSelectComponent } from './alarm/alarm-select/alarm-select.component';
 import { SelectModule } from 'ng2-select';
 import { AlertListComponent } from './alerts/alert-list/alert-list.component';
@@ -83,7 +82,6 @@ import { FriendRequestComponent } from './user-profile/friend-request/friend-req
     ActiveHorseComponent,
     AlarmListComponent,
     ActiveAlarmListComponent,
-    AlarmEditComponent,
     AlarmSelectComponent,
     AlertListComponent,
     NavListComponent,
