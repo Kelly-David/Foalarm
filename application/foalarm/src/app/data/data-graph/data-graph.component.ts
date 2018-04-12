@@ -1,3 +1,15 @@
+/*
+ * File: data-graph.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 25th January 2018 12:00:32 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 3:19:03 pm
+ * Modified By: david
+ * -----
+ * Description: Displays the activity data graph
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
@@ -12,21 +24,20 @@ import 'rxjs/add/operator/takeWhile';
 })
 export class DataGraphComponent implements OnInit {
 
-  chartdata = false as boolean;
-  alarmKey: string;
-  data$: Observable<any> | null;
-  data: any[];
-  timeframe = [
+  public chartdata = false as boolean;
+  public alarmKey: string;
+  public data$: Observable<any> | null;
+  public data: any[];
+  public timeframe = [
     {label: 1, value: 360},
     {label: 5, value: 1800},
     {label: 10, value: 3600},
     {label: 24, value: 8640}] as object[];
-  subscription: any;
-  alive = true as boolean;
+  private subscription: any;
+  public alive = true as boolean;
+  public view: any[] = [923, 500];
 
-  view: any[] = [923, 500];
-
-  // options
+  // Graph options
   showXAxis = true;
   showYAxis = true;
   gradient = true;
@@ -35,10 +46,7 @@ export class DataGraphComponent implements OnInit {
   xAxisLabel = 'Date/Time';
   showYAxisLabel = false;
   yAxisLabel = 'Value';
-
-  colorScheme = {
-    domain: ['#2c6a87', '#A10A28', '#419171', '#AAAAAA']
-  };
+  colorScheme = { domain: ['#2c6a87', '#A10A28', '#419171', '#AAAAAA'] };
 
   // line, area
   autoScale = true;
@@ -51,27 +59,37 @@ export class DataGraphComponent implements OnInit {
   ngOnInit() {
     // Get the alarm hey from the url
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
-    // Retrieve the instance from FS
+    // Retrieve the instance from Firebase RTDB
     this.subscribeToChart();
-
   }
 
-  subscribeToChart(limit = 1800 as number) {
+  /**
+   * Create a subscription to the data collection. Results are passed as tuple to chart.
+   * @param limit num of data points
+   */
+  private subscribeToChart(limit = 1800 as number) {
     this.alive = true;
     this.subscription = this.dataService.getActivityData(this.alarmKey, limit).takeWhile(() => this.alive).subscribe((results) => {
       this.chartdata = true;
       // Pass results as immutable
       this.prepChartData([...results]);
     });
-
   }
 
-  unsubscribe(limit: any) {
+  /**
+   * Kills the current subscription, then calls subscribe again to rebuild the chart using new request
+   * @param limit new num of data points
+   */
+  public unsubscribe(limit: any) {
     this.alive = false;
     this.subscribeToChart(limit);
   }
 
-  prepChartData(entries) {
+  /**
+   * Renders the chart
+   * @param entries tuple of data points
+   */
+  private prepChartData(entries) {
     this.data = new Array();
     this.data.push({'name': 'X axis', 'series': []});
     this.data.push({'name': 'Y axis', 'series': []});
@@ -91,10 +109,10 @@ export class DataGraphComponent implements OnInit {
     });
   }
 
+  // Chart Functions
   onChartClick(event) {
     console.log(event);
   }
-
   onSelect(event) {
     console.log(event);
   }
