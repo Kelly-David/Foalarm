@@ -1,3 +1,15 @@
+/*
+ * File: alarm-list.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Tuesday, 27th March 2018 8:22:12 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 1:25:52 pm
+ * Modified By: david
+ * -----
+ * Description: Displays a list of all alarm documents
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AlertHandlerService } from '../../alert-handler.service';
@@ -14,8 +26,8 @@ import { FormEditModalComponent } from '../../modal/form-edit-modal/form-edit-mo
 })
 export class AlarmListComponent implements OnInit {
 
-  alarms$: Observable<Alarm[]> | Observable<any> | null;
-  bsModalRef: BsModalRef;
+  public alarms$: Observable<Alarm[]> | Observable<any> | null;
+  public bsModalRef: BsModalRef;
 
   constructor(
     private alarmService: AlarmService,
@@ -23,17 +35,21 @@ export class AlarmListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.getAlarms();
-
   }
 
-  getAlarms() {
+  /**
+   * Returns observable of all alarm documents
+   */
+  private getAlarms() {
     this.alarms$ = this.alarmService.alarms;
   }
 
-  // Create a model dialog - title is passed as input to the child component.
-  openClientModal(id?: string) {
+  /**
+   * Create a model dialog - title is passed as input to the child component.
+   * @param id alarm id
+   */
+  public openClientModal(id?: string) {
     this.bsModalRef = this.modalService.show(FormEditModalComponent, {class: 'modal-dialog'});
     this.bsModalRef.content.parent = 'alarm';
     this.bsModalRef.content.key = id;
