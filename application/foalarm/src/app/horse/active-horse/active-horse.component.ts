@@ -37,7 +37,7 @@ export class ActiveHorseComponent implements OnInit {
    * Returns observable to horse collection where state = true
    */
   private getActiveHorses() {
-    this.activeHorses$ = this.horseService.getActiveHorses();
+    this.activeHorses$ = this.horseService.activeHorses;
   }
 
   /**

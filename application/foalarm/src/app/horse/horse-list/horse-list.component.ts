@@ -48,7 +48,7 @@ export class HorseListComponent implements OnInit {
    * Returns observable of all horses
    */
   private getHorses() {
-    this.horses$ = this.horseService.getHorses();
+    this.horses$ = this.horseService.horses;
   }
 
   /**

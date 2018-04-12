@@ -1,8 +1,16 @@
+/*
+ * File: horse.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Wednesday, 20th December 2017 11:32:34 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 12:02:55 pm
+ * Modified By: david
+ * -----
+ * Description: Horse Service
+ */
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-// import * as firebase from 'firebase/app';
-// import { AngularFireAuth } from 'angularfire2/auth';
-// import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { User } from '../user';
@@ -11,24 +19,22 @@ import { AlertHandlerService } from '../alert-handler.service';
 import { Horse } from '../horse';
 import { FirestoreService } from '../firestore.service';
 import { AuthService } from '../core/auth.service';
-// import { firestore } from 'firebase/app';
 
 @Injectable()
 export class HorseService {
-  horses$: Observable<Horse[]>;
-  activeHorses$: Observable<Horse[]>;
-  // horseCollection: AngularFirestoreCollection<Horse>;
-  horseCams$: Observable<Horse[]>;
-  userUID: string;
+
+  public horses$: Observable<Horse[]>;
+  public activeHorses$: Observable<Horse[]>;
+  public horseCams$: Observable<Horse[]>;
+  private userUID: string;
 
   constructor(
     private db: FirestoreService,
-    // private afs: AngularFirestore,
     private alert: AlertHandlerService,
     private router: Router,
     private authService: AuthService
   ) {
-    // Subscribe to AlertHnadlerService to recive authentication errors
+    // Subscribe to AlertHandlerService to recive authentication errors
     this.authService.userIdString.subscribe((data) => {
       this.userUID = data;
     });
@@ -51,31 +57,31 @@ export class HorseService {
   }
 
   /**
-   * Get observable to horse collection where property: state = true
+   * Return observable to horse collection where property: state = true
    */
-  getHorses() {
+  get horses() {
     return this.horses$;
   }
 
   /**
-   * Get observable to horse collection where property: state = true
-   */
-  getActiveHorses() {
-    return this.activeHorses$;
-  }
-
-  /**
-   * Get observable to horse collection where property: camera !null
+   * Return observable to horse collection where property: camera !null
    */
   get horseCams() {
     return this.horseCams$;
   }
 
   /**
-   * Returns observable to horse document
+   * Return observable to horse collection where property: state = true
+   */
+  get activeHorses() {
+    return this.activeHorses$;
+  }
+
+  /**
+   * Return observable to horse document
    * @param key Horse id
    */
-  getHorse(key: any) {
+  public getHorse(key: any) {
     return this.db.doc$(`horses/${key}`);
   }
 
@@ -86,7 +92,7 @@ export class HorseService {
    * @param data Object of properties to update
    * @param currentAlarmId The alarm id (opt)
    */
-  updateHorseData(user: User, key, data: any, currentAlarmId?: string) {
+  public updateHorseData(user: User, key, data: any, currentAlarmId?: string) {
     // If the alarm is being removed, update the alarm doc and ammend the horse data before update
     if (data.alarmId === 'remove') {
       this.db.update('alarms', currentAlarmId, { state: false });
@@ -102,7 +108,8 @@ export class HorseService {
       this.db.update('alarms', data.alarmId, { state: true});
     }
     return this.db.update('horses', key, data)
-      .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
+      .then(_ => this.router.navigate(['/profile']))
+      .catch(error => console.log(error));
   }
 
   /**
@@ -111,28 +118,30 @@ export class HorseService {
    * @param key TODO refactor to remove
    * @param data Horse properties
    */
-  saveHorseData(user: User, key, data: any) {
+  public saveHorseData(user: User, key, data: any) {
     console.log('Saving new horse' + key);
     // Set the reference to the alarm
     if (data.alarmId) {
       this.db.update('alarms', data.alarmId, { state: true});
     }
     return this.db.set('horses', data)
-      .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
+      .then(_ => this.router.navigate(['/profile']))
+      .catch(error => console.log(error));
   }
 
   /**
    * Delete horse (set horse doc property deleted = true)
    * @param horse horse object
    */
-  deleteHorse(horse: Horse) {
+  public deleteHorse(horse: Horse) {
     console.log('Deleteing horse' + horse.id);
-    // Delete the reference to the alarm
+    // Update the reference to the alarm
     if (horse.alarmId) {
       this.db.update('alarms', horse.alarmId, {state: false});
     }
     return this.db.delete('horses', horse.id)
-    .then(_ => this.router.navigate(['/profile'])).catch(error => console.log(error));
+    .then(_ => this.router.navigate(['/profile']))
+    .catch(error => console.log(error));
   }
 
 }
