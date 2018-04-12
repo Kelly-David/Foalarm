@@ -1,3 +1,15 @@
+/*
+ * File: horse-edit.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Tuesday, 27th March 2018 4:50:00 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 11:46:28 am
+ * Modified By: david
+ * -----
+ * Description: Create or edit a horse document.
+ */
+
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireObject } from 'angularfire2/database';
@@ -55,16 +67,6 @@ export class HorseEditComponent implements OnChanges {
     this.isNewHorse = this.horseKey === 'new';
     // Retrieve the horse instance OR create a new object observable
     !this.isNewHorse ? this.getHorse() : this.horse$ = Observable.of({}) as Observable<Horse>;
-    // this.horse$.map((user: Array<any>) => {
-    //   const result: Array<HorseObj> = [];
-    //   if (user) {
-    //     user.forEach((erg) => {
-    //       result.push(new HorseObj(erg.displayName, erg.id, erg.photoURL, erg.due, erg.pictURL, erg.city ));
-    //     });
-    //   }
-    //   return result; // <<<=== missing return
-    // })
-    // .subscribe(user => this.horse = user);
     if (this.isNewHorse) {
       this.setTitle.emit('Horse | New');
       this.edit = this.editNumber = true;
@@ -91,13 +93,19 @@ export class HorseEditComponent implements OnChanges {
   get photoURL() { return this.horseForm.get('photoURL'); }
   get check() { return this.horseForm.get('check'); }
 
-  // Returns an observable of type Horse
+  /**
+   * Returns an observable of type Horse
+   */
   getHorse() {
     this.horse$ = this.horseService.getHorse(this.horseKey);
   }
 
-  // Save a new horse Horse
-  saveHorse(user: User, horse: Horse) {
+  /**
+   * Save a new horse Horse
+   * @param user
+   * @param horse
+   */
+  private saveHorse(user: User, horse: Horse) {
     return this.horseService.saveHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
       dueDate: this.dueDate.value,
@@ -111,8 +119,13 @@ export class HorseEditComponent implements OnChanges {
     .then(_ => this.closeParent.emit('close'));
   }
 
-  // Update an existing horse
-  updateHorse(user: User, horse: Horse, currentAlarmId?: string) {
+  /**
+   * Update an existing horse
+   * @param user
+   * @param horse
+   * @param currentAlarmId
+   */
+  private updateHorse(user: User, horse: Horse, currentAlarmId?: string) {
     return this.horseService.updateHorseData(user, this.horseKey,  {
       displayName: this.displayName.value,
       dueDate: this.dueDate.value,
@@ -125,13 +138,25 @@ export class HorseEditComponent implements OnChanges {
     .then(_ => this.closeParent.emit('close'));
   }
 
-  save(user: User, horse: Horse, currentAlarmId?: string) {
+  /**
+   * Save the horse edit form. If new save, otherwise update.
+   * @param user
+   * @param horse
+   * @param currentAlarmId
+   */
+  public save(user: User, horse: Horse, currentAlarmId?: string) {
     const save = this.isNewHorse ?
       this.saveHorse(user, horse)
       : this.updateHorse(user, horse, currentAlarmId);
   }
 
-  uploadFile(horse: Horse, event: any) {
+  /**
+   * Uploads the selected file to storage.
+   * Then, assignes the download URL to this horse object
+   * @param horse
+   * @param event file
+   */
+  public uploadFile(horse: Horse, event: any) {
     this.loaded = false;
     this.loading = true;
     const time = new Date();
@@ -144,20 +169,37 @@ export class HorseEditComponent implements OnChanges {
       });
   }
 
-  receiveSelectedOption($event) {
+  /**
+   * Receives the selected alarm id from child component
+   * @param event as string
+   */
+  public receiveSelectedOption($event) {
     this.horseObject.alarmId = $event;
   }
 
-  delete(horse: Horse) {
+  /**
+   * Removes this horse object
+   * (Update: deleted = true)
+   * @param horse
+   */
+  public delete(horse: Horse) {
     return this.horseService.deleteHorse(horse)
     .then(_ => this.closeParent.emit('close'));
   }
 
-  getStyle(imageUrl) {
+  /**
+   * Bypass Angular security to bind image url to template
+   * @param imageUrl this horse's image url string
+   */
+  public getStyle(imageUrl) {
     const style = `background-image: url(${imageUrl}) !important; background-size: cover; background-position: center`;
     return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 
+  /**
+   * Toggle show/hide public info text
+   * @param val
+   */
   public togglePublic(val: boolean) {
     console.log('Form: ', this.check.value);
     if (val) {
