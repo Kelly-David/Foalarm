@@ -5,6 +5,6 @@
   </button>
 </div>
 <div class="modal-body">
-  <app-alarm-edit-form *ngIf="parent == 'alarm'" [alarmId]="key" (setTitle)="setTitle($event)" (closeParent)="bsModalRef.hide()"></app-alarm-edit-form>
+  <app-alarm-edit *ngIf="parent == 'alarm'" [alarmId]="key" (setTitle)="setTitle($event)" (closeParent)="bsModalRef.hide()"></app-alarm-edit>
   <app-horse-edit *ngIf="parent == 'horse'" [horseId]="key" (setTitle)="setTitle($event)" (closeParent)="bsModalRef.hide()"></app-horse-edit>
 </div>

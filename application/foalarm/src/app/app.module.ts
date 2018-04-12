@@ -54,7 +54,7 @@ import { HorseLinkComponent } from './data/horse-link/horse-link.component';
 import { AlarmIdListComponent } from './alarm/alarm-id-list/alarm-id-list.component';
 import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-modal.component';
 import { ModalModule, CollapseModule, TooltipModule } from 'ngx-bootstrap';
-import { AlarmEditFormComponent } from './alarm/alarm-edit-form/alarm-edit-form.component';
+import { AlarmEditComponent } from './alarm/alarm-edit/alarm-edit.component';
 import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
 import { ModalComponent } from './modal/modal.component';
 import { PublicHorseListComponent } from './public/public-horse-list/public-horse-list.component';
@@ -90,7 +90,7 @@ import { FriendRequestComponent } from './user-profile/friend-request/friend-req
     CameraViewComponent,
     FilterPipe, FilterDatePipe, AlertPipe, FilterUserPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
     ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
-    AlarmEditModalComponent, AlarmEditFormComponent, HorseEditComponent, ModalComponent, PublicHorseListComponent,
+    AlarmEditModalComponent, AlarmEditComponent, HorseEditComponent, ModalComponent, PublicHorseListComponent,
     PublicHorseComponent, HorseOwnerComponent, UserListComponent, UserComponent, FriendComponent, PublicUserComponent,
     PublicFriendsHorseListComponent, FriendRequestListComponent, FriendRequestComponent,
   ],

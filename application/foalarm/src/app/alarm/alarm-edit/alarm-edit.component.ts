@@ -9,11 +9,11 @@ import { AlertHandlerService } from '../../alert-handler.service';
 import { User } from '../../user';
 
 @Component({
-  selector: 'app-alarm-edit-form',
-  templateUrl: './alarm-edit-form.component.html',
-  styleUrls: ['./alarm-edit-form.component.css']
+  selector: 'app-alarm-edit',
+  templateUrl: './alarm-edit.component.html',
+  styleUrls: ['./alarm-edit.component.css']
 })
-export class AlarmEditFormComponent implements OnChanges {
+export class AlarmEditComponent implements OnChanges {
 
   @Input() alarmId: any;
   @Output() setTitle = new EventEmitter<string>();
