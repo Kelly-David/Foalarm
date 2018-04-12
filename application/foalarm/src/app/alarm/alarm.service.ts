@@ -1,3 +1,15 @@
+/*
+ * File: alarm.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Friday, 29th December 2017 1:25:58 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 1:42:45 pm
+ * Modified By: david
+ * -----
+ * Description: Alarm service
+ */
+
 import { Injectable } from '@angular/core';
 import { FirestoreService } from '../firestore.service';
 import { AlertHandlerService } from '../alert-handler.service';
@@ -9,10 +21,10 @@ import { AuthService } from '../core/auth.service';
 @Injectable()
 export class AlarmService {
 
-  alarms$: Observable<Alarm[]> | Observable<any>;
-  activeAlarms$: Observable<Alarm[]> | Observable<any>;
-  availAlarms$: Observable<Alarm[]> | Observable<any>;
-  alarmIDs$: Observable<{}[]> | Observable<any>;
+  public alarms$: Observable<Alarm[]> | Observable<any>;
+  public activeAlarms$: Observable<Alarm[]> | Observable<any>;
+  public availAlarms$: Observable<Alarm[]> | Observable<any>;
+  public alarmIDs$: Observable<{}[]> | Observable<any>;
 
   constructor(
     private db: FirestoreService,
@@ -66,7 +78,7 @@ export class AlarmService {
    * Get an alarm instance by alarmID. Returns observable
    * @param key
    */
-  getAlarm(key: any) {
+  getAlarm(key: any): Observable<Alarm> {
     return this.db.doc$(`alarms/${key}`);
   }
 
@@ -75,7 +87,7 @@ export class AlarmService {
    * @param key
    * @param data
    */
-  updateAlarmData(key: any, data: any) {
+  updateAlarmData(key: any, data: any): Promise<any> {
     console.log('Updating alarm: ', key);
     return this.db.update('alarms', key, data)
     .then(_ => this.router.navigate(['/profile/alarm-list']))
@@ -88,44 +100,37 @@ export class AlarmService {
    * @param data
    * @param id
    */
-  saveAlarmData(key: any, data: any, id?: string) {
+  saveAlarmData(key: any, data: any, id?: string): Promise<any> {
     console.log('Saving new alarm' + key);
     // Also create a reference in the data collection
     return this.db.set('alarms', data, id)
-    .then(_ => this.markIdAsUsed(id))
+    .then(_ => this.updateIdRef(id, true))
     .then(_ => this.router.navigate(['/profile/alarm-list']))
     .catch(error =>
       console.log(error));
   }
 
   /**
-   * Updates the selected alarm id to remove it from available list of ids
-   * @param key available alarm id that has been used to create an alarm
+   * Updates the selected alarm id in available id collection
+   * @param key alarmId
+   * @param value property val to update
    */
-  markIdAsUsed(key) {
-    return this.db.update('alarmID', key, {'deleted': true});
-  }
-
-  // TODO - refactor methods above and below to one!
-
-  /**
-   * Updates the selected alarm id to add it to the available list of ids
-   * @param key
-   */
-  markIdAsFree(key) {
-    return this.db.update('alarmID', key, {'deleted': false});
+  public updateIdRef(key: string, value: boolean): Promise<void> {
+    return this.db.update('alarmID', key, {'deleted': value});
   }
 
   /**
    * Remove an alarm (document update deleted = true)
    * @param alarm
    */
-  deleteAlarm(alarm: Alarm) {
+  public deleteAlarm(alarm: Alarm): Promise<Boolean | void> {
     console.log('Deleteing alarm' + alarm.id);
-    this.markIdAsFree(alarm.id);
+    this.updateIdRef(alarm.id, false);
     // Remove the alarm reference from the associated horse
     if (alarm.state) {
-      this.db.col('horses', a => a.where('alarmId', '==', alarm.id).where('deleted', '==', false).where('state', '==', true))
+      this.db.col('horses', a => a.where('alarmId', '==', alarm.id)
+                                  .where('deleted', '==', false)
+                                  .where('state', '==', true))
       .ref
       .get()
       .then(function(querySnapshot) {
@@ -138,7 +143,8 @@ export class AlarmService {
       });
     }
     return this.db.delete('alarms', alarm.id)
-    .then(_ => this.router.navigate(['/profile/alarm-list'])).catch(error => console.log(error));
+    .then(_ => this.router.navigate(['/profile/alarm-list']))
+    .catch(error => console.log(error));
   }
 
   /**
@@ -147,7 +153,7 @@ export class AlarmService {
    * @param key
    * @param data
    */
-  testAlarm(key: any, data: any) {
+  testAlarm(key: any, data: any): Promise<void> {
     console.log('Testing Alarm SMS ', key);
     return this.db.update('data', key, data)
     .catch(error => console.log(error));
