@@ -1,7 +1,6 @@
 <ng-container *ngIf="(authService.user | async) || {} as user">
   <ng-container *ngIf="horse$ | async as horse">
     <div class="card primaryCard" style="padding-top: 0 !important; margin-top: 0">
-
       <div *ngIf="!isNewHorse" class="card-body card-img-bg" [style]="getStyle(horse.photoURL)">
         <a class="btn btn-social-icon pull-right">
           <span [ngClass]="horse.state ? 'active' : 'inactive'">
@@ -11,7 +10,6 @@
       </div>
     </div>
     <ng-container *ngIf="!edit">
-
       <small>Horse</small>
       <h6>{{horse.displayName}}</h6>
       <small>Due Date: </small>
@@ -20,27 +18,19 @@
       <span class="inline-small-text"> {{horse.alarmId}}</span>
       <small>Camera Link: </small>
       <span class="inline-small-text"> {{horse.camera}}</span>
-
       <button type="button" class="btn btn-primary btn-block" (click)="edit = !edit">Edit Horse</button>
-
     </ng-container>
-
     <ng-container *ngIf="edit">
-
       <form [formGroup]="horseForm" (ngSubmit)="save(user, horse, horse.alarmId)">
-
         <div class="form-row">
-
           <div class="form-group col-md-12">
             <small>Horse Name</small>
             <input type="text" class="form-control" formControlName="displayName" [(ngModel)]="horse.displayName" [value]="">
           </div>
-
           <div class="form-group col-md-12">
             <small>Due Date</small>
             <input type="date" class="form-control" formControlName="dueDate" [(ngModel)]="horse.dueDate" [value]="">
           </div>
-
           <div class="col-sm-12" *ngIf="!editNumber">
             <div class="form-group">
               <small>Foalarm ID</small>
@@ -54,12 +44,10 @@
               </div>
             </div>
           </div>
-
           <div class="form-group col-md-12" *ngIf="editNumber">
             <small>Foalarm ID</small>
             <app-alarm-select parent="h" (messageEvent)="receiveSelectedOption($event)"></app-alarm-select>
           </div>
-
           <div class="form-group col-md-12">
             <small>Foaling Camera Url</small>
             <input type="text" class="form-control" formControlName="camera" [(ngModel)]="horse.camera" [value]="">
@@ -77,7 +65,6 @@
             <div *ngIf="loaded && loading" class="alert alert-info">
               Image uploaded successfully
             </div>
-
             <div *ngIf="!isNewHorse" class="form-inline justify-content-center">
               <div class="input-group">
                 <small class="inline-label" (click)="isCollapsed = !isCollapsed">Share</small>
@@ -96,7 +83,6 @@
             </div>
           </div>
         </div>
-
         <button *ngIf="isNewHorse" type="submit" class="btn btn-success btn-block" [disabled]="!horseForm.valid || (loaded===false)">
           Save
         </button>
@@ -109,7 +95,6 @@
         <button *ngIf="!isNewHorse" type="button" class="btn btn-primary btn-block" (click)="edit = !edit; editNumber = false">
           Cancel
         </button>
-
       </form>
     </ng-container>
   </ng-container>
