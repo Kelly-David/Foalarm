@@ -1,7 +1,13 @@
 /*
- * @Author: David Kelly
- * @Date: 2017-10-26 14:58:28
- * @Last Modified time: 2017-10-26 14:58:28
+ * File: app.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 14th October 2017 11:25:45 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:53:30 pm
+ * Modified By: david
+ * -----
+ * Description: Main Entry Component
  */
 
 import { Component } from '@angular/core';

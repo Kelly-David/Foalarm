@@ -1,3 +1,15 @@
+/*
+ * File: calc.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Wednesday, 31st January 2018 10:35:13 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:46:41 pm
+ * Modified By: david
+ * -----
+ * Description: Calculates the expected foaling date
+ */
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,16 +19,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalcComponent implements OnInit {
 
-  collapse: Boolean = true;
-  service: any;
-  foalDate320: any;
-  foalDate340: any;
+  public collapse: Boolean = true;
+  public service: any;
+  public foalDate320: any;
+  public foalDate340: any;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
+  /**
+   * Show/Hide the HTML element
+   */
   toggleCollapse() {
     this.collapse = !this.collapse;
   }
@@ -27,7 +41,6 @@ export class CalcComponent implements OnInit {
   getFoalingDates() {
     this.foalDate320 = new Date(this.service);
     this.foalDate320.setDate( this.foalDate320.getDate() + 320 );
-
     this.foalDate340 = new Date(this.service);
     this.foalDate340.setDate( this.foalDate340.getDate() + 340 );
   }

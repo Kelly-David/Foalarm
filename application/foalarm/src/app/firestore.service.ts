@@ -1,3 +1,15 @@
+/*
+ * File: firestore.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 21st December 2017 12:37:00 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 8:05:02 pm
+ * Modified By: david
+ * -----
+ * Description: Firestore Query Functions
+ */
+
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -28,7 +40,7 @@ export class FirestoreService {
    * GET DATA
    *********/
   /**
-   * @description Document snapshot
+   * @description Firestore Document snapshot
    */
   doc$<T>(ref: DocPredicate<T>): Observable<T> {
     return this.doc(ref).snapshotChanges().map(doc => {
@@ -37,7 +49,7 @@ export class FirestoreService {
   }
 
   /**
-   * @description Collection snapshot
+   * @description Firestore Collection snapshot
    * @param ref
    * @param queryFn
    */
@@ -57,7 +69,7 @@ export class FirestoreService {
   }
 
   /**
-   * @description Collection snapshot map id to data and return as observable
+   * @description Firestore collection snapshot map id to data and return as observable
    * @param ref
    * @param queryFn
    */
@@ -165,6 +177,5 @@ export class FirestoreService {
       createdAt: timestamp
     });
   }
-
 
 }

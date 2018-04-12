@@ -1,3 +1,15 @@
+/*
+ * File: utility.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Tuesday, 19th December 2017 3:24:28 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:49:15 pm
+ * Modified By: david
+ * -----
+ * Description: Requests permisiion for desktop notifications
+ */
+
 import { Component, OnInit} from '@angular/core';
 import { HorseService } from '../horse/horse.service';
 import { Observable } from 'rxjs/Observable';

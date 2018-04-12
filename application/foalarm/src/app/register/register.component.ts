@@ -1,7 +1,13 @@
 /*
- * @Author: David Kelly
- * @Date: 2017-10-26 15:39:18
- * @Last Modified time: 2017-10-26 15:39:18
+ * File: register.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Tuesday, 19th October 2017 7:55:36 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:42:27 pm
+ * Modified By: david
+ * -----
+ * Description:
  */
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
@@ -54,7 +60,7 @@ export class RegisterComponent implements OnInit {
       ]
     });
 
-    // Create detail form
+    // Create user detail form
     this.detailForm = this.fb.group({
       'foalarm': ['', [
         Validators.required
@@ -69,21 +75,25 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // Getters reduce the amount of typescript code!
+  // Form getters
   get email() { return this.signupForm.get('email'); }
   get password() { return this.signupForm.get('password'); }
-
   get foalarm() { return this.detailForm.get('foalarm'); }
   get fullName() { return this.detailForm.get('fullName'); }
   get location() { return this.detailForm.get('location'); }
   get photoURL() { return this.detailForm.get('photoURL'); }
 
-  // Step 1
+  /**
+   * Register a user with email and password
+   */
   signup() {
     return this.authService.register(this.email.value, this.password.value);
   }
 
-  // Step 2
+  /**
+   * Create the user profile
+   * @param user authUser
+   */
   setFoalarm(user) {
     return this.authService.updateUserData(user, {
       fullName: this.fullName.value,
@@ -93,6 +103,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /**
+   * Upload a file to Google storage
+   * Then set the dowload url as user property
+   * @param user
+   * @param event file
+   */
   uploadFile(user: User, event: any) {
     this.loading = true;
     const file = event.srcElement.files[0];

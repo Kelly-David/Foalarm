@@ -1,3 +1,16 @@
+/*
+ * File: public-horse-list.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Saturday, 31st March 2018 9:50:24 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:40:43 pm
+ * Modified By: david
+ * -----
+ * Description: Base public horse list component. Contains a
+ * list of friends' (users) list of public horses.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from '../public.service';
 import { Observable } from 'rxjs/Observable';
@@ -26,6 +39,9 @@ export class PublicHorseListComponent implements OnInit {
     this.friends$ = this.us.friends();
   }
 
+  /**
+   * Show or hide the list of horses in the template
+   */
   public toggleCollapse() {
     this.collapse = !this.collapse;
   }

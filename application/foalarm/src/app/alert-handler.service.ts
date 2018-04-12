@@ -1,7 +1,13 @@
 /*
- * @Author: David Kelly
- * @Date: 2017-10-26 14:58:28
- * @Last Modified time: 2017-10-26 14:58:28
+ * File: alert-handler.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Friday, 15th December 2017 6:14:42 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:51:07 pm
+ * Modified By: david
+ * -----
+ * Description: Pass login and registration errors from service to view layer
  */
 
 import { Injectable } from '@angular/core';
