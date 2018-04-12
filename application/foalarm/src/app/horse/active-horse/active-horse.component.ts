@@ -1,3 +1,15 @@
+/*
+ * File: active-horse.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Friday, 29th December 2017 12:00:21 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 10:23:16 am
+ * Modified By: david
+ * -----
+ * Description: Displays all horses that have a wearable
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Horse } from '../../horse';
