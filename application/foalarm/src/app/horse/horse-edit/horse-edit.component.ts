@@ -1,3 +1,15 @@
+/*
+ * File: horse-edit.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Wednesday, 20th December 2017 9:50:48 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 10:25:16 am
+ * Modified By: david
+ * -----
+ * Description: Edit/Create a horse document.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireObject } from 'angularfire2/database';
@@ -70,13 +82,19 @@ export class HorseEditComponent implements OnInit {
   get camera() { return this.horseForm.get('camera'); }
   get photoURL() { return this.horseForm.get('photoURL'); }
 
-  // Returns an observable of type Horse
-  getHorse() {
+  /**
+   * Returns an observable of type Horse
+   */
+  private getHorse() {
     this.horse$ = this.horseService.getHorse(this.horseKey);
   }
 
-  // Save a new horse Horse
-  saveHorse(user: User, horse: Horse) {
+  /**
+   * Save a new horse
+   * @param user
+   * @param horse
+   */
+  private saveHorse(user: User, horse: Horse) {
     return this.horseService.saveHorseData(user, this.horseKey, {
       displayName: this.displayName.value,
       dueDate: this.dueDate.value,
@@ -88,8 +106,13 @@ export class HorseEditComponent implements OnInit {
     });
   }
 
-  // Update an existing horse
-  updateHorse(user: User, horse: Horse, currentAlarmId?: string) {
+  /**
+   * Update the existing horse
+   * @param user
+   * @param horse
+   * @param currentAlarmId
+   */
+  private updateHorse(user: User, horse: Horse, currentAlarmId?: string) {
     return this.horseService.updateHorseData(user, this.horseKey,  {
       displayName: this.displayName.value,
       dueDate: this.dueDate.value,
@@ -100,13 +123,27 @@ export class HorseEditComponent implements OnInit {
     }, currentAlarmId);
   }
 
-  save(user: User, horse: Horse, currentAlarmId?: string) {
+  /**
+   * Save horse properties.
+   * If creating new horse - save
+   * If horse exitis - update
+   * @param user
+   * @param horse
+   * @param currentAlarmId
+   */
+  public save(user: User, horse: Horse, currentAlarmId?: string) {
     const save = this.isNewHorse ?
       this.saveHorse(user, horse)
       : this.updateHorse(user, horse, currentAlarmId);
   }
 
-  uploadFile(horse: Horse, event: any) {
+  /**
+   * Upload a selected file to Google storage.
+   * Then assign the download URL to this horse obj
+   * @param horse
+   * @param event
+   */
+  public uploadFile(horse: Horse, event: any) {
     this.loaded = false;
     this.loading = true;
     const time = new Date();
@@ -119,15 +156,27 @@ export class HorseEditComponent implements OnInit {
       });
   }
 
-  receiveSelectedOption($event) {
+  /**
+   * Receive a string emitted from child component
+   * @param  event as string
+   */
+  public receiveSelectedOption($event) {
     this.horseObject.alarmId = $event;
   }
 
-  delete(horse: Horse) {
+  /**
+   * Delete a horse (update deleted = true)
+   * @param horse the horse object
+   */
+  public delete(horse: Horse) {
     return this.horseService.deleteHorse(horse);
   }
 
-  getStyle(imageUrl) {
+  /**
+   * Bypass security for image binding.
+   * @param imageUrl the download URL of image from storage
+   */
+  public getStyle(imageUrl) {
     const style = `background-image: url(${imageUrl}) !important; background-size: cover; background-position: center`;
     return this.sanitizer.bypassSecurityTrustStyle(style);
   }
