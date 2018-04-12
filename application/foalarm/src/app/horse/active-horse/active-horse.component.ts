@@ -21,11 +21,17 @@ export class ActiveHorseComponent implements OnInit {
     this.getActiveHorses();
   }
 
-  getActiveHorses() {
+  /**
+   * Returns observable to horse collection where state = true
+   */
+  private getActiveHorses() {
     this.activeHorses$ = this.horseService.getActiveHorses();
   }
 
-  toggleCollapse() {
+  /**
+   * Show or hide HTML Collapse
+   */
+  public toggleCollapse() {
     this.collapse = !this.collapse;
   }
 
