@@ -84,15 +84,15 @@
                 <div class="form-check">
                   <input [(ngModel)]="horse.isPublic" formControlName="check" (change)="togglePublic(horse.isPublic)" type="checkbox" name="onoffswitch"
                     class="onoffswitch-checkbox" id="myonoffswitch">
-                    <!-- [ngModelOptions]="{standalone: true}" -->
+                  <!-- [ngModelOptions]="{standalone: true}" -->
                 </div>
               </div>
             </div>
             <div [collapse]="!isCollapsed">
-                <p class="form-info text-center">
-                    The horse's name, due date and camera link is made public to all registered Foalarm users. All foaling alerts
-                    will be viewable by any user reducing the likelihood of a missed alert and foaling.
-                </p>
+              <p class="form-info text-center">
+                The horse's name, due date and camera link is made public to all registered Foalarm users. All foaling alerts will be viewable
+                by any user reducing the likelihood of a missed alert and foaling.
+              </p>
             </div>
           </div>
         </div>

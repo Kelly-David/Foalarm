@@ -1,3 +1,15 @@
+/*
+ * File: horse-list.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Wednesday, 20th December 2017 11:32:04 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 11:49:16 am
+ * Modified By: david
+ * -----
+ * Description: Displays a list of all horses.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Horse } from '../../horse';
 import { HorseService } from '../horse.service';
@@ -28,23 +40,31 @@ export class HorseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // TODO remove
-    // console.log('OK');
     this.getHorses();
 
   }
 
-  getHorses() {
+  /**
+   * Returns observable of all horses
+   */
+  private getHorses() {
     this.horses$ = this.horseService.getHorses();
   }
 
-  getStyle(imageUrl) {
+  /**
+   * Bypass Angular security to bind string to template
+   * @param imageUrl the horse.imageURL string
+   */
+  public getStyle(imageUrl) {
     const style = `background-image: url(${imageUrl}) !important; background-size: cover`;
     return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 
-  // Create a model dialog - title is passed as input to the child component.
-  openClientModal(id?: string) {
+  /**
+   * Create a model dialog - title is passed as input to the child component.
+   * @param id the horse instance
+   */
+  public openClientModal(id?: string) {
     this.bsModalRef = this.modalService.show(AlarmEditModalComponent, {class: 'modal-dialog'});
     this.bsModalRef.content.parent = 'horse';
     this.bsModalRef.content.key = id;
