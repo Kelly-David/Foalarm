@@ -11,7 +11,6 @@ import { LoginComponent } from '../login/login.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { RegisterComponent } from '../register/register.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { HorseEditComponent } from '../horse/horse-edit/horse-edit.component';
 import { HorseListComponent } from '../horse/horse-list/horse-list.component';
 import { AlarmListComponent } from '../alarm/alarm-list/alarm-list.component';
 import { AlarmEditComponent } from '../alarm/alarm-edit/alarm-edit.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
   children: [
     { path: '', pathMatch: 'full', redirectTo: 'horse-list' },
     { path: 'horse-list', component: HorseListComponent, canActivate: [AuthGuard] },
-    { path: 'horse-edit/:id', component: HorseEditComponent, canActivate: [AuthGuard] },
     { path: 'alarm-list', component: AlarmListComponent, canActivate: [AuthGuard] },
     { path: 'alarm-edit/:id', component: AlarmEditComponent, canActivate: [AuthGuard] },
     { path: 'alert-edit', component: AlertEditComponent, canActivate: [AuthGuard] },

@@ -23,7 +23,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { UtilityComponent } from './utility/utility.component';
 import { HorseListComponent } from './horse/horse-list/horse-list.component';
 import { HorseService } from './horse/horse.service';
-import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
 import { FirestoreService } from './firestore.service';
 import { ActiveHorseComponent } from './horse/active-horse/active-horse.component';
 import { AlarmListComponent } from './alarm/alarm-list/alarm-list.component';
@@ -81,7 +80,6 @@ import { FriendRequestComponent } from './user-profile/friend-request/friend-req
     ProfileComponent,
     UtilityComponent,
     HorseListComponent,
-    HorseEditComponent,
     ActiveHorseComponent,
     AlarmListComponent,
     ActiveAlarmListComponent,
