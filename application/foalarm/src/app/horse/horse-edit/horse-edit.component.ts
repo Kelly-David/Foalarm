@@ -16,11 +16,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HorseObj } from '../../horse-obj';
 
 @Component({
-  selector: 'app-horse-edit-form',
-  templateUrl: './horse-edit-form.component.html',
-  styleUrls: ['./horse-edit-form.component.css']
+  selector: 'app-horse-edit',
+  templateUrl: './horse-edit.component.html',
+  styleUrls: ['./horse-edit.component.css']
 })
-export class HorseEditFormComponent implements OnChanges {
+export class HorseEditComponent implements OnChanges {
 
   @Input() horseId: any;
   @Output() setTitle = new EventEmitter<string>();
