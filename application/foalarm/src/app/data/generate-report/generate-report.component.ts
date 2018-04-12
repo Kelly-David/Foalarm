@@ -1,3 +1,15 @@
+/*
+ * File: generate-report.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Wednesday, 21st February 2018 10:34:29 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 3:30:33 pm
+ * Modified By: david
+ * -----
+ * Description: Generate an activity data report.
+ */
+
 import { Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -17,9 +29,9 @@ import { AuthService } from '../../core/auth.service';
 export class GenerateReportComponent implements OnInit {
 
   @ViewChild('confirmModal') confirmModal: ElementRef;
-  alarmKey: string;
-  modalRef: BsModalRef;
-  alarm$: Observable<Alarm> | Observable<any>;
+  public alarmKey: string;
+  public modalRef: BsModalRef;
+  public alarm$: Observable<Alarm> | Observable<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,29 +41,42 @@ export class GenerateReportComponent implements OnInit {
     private authService: AuthService
   ) { }
 
-  ngOnInit() {
-    // this.alarmKey = this.activatedRoute.snapshot.params['id'];
-  }
+  ngOnInit() { }
 
-  // Creates new report, triggering Cloud Function
+  /**
+   * Creates new report, will trigger server Function
+   */
   requestReport() {
     const data = {
       ownerUID: this.authService.uString,
       alarmId: this.alarmKey,
       status: 'processing'
     };
-    this.reportService.createReport(data);
+    return this.reportService.createReport(data)
+    .then(_ => this.modalRef.hide());
   }
 
+  /**
+   * The Alarm id is received from child component
+   * @param event as string
+   */
   receiveSelectedOption($event) {
     this.alarmKey = $event;
     this.getAlarm(this.alarmKey);
   }
 
+  /**
+   * Retrive the alarm doc to display in the template
+   * @param key
+   */
   private getAlarm(key: any) {
     this.alarmService.getAlarm(key);
   }
 
+  /**
+   * Display a confirmation modal
+   * @param template
+   */
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: ''});
   }
