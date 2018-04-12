@@ -1,3 +1,16 @@
+/*
+ * File: active-alarm-list.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Friday, 29th December 2017 2:07:06 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 1:04:06 pm
+ * Modified By: david
+ * -----
+ * Description: Displays a list of alarms that are currently
+ * assigned to a horse.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Alarm } from '../../alarm';
@@ -10,31 +23,36 @@ import { AlarmService } from '../alarm.service';
 })
 export class ActiveAlarmListComponent implements OnInit {
 
-  alarms$: Observable<Alarm[]> | Observable<any> | null;
-  collapse = false as boolean;
+  public alarms$: Observable<Alarm[]> | Observable<any> | null;
+  public collapse = false as boolean;
 
   constructor(
     private alarmService: AlarmService
   ) { }
 
   ngOnInit() {
-
     this.getAlarms();
-
   }
 
-  // Returns observable of all active alarms
-  getAlarms() {
+  /**
+   * Returns observable of all active alarms
+   */
+  private getAlarms() {
     this.alarms$ = this.alarmService.activeAlarms;
   }
 
-
-  toggleCollapse() {
+  /**
+   * Show or hide the element
+   */
+  public toggleCollapse() {
     this.collapse = !this.collapse;
   }
 
-  // TODO REMOVE: TESTING: Tests the SMS alert cloud funtion is working
-  testAlarm(alarm: Alarm) {
+  /**
+   * TESTING: Tests the SMS alert cloud funtion is working
+   * @param alarm
+   */
+  public testAlarm(alarm: Alarm) {
     return this.alarmService.testAlarm(alarm.id, {
       alert: true,
       x: 5,
