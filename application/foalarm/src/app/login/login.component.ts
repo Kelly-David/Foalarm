@@ -1,7 +1,13 @@
 /*
- * @Author: David Kelly
- * @Date: 2017-10-26 15:39:18
- * @Last Modified time: 2017-10-26 15:39:18
+ * File: login.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Friday, 10th October 2017 2:16:14 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 3:44:06 pm
+ * Modified By: david
+ * -----
+ * Description: User Login Form
  */
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
@@ -9,8 +15,6 @@ import { AlertHandlerService } from '../alert-handler.service';
 import { User } from '../user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
-import 'firebase/storage';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +35,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Subscribe to AlertHnadlerService to recive authentication errors
+    // Subscribe to AlertHandlerService to recive authentication errors
     this.alertHandler.authenticationError$.subscribe((data) => {
       this.alertString = data;
     });
@@ -58,11 +62,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // Getters = pretty code!
+  // Form getters
   get email() { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password'); }
 
-  // Step 1
+  /**
+   * Call Google sign in service
+   */
   signin() {
     return this.authService.login(this.email.value, this.password.value);
   }
