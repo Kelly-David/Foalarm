@@ -52,7 +52,6 @@ import { DataComponent } from './data/data/data.component';
 import { AlarmLinkComponent } from './data/alarm-link/alarm-link.component';
 import { HorseLinkComponent } from './data/horse-link/horse-link.component';
 import { AlarmIdListComponent } from './alarm/alarm-id-list/alarm-id-list.component';
-import { AlarmEditModalComponent } from './alarm/alarm-edit-modal/alarm-edit-modal.component';
 import { ModalModule, CollapseModule, TooltipModule } from 'ngx-bootstrap';
 import { AlarmEditComponent } from './alarm/alarm-edit/alarm-edit.component';
 import { HorseEditComponent } from './horse/horse-edit/horse-edit.component';
@@ -69,6 +68,7 @@ import { PublicUserComponent } from './user-profile/public-user/public-user.comp
 import { PublicFriendsHorseListComponent } from './public/public-friends-horse-list/public-friends-horse-list.component';
 import { FriendRequestListComponent } from './user-profile/friend-request-list/friend-request-list.component';
 import { FriendRequestComponent } from './user-profile/friend-request/friend-request.component';
+import { FormEditModalComponent } from './modal/form-edit-modal/form-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +90,7 @@ import { FriendRequestComponent } from './user-profile/friend-request/friend-req
     CameraViewComponent,
     FilterPipe, FilterDatePipe, AlertPipe, FilterUserPipe, DataGraphComponent, CalcComponent, GenerateReportComponent,
     ReportLinkComponent, DataComponent, AlarmLinkComponent, HorseLinkComponent, AlarmIdListComponent,
-    AlarmEditModalComponent, AlarmEditComponent, HorseEditComponent, ModalComponent, PublicHorseListComponent,
+    FormEditModalComponent, AlarmEditComponent, HorseEditComponent, ModalComponent, PublicHorseListComponent,
     PublicHorseComponent, HorseOwnerComponent, UserListComponent, UserComponent, FriendComponent, PublicUserComponent,
     PublicFriendsHorseListComponent, FriendRequestListComponent, FriendRequestComponent,
   ],
@@ -125,7 +125,7 @@ import { FriendRequestComponent } from './user-profile/friend-request/friend-req
     UserService,
   ],
   entryComponents: [
-    AlarmEditModalComponent,
+    FormEditModalComponent,
     ModalComponent
   ],
   bootstrap: [AppComponent]

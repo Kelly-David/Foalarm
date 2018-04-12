@@ -5,7 +5,7 @@ import { Alarm } from '../../alarm';
 import { AlarmService } from '../alarm.service';
 import { BsModalService } from 'ngx-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap';
-import { AlarmEditModalComponent } from '../alarm-edit-modal/alarm-edit-modal.component';
+import { FormEditModalComponent } from '../../modal/form-edit-modal/form-edit-modal.component';
 
 @Component({
   selector: 'app-alarm-list',
@@ -34,7 +34,7 @@ export class AlarmListComponent implements OnInit {
 
   // Create a model dialog - title is passed as input to the child component.
   openClientModal(id?: string) {
-    this.bsModalRef = this.modalService.show(AlarmEditModalComponent, {class: 'modal-dialog'});
+    this.bsModalRef = this.modalService.show(FormEditModalComponent, {class: 'modal-dialog'});
     this.bsModalRef.content.parent = 'alarm';
     this.bsModalRef.content.key = id;
   }

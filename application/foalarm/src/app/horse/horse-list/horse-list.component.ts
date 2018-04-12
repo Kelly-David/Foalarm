@@ -19,7 +19,7 @@ import { AuthService } from '../../core/auth.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { BsModalService } from 'ngx-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap';
-import { AlarmEditModalComponent } from '../../alarm/alarm-edit-modal/alarm-edit-modal.component';
+import { FormEditModalComponent } from '../../modal/form-edit-modal/form-edit-modal.component';
 
 @Component({
   selector: 'app-horse-list',
@@ -65,7 +65,7 @@ export class HorseListComponent implements OnInit {
    * @param id the horse instance
    */
   public openClientModal(id?: string) {
-    this.bsModalRef = this.modalService.show(AlarmEditModalComponent, {class: 'modal-dialog'});
+    this.bsModalRef = this.modalService.show(FormEditModalComponent, {class: 'modal-dialog'});
     this.bsModalRef.content.parent = 'horse';
     this.bsModalRef.content.key = id;
   }

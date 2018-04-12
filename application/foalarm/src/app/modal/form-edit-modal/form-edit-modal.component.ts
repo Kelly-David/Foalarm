@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
-  selector: 'app-alarm-edit-modal',
-  templateUrl: './alarm-edit-modal.component.html',
-  styleUrls: ['./alarm-edit-modal.component.css']
+  selector: 'app-form-edit-modal',
+  templateUrl: './form-edit-modal.component.html',
+  styleUrls: ['./form-edit-modal.component.css']
 })
-export class AlarmEditModalComponent implements OnInit {
+export class FormEditModalComponent implements OnInit {
 
   public parent: string;
   public title: string;
