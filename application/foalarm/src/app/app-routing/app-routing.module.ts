@@ -1,8 +1,15 @@
 /*
- * @Author: David Kelly
- * @Date: 2017-10-26 14:58:28
- * @Last Modified time: 2017-10-26 14:58:28
+ * File: app-routing.module.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Thursday, 14th December 2017 6:46:49 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 2:35:30 pm
+ * Modified By: david
+ * -----
+ * Description: App Routes
  */
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';

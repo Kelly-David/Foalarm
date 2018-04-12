@@ -1,3 +1,15 @@
+/*
+ * File: alerts.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Monday, 15th January 2018 2:10:51 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 2:31:16 pm
+ * Modified By: david
+ * -----
+ * Description: Alert service
+ */
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FirestoreService } from '../firestore.service';
@@ -10,9 +22,9 @@ import { AuthService } from '../core/auth.service';
 @Injectable()
 export class AlertsService {
 
-  alerts$: Observable<Alert[]> | Observable<any>;
-  alertsCount$: Observable<Alert[]> | Observable<any>;
-  alertsHistory$: Observable<Alert[]> | Observable<any>;
+  public alerts$: Observable<Alert[]> | Observable<any>;
+  public alertsCount$: Observable<Alert[]> | Observable<any>;
+  public alertsHistory$: Observable<Alert[]> | Observable<any>;
 
   constructor(
     private db: FirestoreService,
@@ -66,10 +78,8 @@ export class AlertsService {
    * Dismiss an alert (update viewed = true)
    * @param alert
    */
-  dismissAlert(key: string) {
-    // Set viewed to false
+  public dismissAlert(key: string): Promise<void> {
     const data = { viewed: true };
-    console.log('Dismissing Alert');
     return this.db.update('alerts', key, data)
       .catch(error => console.log(error));
   }
@@ -78,8 +88,9 @@ export class AlertsService {
    * Delete an alert (update deleted = true)
    * @param key
    */
-  removeAlert(key: string) {
-    this.fs.collection('alerts').doc(key).delete().then(function () {
+  public removeAlert(key: string): Promise<void> {
+    return this.fs.collection('alerts').doc(key).delete()
+    .then(function () {
       console.log('Alert successfully deleted!');
     }).catch(function (error) {
       console.error('Error removing document: ', error);
