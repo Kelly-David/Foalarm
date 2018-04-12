@@ -21,7 +21,7 @@
         <h6>{{alert.createdAt | date:'short'}}</h6>        
       </td>
       <td>
-        <button *ngIf="!alert.viewed" class="btn btn-secondary btn-sm pull-right" (click)="dismissAlert(alert)">
+        <button *ngIf="!alert.viewed" class="btn btn-secondary btn-sm pull-right" (click)="dismissAlert(alert.id)">
           <i class="fa fa-check-square-o" aria-hidden="true"></i>
         </button>
         <button *ngIf="alert.viewed" type="button" class="btn btn-secondary btn-sm pull-right" (click)="remove(alert.id)">

@@ -3,7 +3,7 @@
       <div class="card-body">
         <small>Foaling Alert | {{alert.createdAt | date:'shortTime'}}</small>
         <span class="pull-right">
-          <a class="btn btn-social-icon" (click)="dismissAlert(alert)">
+          <a class="btn btn-social-icon" (click)="dismissAlert(alert.id)">
             <span>
               <i class="fa fa-window-close" aria-hidden="true"></i>
             </span>

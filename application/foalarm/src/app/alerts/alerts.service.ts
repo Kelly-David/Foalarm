@@ -66,11 +66,11 @@ export class AlertsService {
    * Dismiss an alert (update viewed = true)
    * @param alert
    */
-  dismissAlert(alert: Alert) {
+  dismissAlert(key: string) {
     // Set viewed to false
     const data = { viewed: true };
     console.log('Dismissing Alert');
-    return this.db.update('alerts', alert.id, data)
+    return this.db.update('alerts', key, data)
       .catch(error => console.log(error));
   }
 
