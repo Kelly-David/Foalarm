@@ -201,12 +201,9 @@ export class HorseEditComponent implements OnChanges {
    * @param val
    */
   public togglePublic(val: boolean) {
-    console.log('Form: ', this.check.value);
     if (val) {
-      console.log('Public');
       this.isPublic = true;
     } else if (!val) {
-      console.log('Not Public');
       this.isPublic = false;
     }
   }

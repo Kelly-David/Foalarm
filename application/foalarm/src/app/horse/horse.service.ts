@@ -119,7 +119,6 @@ export class HorseService {
    * @param data Horse properties
    */
   public saveHorseData(user: User, key, data: any) {
-    console.log('Saving new horse' + key);
     // Set the reference to the alarm
     if (data.alarmId) {
       this.db.update('alarms', data.alarmId, { state: true});
@@ -134,7 +133,6 @@ export class HorseService {
    * @param horse horse object
    */
   public deleteHorse(horse: Horse) {
-    console.log('Deleteing horse' + horse.id);
     // Update the reference to the alarm
     if (horse.alarmId) {
       this.db.update('alarms', horse.alarmId, {state: false});
