@@ -1,3 +1,15 @@
+/*
+ * File: alert.pipe.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Tuesday, 23rd January 2018 8:54:24 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 4:12:25 pm
+ * Modified By: david
+ * -----
+ * Description: Pipes used to transform data objects
+ */
+
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
