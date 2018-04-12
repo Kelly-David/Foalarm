@@ -1,3 +1,15 @@
+/*
+ * File: public.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Saturday, 31st March 2018 9:51:02 am
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 7:30:14 pm
+ * Modified By: david
+ * -----
+ * Description: Public Service
+ */
+
 import { Injectable } from '@angular/core';
 import { FirestoreService } from '../firestore.service';
 import { Observable } from 'rxjs/Observable';
@@ -33,39 +45,14 @@ export class PublicService {
   }
 
   /**
-   * Friends public horses
-   * TODO - flatten horse queries into one
+   * Returns observable of public horse of specified user uid
+   * @param key user uid
    */
-  get firendsPublicHorses() {
-    return this.db.col$(`users/${this.auth.uString}/friends`, ref => ref.where('deleted', '==', false)).forEach(col => {
-      col.forEach(doc => {
-        const data = new Object(doc);
-        console.log(data);
-      });
-    });
-  }
-
-  // Returns observable of public horse of specified user uid
   friendsHorses(key: any) {
     return this.db.col$(`horses`, ref => ref
                                         .where('isPublic', '==', true)
                                         .where('ownerUID', '==', key)
                                         .where('deleted', '==', false));
-  }
-
-  /**
-   * TODO - test and remove
-   */
-  friendsHorses2() {
-    return this.afs
-      .collection(`users/${this.auth.uString}/friends`)
-      .snapshotChanges()
-      .map(actions => {
-        return actions.map(a => {
-          console.log(a.payload.doc.id);
-        });
-
-      });
   }
 
 }
