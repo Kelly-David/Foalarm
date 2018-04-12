@@ -1,3 +1,15 @@
+/*
+ * File: camera-list.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Monday, 22nd January 2018 12:31:21 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 2:37:45 pm
+ * Modified By: david
+ * -----
+ * Description: Displays a list of camera links
+ */
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Horse } from '../../horse';
@@ -20,7 +32,6 @@ export class CameraListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-
     this.getCameras();
   }
 
@@ -28,11 +39,18 @@ export class CameraListComponent implements OnInit, OnDestroy {
     console.clear();
   }
 
-  getCameras() {
+  /**
+   * Return observable of horses with camera URLs
+   */
+  private getCameras() {
     this.cams$ = this.horseService.horseCams;
   }
 
-  getSource(videoURL) {
+  /**
+   * Bypass Angular security to bind camera URL to template
+   * @param videoURL
+   */
+  public getSource(videoURL) {
     let source = `${videoURL}`;
     source = source.replace('watch?v=', 'v/');
     return this.sanitizer.bypassSecurityTrustResourceUrl(source);
