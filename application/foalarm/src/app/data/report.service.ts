@@ -1,3 +1,15 @@
+/*
+ * File: report.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Wednesday, 21st February 2018 4:11:45 pm
+ * Author: david
+ * -----
+ * Last Modified: Thursday, 12th April 2018 3:09:52 pm
+ * Modified By: david
+ * -----
+ * Description: Report Service
+ */
+
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirestoreService } from '../firestore.service';
@@ -22,10 +34,10 @@ export class ReportService {
                                                           .orderBy('updatedAt', 'desc'));
   }
   /**
-   * Creates a new report doc
+   * Creates a new report doc - triggers server fucntion
    * @param data
    */
-  createReport(data: any) {
+  public createReport(data: any) {
     // Set the reference to the alarm
     return this.db.set('reports', data)
     .catch(error => console.log(error));
@@ -35,9 +47,8 @@ export class ReportService {
    * Remove a report doc (update delete = true)
    * @param key
    */
-  removeReport(key: string) {
+  public removeReport(key: string) {
     this.fs.collection('reports').doc(key).update({deleted: true}).then(function () {
-      console.log('Report successfully deleted!');
     }).catch(function (error) {
       console.error('Error removing document: ', error);
     });
@@ -47,7 +58,7 @@ export class ReportService {
    * Returns observable to all reports relating to an alarm
    * @param key
    */
-  getReports(key) {
+  public getReports(key) {
     return this.db.col$('reports', ref => ref.where('deleted', '==', false).where('alarmId', '==', key));
   }
 
