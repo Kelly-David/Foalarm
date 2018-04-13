@@ -1,8 +1,15 @@
 /*
- * @Author: David Kelly
- * @Date: 2017-10-26 15:39:18
- * @Last Modified time: 2017-10-26 15:39:18
+ * File: user-profile.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Sunday, 17th October 2017 12:30:13 pm
+ * Author: david
+ * -----
+ * Last Modified: Friday, 13th April 2018 9:17:38 am
+ * Modified By: david
+ * -----
+ * Description: Display/Update the user profile
  */
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { AlertHandlerService } from '../alert-handler.service';
@@ -38,7 +45,7 @@ export class UserProfileComponent implements OnInit {
     this.alertHandler.registrationError$.subscribe((data) =>
       this.alertString = data);
 
-    // Create signup form
+    // Create form
     this.signupForm = this.fb.group({
       'email': ['', [
         Validators.required,
@@ -69,22 +76,19 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Getters reduce the amount of typescript code!
+  // Form getters
   get email() { return this.signupForm.get('email'); }
   get password() { return this.signupForm.get('password'); }
-
   get foalarm() { return this.detailForm.get('foalarm'); }
   get fullName() { return this.detailForm.get('fullName'); }
   get location() { return this.detailForm.get('location'); }
   get photoURL() { return this.detailForm.get('photoURL'); }
 
-  // Step 1
-  signup() {
-    return this.authService.register(this.email.value, this.password.value);
-  }
-
-  // Step 2
-  setFoalarm(user) {
+  /**
+   * Update the user document
+   * @param user authUser
+   */
+  public updateUser(user) {
     return this.authService.updateUserData(user, {
       fullName: this.fullName.value,
       foalarm: this.foalarm.value,
@@ -93,7 +97,13 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  uploadFile(user: User, event: any) {
+  /**
+   * Save the image file in cloud storage
+   * Then, add the download url to this user
+   * @param user authUser
+   * @param event file
+   */
+  public uploadFile(user: User, event: any) {
     this.loading = true;
     const file = event.srcElement.files[0];
     const storageRef = firebase.storage().ref(`users/${user.uid}`);
@@ -103,7 +113,6 @@ export class UserProfileComponent implements OnInit {
       .then(_ => {
         this.loaded = true;
       });
-
   }
 
 }
