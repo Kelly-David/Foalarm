@@ -1,3 +1,15 @@
+/*
+ * File: user.service.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Saturday, 31st March 2018 12:11:51 pm
+ * Author: david
+ * -----
+ * Last Modified: Friday, 13th April 2018 9:13:59 am
+ * Modified By: david
+ * -----
+ * Description: User service
+ */
+
 import { Injectable } from '@angular/core';
 import { FirestoreService } from '../firestore.service';
 import { Observable } from 'rxjs/Observable';
@@ -6,8 +18,8 @@ import { AuthService } from '../core/auth.service';
 @Injectable()
 export class UserService {
 
-  users$: Observable<{}[]> | Observable<any> | null;
-  friends$: Observable<{}[]> | Observable<any> | null;
+  public users$: Observable<{}[]> | Observable<any> | null;
+  public friends$: Observable<{}[]> | Observable<any> | null;
 
   constructor(
     private db: FirestoreService,
