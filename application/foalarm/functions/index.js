@@ -1,3 +1,15 @@
+
+/*
+ * File: index.js
+ * Project: /Users/david/Foalarm/application/foalarm/functions
+ * File Created: Thursday, 14th December 2017 12:28:14 pm
+ * Author: david
+ * -----
+ * Last Modified: Friday, 13th April 2018 9:45:31 am
+ * Modified By: david
+ * -----
+ * Description: Server
+ */
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
@@ -25,8 +37,9 @@ const os = require('os');
 const json2csv = require('json2csv');
 
 /**
- * Start Cloud Function firebaseToFirestore: promise
- * Description: onWrite event to Firebase RTDB, copy data to Firestore DB.
+ * @name firebaseToFirestore
+ * @description On write event to Firebase RTDB data list. Move data into Firestore
+ * to kick off foaling alert services.
  */
 exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}')
     .onWrite(event => {
@@ -63,8 +76,9 @@ exports.firebaseToFirestore = functions.database.ref('/data/{alarmkey}/{dataKey}
     });
 
 /**
- * Start Cloud Function testFoalAlert: promise (twilio SMS)
- * Description: onWrite event to Firestore, send SMS notification.
+ * @name textFoalAlert
+ * @description SMS Foaling Alert Notification. On-write event. 
+ * Create message alert. Call Twilio SMS API. 
  */
 exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}')
     .onWrite(event => {
@@ -115,8 +129,9 @@ exports.textFoalAlert = functions.firestore.document('data/{key}/data/{dataKey}'
 
 
 /**
- * Start Cloud Function testFoalAlertEmail: promise (sendgrid transactional email)
- * Description: onWrite event to Firestore, send email notification.
+ * @name sendFoalAlertEmail 
+ * @description Foaling Alert email notifcation. 
+ * On-write event -> query source, create email, call SENDGRID API.
  */
 exports.sendFoalAlertEmail = functions.firestore
     .document('data/{key}/data/{dataKey}')
@@ -163,8 +178,9 @@ exports.sendFoalAlertEmail = functions.firestore
     });
 
 /**
- * Start Cloud Function saveFoalingalert: promise
- * Description: onWrite event to Firestore, create in-app notifaction.
+ * @name saveFoalingAlert
+ * @description onWrite event to Firestore, create in-app notifaction, 
+ * create a firestore Alert ref.
  */
 exports.saveFoalingAlert = functions.firestore
     .document('data/{key}/data/{dataKey}')
@@ -208,7 +224,8 @@ exports.saveFoalingAlert = functions.firestore
     });
 
 /**
- * 
+ * @name pushNotication
+ * @description Create FCM notification to browser. 
  */
 exports.pushNotication = functions.firestore
     .document('alerts/{alertKey}').onCreate(event => {
@@ -239,9 +256,11 @@ exports.pushNotication = functions.firestore
             });
     });
 
-/** 
- * 
-*/
+/**
+ * @name createDataCSV
+ * @description Generates activity data report. Converts Firebase JSON objects
+ * to CSV. Save file in storage. Update the report ref in Firestore.
+ */
 exports.createDataCSV = functions.firestore
     .document('reports/{reportId}')
     .onCreate(event => {
@@ -290,8 +309,8 @@ exports.createDataCSV = functions.firestore
 
 
 /**
-* function getTimeStamp: number
-* Description: return server timestamp
+* @name getTimeStamp
+* @description return server timestamp
 */
 function getTimeStamp() {
     return admin.firestore.FieldValue.serverTimestamp();
