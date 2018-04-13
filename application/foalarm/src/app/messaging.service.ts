@@ -7,7 +7,7 @@
  * Last Modified: Friday, 13th April 2018 9:00:39 am
  * Modified By: david
  * -----
- * Description:
+ * Description: Gets permission from the user to send push notifications.
  */
 
 import { Injectable } from '@angular/core';
