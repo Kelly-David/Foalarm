@@ -1,3 +1,15 @@
+/*
+ * File: user-list.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Sunday, 1st April 2018 11:23:24 am
+ * Author: david
+ * -----
+ * Last Modified: Friday, 13th April 2018 9:24:42 am
+ * Modified By: david
+ * -----
+ * Description: Collection of lists of users, friends and friend requests
+ */
+
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../user.service';
@@ -31,13 +43,14 @@ export class UserListComponent implements OnInit {
     this.uString = this.auth.uString;
     this.authUser$ = this.userService.getUser(this.uString);
     this.param = this.route.snapshot.params['id'];
-    // this.title = this.param ? 'Friends' : 'All Users';
     this.title = this.userListView ? 'All Users' : 'Friends';
-    // this.users$ = (this.param === undefined) ? this.userService.users() : this.userService.users(this.param);
     this.users$ = this.userService.users();
     this.friends$ = this.userService.users(this.param);
   }
 
+  /**
+   * Show or hide a user collection
+   */
   public toggleUserList() {
     this.userListView = !this.userListView;
     this.title = this.userListView ? 'All Users' : 'Friends';
