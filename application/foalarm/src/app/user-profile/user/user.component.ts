@@ -1,3 +1,15 @@
+/*
+ * File: user.component.ts
+ * Project: /Users/david/Foalarm/application/foalarm
+ * File Created: Sunday, 1st April 2018 1:56:49 pm
+ * Author: david
+ * -----
+ * Last Modified: Friday, 13th April 2018 9:30:35 am
+ * Modified By: david
+ * -----
+ * Description: Displays a user doc
+ */
+
 import { Component, EventEmitter, OnChanges, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../user.service';
@@ -23,6 +35,9 @@ export class UserComponent implements OnChanges {
     this.friend$ = this.userService.getFriend(this.uid);
   }
 
+  /**
+   * Remove a user from authUser friend list
+   */
   public removeFriend() {
     return this.userService.removeUserFromFriendList(this.uid)
     .then(_ => this.closeParent.emit('close'));
