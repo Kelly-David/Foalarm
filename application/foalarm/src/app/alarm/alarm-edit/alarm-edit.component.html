@@ -88,7 +88,7 @@
           </div>
 
         </div>
-        <button type="submit" class="btn btn-success btn-block" [disabled]="!alarmForm.valid">
+        <button type="submit" class="btn btn-success btn-block" [disabled]="!alarmForm.valid || !selectedId">
           <ng-container *ngIf="isNewAlarm">Save</ng-container>
           <ng-container *ngIf="!isNewAlarm">Update</ng-container>
         </button>
