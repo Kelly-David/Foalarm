@@ -11,6 +11,7 @@
  */
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * Alert Pipe
@@ -69,4 +70,14 @@ export class FilterDatePipe implements PipeTransform {
     return date ? items.filter(item => item.createdAt.indexOf(date) !== -1) : items;
   }
 
+}
+
+@Pipe({
+  name: 'safe'
+})
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }
