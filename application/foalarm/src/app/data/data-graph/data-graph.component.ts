@@ -35,7 +35,7 @@ export class DataGraphComponent implements OnInit {
     {label: 24, value: 8640}] as object[];
   private subscription: any;
   public alive = true as boolean;
-  public view: any[] = [923, 500];
+  public view: any[] = [923, 500]; // Removed from chart properties
 
   // Graph options
   showXAxis = true;
@@ -59,6 +59,7 @@ export class DataGraphComponent implements OnInit {
   ngOnInit() {
     // Get the alarm hey from the url
     this.alarmKey = this.activatedRoute.snapshot.params['id'];
+
     // Retrieve the instance from Firebase RTDB
     this.subscribeToChart();
   }

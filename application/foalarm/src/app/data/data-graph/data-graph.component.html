@@ -27,8 +27,8 @@
   </div>
 </div>
 
-<div class="row">
-  <ngx-charts-line-chart *ngIf="chartdata" [view]="view" [scheme]="colorScheme" [results]="data" [gradient]="gradient" [xAxis]="showXAxis"
+<div class="row chart-container">
+  <ngx-charts-line-chart *ngIf="chartdata"  [scheme]="colorScheme" [results]="data" [gradient]="gradient" [xAxis]="showXAxis"
     [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
     [autoScale]="autoScale" (select)="onSelect($event)">
   </ngx-charts-line-chart>

@@ -2,3 +2,7 @@
     background-color: whitesmoke;
     cursor: pointer !important
 }
+
+.chart-container {
+    height: 70vh;
+}
