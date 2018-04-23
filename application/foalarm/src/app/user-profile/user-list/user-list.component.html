@@ -36,10 +36,10 @@
 
   <ng-container *ngIf="userListView">
     <div class="row">
-      <div class="col-md-4" *ngFor="let user of users$ | async | filterUser : term">
-        <ng-container *ngIf="user.uid !== uString">
+      <div class="col-md-4" *ngFor="let user of users$ | async | filterAuthUser : uString | filterUser : term ">
+        <!-- <ng-container *ngIf="user.uid !== uString"> -->
           <app-public-user [uid]="user.uid" [user]="uString" [authUserFullName]="authUser.fullName"></app-public-user>
-        </ng-container>
+        <!-- </ng-container> -->
         <!-- card element end -->
       </div>
     </div>

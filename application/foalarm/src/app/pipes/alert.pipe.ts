@@ -12,6 +12,7 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../core/auth.service';
 
 /**
  * Alert Pipe
@@ -79,5 +80,19 @@ export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
   transform(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
+
+/**
+ * Filters the auth user from the users list
+ */
+@Pipe({
+  name: 'filterAuthUser'
+})
+export class FilterAuthUser implements PipeTransform {
+
+  transform(items: any[], user): any {
+    if (!items) { return items; }
+    return user ? items.filter(item => item.uid !== user) : items;
   }
 }
