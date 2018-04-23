@@ -33,3 +33,4 @@
 
 curl -k -X POST https://foalarm.firebaseio.com/data/V4AD8dduE7KBovFXJmvk.json -d '{"id": "V4AD8dduE7KBovFXJmvk", "createdAt": 20202020, "x":"131","y":"915","z":"0"}'
 curl -k -X POST https://foalarm.firebaseio.com/data/3IRD79veU7nwwm5pa8Qp.json -d '{"id": "3IRD79veU7nwwm5pa8Qp", "createdAt": 20202020, "x":"131","y":"915","z":"0"}'
+curl -k -X POST https://foalarm.firebaseio.com/data/WnVfzMQG6O91zMA8kVle.json -d '{"id": "WnVfzMQG6O91zMA8kVle", "createdAt": 20202020, "x":"131","y":"915","z":"0"}'
